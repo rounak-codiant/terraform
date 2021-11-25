@@ -1,0 +1,39 @@
+# resource "aws_instance" "codiant-instance" {
+#         ami = "ami-0c55b159cbfafe1f0"   ## AMI image define
+#         instance_type = "t2.micro"		## Machine type
+#         key_name = ""				## Key name
+#         security_groups = ["cod-sg"]	## Multiple SG Group assign
+# 		vpc_id = vpc-1ebb0d76			## VPC assign 
+#         tags = {
+#          Name = "codiant"			## Name
+#         }
+# }
+
+
+
+data "aws_ami" "latest-ubuntu-ami" {
+  most_recent = true
+  owners = ["099720109477"]
+
+  filter {
+    name = "name"
+    values = ["ubuntu/images/hvm-ssd*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+}
+
+
+
+resource "aws_instance" "ec2_instance" {
+    ami = data.aws_ami.latest-ubuntu-ami
+    instance_type = var.instance_type
+    security_groups = [ "value" ]
+    tags = {
+      "Name" = var.project_name - var.env_suffix
+    }
+}
