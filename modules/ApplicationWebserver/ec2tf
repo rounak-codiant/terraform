@@ -3,7 +3,7 @@
 #         instance_type = "t2.micro"		## Machine type
 #         key_name = ""				## Key name
 #         security_groups = ["cod-sg"]	## Multiple SG Group assign
-# 		vpc_id = vpc-1ebb0d76			## VPC assign 
+# 	    	vpc_id = vpc-1ebb0d76			## VPC assign 
 #         tags = {
 #          Name = "codiant"			## Name
 #         }

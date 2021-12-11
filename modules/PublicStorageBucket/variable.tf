@@ -1,11 +1,12 @@
 variable "project_name" {
-  default = "TerraformProject"
 }
 
 variable "env_suffix" {
-  default = "dev"
 }
 
-variable "instance_type" {
-  default = "t2.micro"
+variable "private_bucket_name" {
 }
+
+variable "private_bucket_versioning" {
+}
+

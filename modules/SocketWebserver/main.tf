@@ -75,7 +75,7 @@ resource "aws_instance" "web" {
   }
   key_name = var.key_pair_location # Key Setup Pending
 #   security_groups = "" # Security Group Pending
-#   enclave_options = false 
+#   enclave_options = false
   
   tags = {
     Name = "${var.project_name}-${var.env_suffix}"
