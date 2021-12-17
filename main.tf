@@ -29,6 +29,7 @@ module "private_bucket" {
 
   private_bucket_name = var.private_bucket_name
   private_bucket_versioning = var.private_bucket_versioning
+  private_bucket_acceleration = var.private_bucket_acceleration
   project_name = var.project_name
   env_suffix = var.env_suffix
 }
@@ -39,10 +40,24 @@ module "public_bucket" {
 
   public_bucket_name = var.public_bucket_name
   public_bucket_versioning = var.public_bucket_versioning
+  public_bucket_acceleration = var.public_bucket_acceleration
   project_name = var.project_name
   env_suffix = var.env_suffix
 }
 
+######################################### Database Module #########################################
+module "database" {
+  source = "./modules/Database"
+
+  database_cluster_identifier = var.database_cluster_identifier
+  database_engine = var.database_engine
+  database_name = var.database_name
+  database_master_username = var.database_master_username
+  database_master_password = var.database_master_password
+  database_backup_retention_period = var.database_backup_retention_period
+  project_name = var.project_name
+  env_suffix = var.env_suffix
+}
 
 # module "cloudfront-s3-cdn_example_complete" {
 #   source  = "cloudposse/cloudfront-s3-cdn/aws//examples/complete"

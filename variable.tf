@@ -36,5 +36,43 @@ variable "private_bucket_name" {
 }
 
 variable "private_bucket_versioning" {
-    # default = "false"
+    default = "true"
+}
+
+variable "private_bucket_acceleration" {
+    default = "Suspended"
+}
+
+#S3 Public Bucket
+variable "public_bucket_name" {
+    default = "codiant-public-bucket-terraform-1"
+}
+
+variable "public_bucket_versioning" {
+    default = "true"
+}
+
+variable "public_bucket_acceleration" {
+    default = "Suspended"
+}
+
+#Database (RDS)
+variable "database_cluster_identifier" {
+    default = "database-cluster"
+}
+variable "database_engine" {
+    default = "aurora"
+}
+variable "database_name" {
+    default = "database_name"
+}
+variable "database_master_username" {
+    default = "admin"
+}
+variable "database_master_password" {
+    default = "admin@password"
+}
+
+variable "database_backup_retention_period" {
+    default = "7"
 }
