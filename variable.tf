@@ -62,6 +62,7 @@ variable "database_cluster_identifier" {
 }
 variable "database_engine" {
     default = "aurora"
+    # allowed_values = ["aurora", "aurora-mysql", "aurora-postgresql"]
 }
 variable "database_name" {
     default = "database_name"
@@ -69,10 +70,44 @@ variable "database_name" {
 variable "database_master_username" {
     default = "admin"
 }
+
 variable "database_master_password" {
     default = "admin@password"
 }
 
 variable "database_backup_retention_period" {
     default = "7"
+}
+
+variable "deletion_protection" {
+    default = "true"
+}
+
+variable "storage_encrypted" {
+    default = "true"
+}
+
+variable "allow_major_version_upgrade" {
+    default = "false"
+}
+
+variable "copy_tags_to_snapshot" {
+    default = "true"
+}
+
+variable "enabled_cloudwatch_logs_exports" {
+    type        = list(string)
+    default     = ["error", "general", "audit"]
+    }
+
+variable "allocated_storage" {
+    default = "10"
+}
+
+variable "database_instance_class" {
+    default = "t3.medium"
+}
+
+variable "publicly_accessible" {
+    default = "false"
 }

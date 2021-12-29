@@ -55,12 +55,15 @@ module "database" {
   database_master_username = var.database_master_username
   database_master_password = var.database_master_password
   database_backup_retention_period = var.database_backup_retention_period
+  deletion_protection = var.deletion_protection
+  storage_encrypted = var.storage_encrypted
+  allow_major_version_upgrade = var.allow_major_version_upgrade
+  copy_tags_to_snapshot = var.copy_tags_to_snapshot
+  enabled_cloudwatch_logs_exports = var.enabled_cloudwatch_logs_exports
   project_name = var.project_name
   env_suffix = var.env_suffix
-}
 
-# module "cloudfront-s3-cdn_example_complete" {
-#   source  = "cloudposse/cloudfront-s3-cdn/aws//examples/complete"
-#   version = "0.77.0"
-#   # insert the 14 required variables here
-# }
+  allocated_storage = var.allocated_storage
+  database_instance_class = var.database_instance_class
+  publicly_accessible = var.publicly_accessible
+}
