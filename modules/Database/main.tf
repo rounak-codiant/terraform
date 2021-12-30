@@ -1,7 +1,7 @@
 resource "aws_rds_cluster" "database_cluster" {
   cluster_identifier      = var.database_cluster_identifier
   engine                  = var.database_engine
-  engine_mode             = var.engine_mode
+  # engine_mode             = var.database_cluster_engine_mode
   # engine_version          = 
   # availability_zones      = ["us-west-2a", "us-west-2b", "us-west-2c"]
   database_name           = var.database_name
@@ -30,4 +30,6 @@ resource "aws_rds_cluster_instance" "database_instance" {
   # tags                    = "${module.label.tags}"
   # monitoring_interval     = "${var.rds_monitoring_interval}"
   # monitoring_role_arn     = "${var.rds_monitoring_role_arn}"
+
+    depends_on = [ aws_rds_cluster.database_cluster ]
 }

@@ -64,6 +64,9 @@ variable "database_engine" {
     default = "aurora"
     # allowed_values = ["aurora", "aurora-mysql", "aurora-postgresql"]
 }
+# variable "database_cluster_engine_mode" {
+#     default = "provisioned"
+# }
 variable "database_name" {
     default = "database_name"
 }
@@ -110,4 +113,32 @@ variable "database_instance_class" {
 
 variable "publicly_accessible" {
     default = "false"
+}
+
+#Cache Database (Redis)
+
+variable "cachedb_engine" {
+    default = "redis"
+}
+
+variable "cachedb_node_type" {
+    default = "t3.medium"
+}
+
+variable "num_cache_nodes" {
+    default = "1"
+}
+
+variable "cachedb_az_mode" {
+    default = "single-az"
+}
+
+variable "cachedb_snapshot_retention_limit" {
+    default = "1"
+}
+
+# Secret Manager
+
+variable "secretmanager_name" {
+    default = "secretmanager"
 }

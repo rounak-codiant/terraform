@@ -10,6 +10,9 @@ variable "database_cluster_identifier" {
 variable "database_engine" {
 }
 
+# variable "database_cluster_engine_mode" {
+# }
+
 variable "database_name" {
 }
 variable "database_master_username" {
