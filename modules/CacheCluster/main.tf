@@ -1,11 +1,25 @@
-resource "aws_elasticache_cluster" "cachecluster" {
-  cluster_id           = "cluster-example"
-  engine               = var.cachedb_engine
-  node_type            = var.cachedb_node_type
-  num_cache_nodes      = var.num_cache_nodes
-#   port                 = 11211
-  az_mode              = var.cachedb_az_mode 
-  snapshot_retention_limit = var.cachedb_snapshot_retention_limit
+# resource "aws_elasticache_cluster" "redis_cache" {
+#   cluster_id               = "cluster-example"
+#   engine                   = var.cachedb_engine
+#   engine_version           = var.cachedb_engine_version
+#   node_type                = var.cachedb_node_type
+#   num_cache_nodes          = var.num_cache_nodes
+#   port                     = var.cachedb_port
+#   snapshot_retention_limit = var.cachedb_snapshot_retention_limit
+#   # az_mode              = var.cachedb_az_mode 
+# }
+
+
+##############################################################################
+
+resource "aws_elasticache_replication_group" "redis_cache" {
+  automatic_failover_enabled    = true
+  replication_group_id          = "ridepro-dev-replication-id"
+  replication_group_description = "ridepro-dev-replication-id description"
+  node_type                     = var.cachedb_node_type
+  number_cache_clusters         = 2
+  port                          = var.cachedb_port
 }
+
 
 

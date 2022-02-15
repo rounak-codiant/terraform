@@ -1,11 +1,64 @@
-# aws_access_key = ""
-# aws_secret_key = ""
+# AWS Provider Key
 aws_access_key = ""
 aws_secret_key = ""
-aws_region = ""
-project_name = ""
-env_suffix = ""
-instance_type = ""
-key_pair_location = ""
-private_bucket_name = ""
-private_bucket_versioning = ""
+aws_region = "ap-south-1"
+
+
+#Project and 
+project_name = "ProjectName"
+env_suffix   = "Dev"
+
+#EC2
+instance_type   = "t2.micro"
+ebs_volume_type = "gp2"
+ebs_volume_size = "10"
+# key_pair_location = "path/to/pem"
+key_pair_name = "KeyName" #Create and download key from AWS console
+
+
+#S3 Private Bucket
+private_bucket_name  = "private-bucket-name"
+private_bucket_versioning   = "true"
+private_bucket_acceleration = "Enabled"
+
+
+#S3 Public Bucket
+public_bucket_name    = "public-bucket-name"
+public_bucket_versioning   = "true"
+public_bucket_acceleration = "Enabled"
+
+
+#Database (RDS)
+database_cluster_identifier       = "projectname-dev-database-cluster"
+database_instance_identifier      = "projectname-dev-database"
+database_engine                   = "aurora"
+database_name                     = "projectname_dev_db"
+database_master_username  = "admin"
+database_master_password  = "projectname-dev@123"
+database_backup_retention_period  = "7"
+deletion_protection       = "false"
+storage_encrypted = "true"
+allow_major_version_upgrade = "false"
+copy_tags_to_snapshot       = "true"
+enabled_cloudwatch_logs_exports = [
+        "error",
+        "audit",
+        "general",
+        "slowquery"
+]
+
+allocated_storage  = "10"
+database_instance_class   = "db.t3.small"
+publicly_accessible       = "false"
+
+
+#Cache Database (Redis)
+
+cachedb_engine  = "redis"
+cachedb_node_type  = "cache.t2.micro"
+num_cache_nodes    = "1"
+cachedb_az_mode    = "single-az"
+cachedb_snapshot_retention_limit  = "1"
+
+# Secret Manager
+secretmanager_name = "projectname-dev-secrets"

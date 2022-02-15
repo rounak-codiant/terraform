@@ -1,10 +1,12 @@
 resource "aws_s3_bucket" "private_bucket" {
   bucket = var.private_bucket_name
   acl    = "private"
-  acceleration_status = var.private_bucket_acceleration
+  # acceleration_status = var.private_bucket_acceleration
+
   versioning {
     enabled = var.private_bucket_versioning
         }
+
   server_side_encryption_configuration {
     rule {
      apply_server_side_encryption_by_default {
@@ -14,7 +16,7 @@ resource "aws_s3_bucket" "private_bucket" {
   }
 
   tags = {
-    Name        = var.project_name
-    Environment = var.env_suffix
+    Name        = "${var.project_name}"
+    Environment = "${var.env_suffix}"
   }
 }

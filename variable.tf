@@ -26,8 +26,13 @@ variable "ebs_volume_type" {
 variable "ebs_volume_size" {
   default = "30"
 }
+
 variable "key_pair_location" {
   default = "~/.ssh/id_rsa.pub"
+}
+
+variable "key_pair_name" {
+  default = "Key-Pair-Name"
 }
 
 #S3 Private Bucket
@@ -60,6 +65,19 @@ variable "public_bucket_acceleration" {
 variable "database_cluster_identifier" {
     default = "database-cluster"
 }
+
+variable "database_cluster_engine_version" {
+    default = "5.7*"
+}
+
+variable "database_instance_identifier" {
+    default = "database-instance"
+}
+
+variable "database_cluster_skip_final_snapshot" {
+    default = "true"
+}
+
 variable "database_engine" {
     default = "aurora"
     # allowed_values = ["aurora", "aurora-mysql", "aurora-postgresql"]
@@ -67,6 +85,10 @@ variable "database_engine" {
 # variable "database_cluster_engine_mode" {
 #     default = "provisioned"
 # }
+variable "database_engine_version" {
+    default = "5.7*"
+}
+
 variable "database_name" {
     default = "database_name"
 }
@@ -88,6 +110,10 @@ variable "deletion_protection" {
 
 variable "storage_encrypted" {
     default = "true"
+}
+
+variable "database_application_sg" {
+    default = ""
 }
 
 variable "allow_major_version_upgrade" {
@@ -121,8 +147,16 @@ variable "cachedb_engine" {
     default = "redis"
 }
 
+variable "cachedb_engine_version" {
+    default = "5.0.6"
+}
+
+variable "cachedb_port" {
+    default = "6379"
+}
+
 variable "cachedb_node_type" {
-    default = "t3.medium"
+    default = "cache.t3.medium"
 }
 
 variable "num_cache_nodes" {
@@ -142,3 +176,10 @@ variable "cachedb_snapshot_retention_limit" {
 variable "secretmanager_name" {
     default = "secretmanager"
 }
+
+# variable "sm_public_bucket" {
+# }
+
+
+# variable "sm_private_bucket" {
+# }

@@ -21,7 +21,7 @@ data "aws_ami" "instance_ami" {
 
 
 resource "aws_security_group" "application_sg" {
-  name        = "Application_SG"
+  name        = "Application-SG"
   description = "Application - Security Group"
   # vpc_id      = aws_vpc.main.id
 
@@ -65,7 +65,11 @@ resource "aws_security_group" "application_sg" {
   }
 }
 
+resource "aws_eip" "application_eip" {
+}
+
 resource "aws_instance" "web" {
+  # ami           = "ami-0fdb3f3ff5d7c40db"
   ami           = data.aws_ami.instance_ami.id
   instance_type = var.instance_type
   root_block_device {
@@ -73,11 +77,20 @@ resource "aws_instance" "web" {
     volume_size = var.ebs_volume_size
     delete_on_termination = true
   }
-  key_name = var.key_pair_location # Key Setup Pending
-#   security_groups = "" # Security Group Pending
+  # key_name = var.key_pair_location # Key Setup Pending
+  key_name = var.key_pair_name
+  security_groups = ["Application_SG"]
 #   enclave_options = false 
   
   tags = {
-    Name = "${var.project_name}-${var.env_suffix}"
+    # Name = "${var.project_name}-${var.env_suffix}"
+    Name        = "${var.project_name}"
+    Environment = "${var.env_suffix}"
   }
+}
+
+resource "aws_eip_association" "application_eip_assoc" {
+  instance_id   = aws_instance.web.id
+
+    depends_on = [aws_instance.web]
 }

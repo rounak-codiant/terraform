@@ -78,6 +78,7 @@ resource "aws_instance" "web" {
 #   enclave_options = false
   
   tags = {
-    Name = "${var.project_name}-${var.env_suffix}"
+    Name        = "${var.project_name}"
+    Environment = "${var.env_suffix}"
   }
 }
