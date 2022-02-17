@@ -67,7 +67,7 @@ variable "database_cluster_identifier" {
 }
 
 variable "database_cluster_engine_version" {
-    default = "5.7*"
+    default = "5.7.mysql_aurora.2.07.2"
 }
 
 variable "database_instance_identifier" {
@@ -79,14 +79,14 @@ variable "database_cluster_skip_final_snapshot" {
 }
 
 variable "database_engine" {
-    default = "aurora"
-    # allowed_values = ["aurora", "aurora-mysql", "aurora-postgresql"]
+    default = "aurora-mysql"
+    # allowed_values = ["aurora", "aurora-mysql", "aurora-postgresql", "mysql"]
 }
 # variable "database_cluster_engine_mode" {
 #     default = "provisioned"
 # }
 variable "database_engine_version" {
-    default = "5.7*"
+    default = "5.7.mysql_aurora.2.07.2"
 }
 
 variable "database_name" {
@@ -146,6 +146,12 @@ variable "publicly_accessible" {
 variable "cachedb_engine" {
     default = "redis"
 }
+variable "cachedb_name" {
+    default = "redis-instance-name"
+}
+variable "cachedb_description" {
+    default = "redis-instance-description"
+}
 
 variable "cachedb_engine_version" {
     default = "5.0.6"
@@ -170,6 +176,16 @@ variable "cachedb_az_mode" {
 variable "cachedb_snapshot_retention_limit" {
     default = "1"
 }
+
+# IAM User
+
+variable "s3_iam_user_name" {
+    default = "s3-user"
+}
+
+variable "pgp_key" {
+}
+
 
 # Secret Manager
 

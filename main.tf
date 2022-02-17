@@ -74,7 +74,7 @@ module "database" {
   enabled_cloudwatch_logs_exports  = var.enabled_cloudwatch_logs_exports
   project_name                     = local.local_naming
   env_suffix                       = local.environment
-  database_application_sg          = ["module.application_server.aws_security_group.application_sg.id"]
+  database_application_sg          = [module.application_server.application_sg_id]
   allocated_storage                = var.allocated_storage
   database_instance_class          = var.database_instance_class
   publicly_accessible              = var.publicly_accessible
@@ -89,6 +89,8 @@ module "cache_database" {
       module.database
     ]  
 
+  cachedb_name                     = var.cachedb_name
+  cachedb_description              = var.cachedb_description
   cachedb_engine                   = var.cachedb_engine
   cachedb_engine_version           = var.cachedb_engine_version
   cachedb_node_type                = var.cachedb_node_type
@@ -104,8 +106,11 @@ module "cache_database" {
 module "iam_user" {
   source = "./modules/IAM"
 
-  sm_public_bucket          =    module.public_bucket.public_bucket_name
-  sm_private_bucket         =    module.private_bucket.private_bucket_name
+  s3_iam_user_name            =    var.s3_iam_user_name
+  public_bucket_arn           =    module.public_bucket.public_bucket_arn
+  private_bucket_arn          =    module.private_bucket.private_bucket_arn
+  pgp_key                     =    var.pgp_key
+  # s3_iam_secret_key         =    module.private_bucket.iam_access_key_s3_user
 }
 
 ######################################### Secret Manager Module #########################################

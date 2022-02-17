@@ -4,6 +4,7 @@ output "s3_iam_access_key" {
 
 output "s3_iam_secret_key" {
   value = aws_iam_access_key.s3_user_access.encrypted_secret
+  sensitive = true
 }
 
 # output "s3_iam_secret_key" {

@@ -79,7 +79,7 @@ resource "aws_instance" "web" {
   }
   # key_name = var.key_pair_location # Key Setup Pending
   key_name = var.key_pair_name
-  security_groups = ["Application_SG"]
+  security_groups = ["Application-SG"]
 #   enclave_options = false 
   
   tags = {
@@ -87,10 +87,19 @@ resource "aws_instance" "web" {
     Name        = "${var.project_name}"
     Environment = "${var.env_suffix}"
   }
+
+  depends_on = [
+      aws_security_group.application_sg
+    ]
 }
 
 resource "aws_eip_association" "application_eip_assoc" {
   instance_id   = aws_instance.web.id
+  allocation_id = aws_eip.application_eip.id
+  # public_ip     = aws_eip.application_eip
 
-    depends_on = [aws_instance.web]
+    depends_on = [
+      aws_instance.web,
+      aws_eip.application_eip
+      ]
 }

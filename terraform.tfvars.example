@@ -60,5 +60,8 @@ num_cache_nodes    = "1"
 cachedb_az_mode    = "single-az"
 cachedb_snapshot_retention_limit  = "1"
 
+# IAM User
+s3_iam_user_name = ""
+
 # Secret Manager
 secretmanager_name = "projectname-dev-secrets"

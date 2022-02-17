@@ -12,6 +12,10 @@ variable "cachedb_port" {}
 
 variable "cachedb_node_type" {}
 
+variable "cachedb_name" {}
+
+variable "cachedb_description" {}
+
 variable "num_cache_nodes" {}
 
 variable "cachedb_az_mode" {}

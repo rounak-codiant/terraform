@@ -14,8 +14,8 @@
 
 resource "aws_elasticache_replication_group" "redis_cache" {
   automatic_failover_enabled    = true
-  replication_group_id          = "ridepro-dev-replication-id"
-  replication_group_description = "ridepro-dev-replication-id description"
+  replication_group_id          = var.cachedb_name
+  replication_group_description = var.cachedb_description
   node_type                     = var.cachedb_node_type
   number_cache_clusters         = 2
   port                          = var.cachedb_port
