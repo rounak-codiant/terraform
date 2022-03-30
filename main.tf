@@ -140,3 +140,39 @@ module "secret_manager" {
   sm_redis_port       =    "6379"
 
 }
+
+######################################### Load Balancer Module #########################################
+
+module "load_balancer" {
+  source = "./modules/LoadBalancer"
+  # depends_on = [
+  #   module.application_server
+  # ]
+
+  tg_name        = var.tg_name
+  tg_port        = var.tg_port
+  tg_protocol    = var.tg_protocol
+  lb_vpc_id      = var.lb_vpc_id
+  tg_target_type = var.tg_target_type
+
+  lb_tg_health_check_path     = var.lb_tg_health_check_path
+  lb_tg_health_check_port     = var.lb_tg_health_check_port
+  lb_tg_health_check_protocol = var.lb_tg_health_check_protocol
+  lb_tg_health_check_matcher  = var.lb_tg_health_check_matcher
+
+  lb_deletion_protection = var.lb_deletion_protection
+
+  lb_access_logs        = var.lb_access_logs
+  lb_access_logs_bucket = var.lb_access_logs_bucket
+  lb_access_logs_prefix = var.lb_access_logs_prefix
+
+
+  lb_listener_protocol = var.lb_listener_protocol
+  lb_listener_port     = var.lb_listener_port
+
+  lb_name            = var.lb_name
+  lb_internal        = var.lb_internal
+  lb_type            = var.lb_type
+  lb_security_groups = var.lb_security_groups
+  lb_subnets         = var.lb_subnets
+}

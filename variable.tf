@@ -213,3 +213,109 @@ variable "secretmanager_name" {
 
 # variable "sm_private_bucket" {
 # }
+
+
+# ALB (Application Load Balancer)
+# Target Group
+variable "tg_name" {
+  description = "value for the target group name"
+  default     = "default-tg"
+}
+
+variable "tg_port" {
+  description = "value for the target group port"
+  default     = "80"
+}
+
+variable "tg_protocol" {
+  description = "value for the target group protocol"
+  default     = "HTTP"
+}
+
+variable "lb_vpc_id" {
+  description = "value for the target group vpc id"
+  default     = "vpc-12345678"
+}
+
+variable "tg_target_type" {
+  description = "value for the target group target type"
+  default     = "instance"
+}
+
+# Health Check
+variable "lb_tg_health_check_path" {
+  description = "value for the target group health check path"
+  default     = "/"
+}
+
+variable "lb_tg_health_check_port" {
+  description = "value for the target group health check port"
+  default     = "80"
+}
+
+variable "lb_tg_health_check_protocol" {
+  description = "value for the target group health check protocol"
+  default     = "HTTP"
+}
+
+variable "lb_tg_health_check_matcher" {
+  description = "value for the target group health check matcher"
+  default     = "200"
+}
+
+
+# Load Balancer
+variable "lb_name" {
+  description = "value for the load balancer name"
+  default     = "alb-terraform-1"
+}
+
+variable "lb_internal" {
+  description = "false value will create public load balancer (default) and true value will create internal load balancer"
+  default     = "false"
+}
+
+variable "lb_type" {
+  description = "valid values are 'application' or 'network' (default)"
+  default     = "application"
+}
+
+variable "lb_security_groups" {
+  default = "default"
+}
+
+variable "lb_subnets" {
+  description = "value for the load balancer subnets"
+}
+
+variable "lb_deletion_protection" {
+  description = "value for the load balancer deletion protection"
+  default     = "true"
+}
+
+
+
+# Load Balancer Access Logs
+variable "lb_access_logs" {
+  description = "value for enable or disable load balancer's access logs"
+  default     = "false"
+}
+
+variable "lb_access_logs_bucket" {
+  description = "bucket name for the load balancer access logs storage"
+}
+
+variable "lb_access_logs_prefix" {
+  description = "prefix for the load balancer access logs storage"
+}
+
+# Load Balancer Listener
+variable "lb_listener_protocol" {
+  description = "value for the load balancer listener protocol"
+  default     = "HTTP"
+}
+
+variable "lb_listener_port" {
+  description = "value for the load balancer listener port"
+  default     = "80"
+}
