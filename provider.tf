@@ -7,6 +7,14 @@
 #   }
 # }
 
+
+# Configure the AWS Provider
+provider "aws" {
+  region     = var.aws_region
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
+}
+
 terraform {
   required_providers {
     aws = {
@@ -23,12 +31,4 @@ terraform {
     encrypt        = true
     profile = "profile-name" # Configure AWS profile on local
   }
-}
-
-
-# Configure the AWS Provider
-provider "aws" {
-  region     = var.aws_region
-  access_key = var.aws_access_key
-  secret_key = var.aws_secret_key
 }

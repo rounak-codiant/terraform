@@ -1,8 +1,6 @@
-# variable "project_name" {
-# }
+variable "project_name" {}
 
-# variable "env_suffix" {
-# }
+variable "env_suffix" {}
 
 variable "cachedb_engine" {}
 

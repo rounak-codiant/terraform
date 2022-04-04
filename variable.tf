@@ -214,7 +214,6 @@ variable "secretmanager_name" {
 # variable "sm_private_bucket" {
 # }
 
-
 # ALB (Application Load Balancer)
 # Target Group
 variable "tg_name" {
@@ -286,6 +285,7 @@ variable "lb_security_groups" {
 
 variable "lb_subnets" {
   description = "value for the load balancer subnets"
+  default     = "subnet-12345678,subnet-87654321"
 }
 
 variable "lb_deletion_protection" {

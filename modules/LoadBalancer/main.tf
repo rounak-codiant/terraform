@@ -1,8 +1,16 @@
+data "aws_vpc" "default" {
+  default = true
+}
+
+data "aws_subnet_ids" "all" {
+  vpc_id = data.aws_vpc.default.id
+}
+
 resource "aws_alb_target_group" "application_tg" {
   name = var.tg_name
   port = var.tg_port
   protocol = var.tg_protocol
-  vpc_id = var.lb_vpc_id
+  vpc_id =  data.aws_vpc.default.id    #var.lb_vpc_id
   target_type = var.tg_target_type
   health_check {
     path = var.lb_tg_health_check_path
@@ -14,18 +22,24 @@ resource "aws_alb_target_group" "application_tg" {
     unhealthy_threshold = 3
     matcher = var.lb_tg_health_check_matcher
   }
-  tags = {
+  tags_all = {
     Name        = "${var.project_name}"
     Environment = "${var.env_suffix}"
   }
 }
-  
+
+resource "aws_lb_target_group_attachment" "register_instance_tg" {
+  target_group_arn = aws_alb_target_group.application_tg.arn
+  target_id        = var.lb_target_id
+  port             = 80
+}
+
 resource "aws_lb" "application_lb" {
   name               = var.lb_name
   internal           = var.lb_internal
   load_balancer_type = var.lb_type
   security_groups    = [var.lb_security_groups]
-  subnets            = [var.lb_subnets]  # [for subnet in aws_subnet.public : subnet.id]
+  subnets            = data.aws_subnet_ids.all.ids
 
   enable_deletion_protection = var.lb_deletion_protection
 
@@ -35,7 +49,7 @@ resource "aws_lb" "application_lb" {
     prefix  = var.lb_access_logs_prefix
   }
 
-  tags = {
+  tags_all = {
     Name        = "${var.project_name}"
     Environment = "${var.env_suffix}"
   }

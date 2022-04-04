@@ -66,7 +66,12 @@ resource "aws_security_group" "application_sg" {
 }
 
 resource "aws_eip" "application_eip" {
+  tags = {
+    Name        = "${var.project_name}"
+    Environment = "${var.env_suffix}"
+  }
 }
+
 
 resource "aws_instance" "web" {
   # ami           = "ami-0fdb3f3ff5d7c40db"

@@ -17,6 +17,8 @@ variable "lb_vpc_id" {}
 
 variable "tg_target_type" {}
 
+# Register Instance to Target Group
+variable "lb_target_id" {}
 
 # Health Check
 variable "lb_tg_health_check_path" {}

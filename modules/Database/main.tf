@@ -7,7 +7,7 @@ resource "aws_security_group" "database_sg" {
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"
-    security_groups = var.database_application_sg
+    security_groups = [var.database_application_sg]
     description     = "RDS Traffic"    
   }
 

@@ -3,14 +3,14 @@
 # }
 
 locals {
-  local_naming = "${var.project_name}"
-  environment  = "${terraform.workspace}"
+  local_naming = var.project_name
+  environment  = terraform.workspace
 }
 
 ######################################## Application Server Module #########################################
 module "application_server" {
   source = "./modules/ApplicationWebserver"
-  
+
   instance_type     = var.instance_type
   ebs_volume_type   = var.ebs_volume_type
   ebs_volume_size   = var.ebs_volume_size
@@ -24,9 +24,9 @@ module "application_server" {
 ######################################### S3 Private Bucket Module #########################################
 module "private_bucket" {
   source = "./modules/PrivateStorageBucket"
-    # depends_on = [
-    #   module.application_server
-    # ]
+  # depends_on = [
+  #   module.application_server
+  # ]
 
   private_bucket_name         = var.private_bucket_name
   private_bucket_versioning   = var.private_bucket_versioning
@@ -38,46 +38,46 @@ module "private_bucket" {
 ######################################### S3 Public Bucket Module #########################################
 module "public_bucket" {
   source = "./modules/PublicStorageBucket"
-    # depends_on = [
-    #   module.private_bucket
-    # ]
+  # depends_on = [
+  #   module.private_bucket
+  # ]
 
-  public_bucket_name          = var.public_bucket_name
-  public_bucket_versioning    = var.public_bucket_versioning
-  public_bucket_acceleration  = var.public_bucket_acceleration
-  project_name                = local.local_naming
-  env_suffix                  = local.environment
+  public_bucket_name         = var.public_bucket_name
+  public_bucket_versioning   = var.public_bucket_versioning
+  public_bucket_acceleration = var.public_bucket_acceleration
+  project_name               = local.local_naming
+  env_suffix                 = local.environment
 }
 
 ######################################### Database Module #########################################
 module "database" {
   source = "./modules/Database"
-    depends_on = [
-      module.application_server
-    ]
+  depends_on = [
+    module.application_server
+  ]
 
 
-  database_cluster_identifier      = var.database_cluster_identifier
-  database_instance_identifier     = var.database_instance_identifier
-  database_engine                  = var.database_engine
-  database_cluster_engine_version  = var.database_cluster_engine_version
-  database_engine_version          = var.database_engine_version
+  database_cluster_identifier     = var.database_cluster_identifier
+  database_instance_identifier    = var.database_instance_identifier
+  database_engine                 = var.database_engine
+  database_cluster_engine_version = var.database_cluster_engine_version
+  database_engine_version         = var.database_engine_version
   # database_cluster_engine_mode   = var.database_cluster_engine_mode
-  database_name                    = var.database_name
-  database_master_username         = var.database_master_username
-  database_master_password         = var.database_master_password
-  database_backup_retention_period = var.database_backup_retention_period
-  deletion_protection              = var.deletion_protection
-  storage_encrypted                = var.storage_encrypted
-  allow_major_version_upgrade      = var.allow_major_version_upgrade
-  copy_tags_to_snapshot            = var.copy_tags_to_snapshot
-  enabled_cloudwatch_logs_exports  = var.enabled_cloudwatch_logs_exports
-  project_name                     = local.local_naming
-  env_suffix                       = local.environment
-  database_application_sg          = [module.application_server.application_sg_id]
-  allocated_storage                = var.allocated_storage
-  database_instance_class          = var.database_instance_class
-  publicly_accessible              = var.publicly_accessible
+  database_name                        = var.database_name
+  database_master_username             = var.database_master_username
+  database_master_password             = var.database_master_password
+  database_backup_retention_period     = var.database_backup_retention_period
+  deletion_protection                  = var.deletion_protection
+  storage_encrypted                    = var.storage_encrypted
+  allow_major_version_upgrade          = var.allow_major_version_upgrade
+  copy_tags_to_snapshot                = var.copy_tags_to_snapshot
+  enabled_cloudwatch_logs_exports      = var.enabled_cloudwatch_logs_exports
+  project_name                         = local.local_naming
+  env_suffix                           = local.environment
+  database_application_sg              = module.application_server.application_sg_id
+  allocated_storage                    = var.allocated_storage
+  database_instance_class              = var.database_instance_class
+  publicly_accessible                  = var.publicly_accessible
   database_cluster_skip_final_snapshot = var.database_cluster_skip_final_snapshot
 }
 
@@ -85,9 +85,9 @@ module "database" {
 
 module "cache_database" {
   source = "./modules/CacheCluster"
-    depends_on = [
-      module.database
-    ]  
+  depends_on = [
+    module.database
+  ]
 
   cachedb_name                     = var.cachedb_name
   cachedb_description              = var.cachedb_description
@@ -98,6 +98,9 @@ module "cache_database" {
   cachedb_az_mode                  = var.cachedb_az_mode
   cachedb_port                     = var.cachedb_port
   cachedb_snapshot_retention_limit = var.cachedb_snapshot_retention_limit
+
+  project_name = local.local_naming
+  env_suffix   = local.environment
 
 }
 
@@ -160,6 +163,9 @@ module "load_balancer" {
   lb_tg_health_check_protocol = var.lb_tg_health_check_protocol
   lb_tg_health_check_matcher  = var.lb_tg_health_check_matcher
 
+  lb_target_id = module.application_server.web_instance_id
+
+
   lb_deletion_protection = var.lb_deletion_protection
 
   lb_access_logs        = var.lb_access_logs
@@ -173,6 +179,10 @@ module "load_balancer" {
   lb_name            = var.lb_name
   lb_internal        = var.lb_internal
   lb_type            = var.lb_type
-  lb_security_groups = var.lb_security_groups
+  lb_security_groups = module.application_server.application_sg_id
   lb_subnets         = var.lb_subnets
+  lb_subnet_id       = var.lb_subnet_id
+
+  project_name = local.local_naming
+  env_suffix   = local.environment
 }

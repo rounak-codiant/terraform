@@ -19,6 +19,11 @@ resource "aws_elasticache_replication_group" "redis_cache" {
   node_type                     = var.cachedb_node_type
   number_cache_clusters         = 2
   port                          = var.cachedb_port
+
+  tags_all = {
+    Name        = "${var.project_name}"
+    Environment = "${var.env_suffix}"
+  }
 }
 
 
