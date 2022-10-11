@@ -1,10 +1,14 @@
 # AWS Provider Key
-variable "aws_access_key" {}
+variable "aws_access_key" {
+  default = ""
+}
 
-variable "aws_secret_key" {}
+variable "aws_secret_key" {
+  default = ""
+}
 
 variable "aws_region" {
-  default = "us-east-2"
+  default = "us-east-1"
 }
 
 # Backend setup
@@ -17,7 +21,7 @@ variable "tfstatefile_keyname" {
 }
 
 variable "backend_bucket_region" {
-  default = "us-east-2"
+  default = "us-east-1"
 }
 
 #Project and variable
@@ -28,6 +32,41 @@ variable "project_name" {
 variable "env_suffix" {
   default = "dev"
 }
+
+#VPC
+variable "vpc_cidr_block" {
+  default     = "20.0.0.0/16"
+  description = "Main VPC CIDR Block"
+}
+
+variable "public_cidr_block" {
+  type        = list(string)
+  default     = ["20.0.0.0/20", "20.0.16.0/20", "20.0.32.0/20"]
+  description = "Public subnet CIDR blocks"
+}
+
+variable "private_cidr_block" {
+  type        = list(string)
+  default     = ["20.0.48.0/20", "20.0.64.0/20", "20.0.80.0/20"]
+  description = "Private subnet CIDR blocks"
+}
+
+variable "vpc_availability_zones" {
+  type        = list(string)
+  default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  description = "All Available AZs"
+}
+
+variable "vpc_instance_tenancy" {
+  default     = "default"
+  description = "A tenancy option for instances launched into the VPC"
+}
+
+variable "enable_dns_hostnames" {
+  default     = "true"
+  description = "DNS hostnames in the VPC"
+}
+
 #EC2
 variable "instance_type" {
   default = "t2.micro"
@@ -40,12 +79,8 @@ variable "ebs_volume_size" {
   default = "30"
 }
 
-variable "key_pair_location" {
-  default = "~/.ssh/id_rsa.pub"
-}
-
 variable "key_pair_name" {
-  default = "Key-Pair-Name"
+  default = "pemkey"
 }
 
 #S3 Private Bucket
@@ -301,13 +336,13 @@ variable "lb_access_logs" {
   default     = "false"
 }
 
-variable "lb_access_logs_bucket" {
-  description = "bucket name for the load balancer access logs storage"
-}
+# variable "lb_access_logs_bucket" {
+#   description = "bucket name for the load balancer access logs storage"
+# }
 
-variable "lb_access_logs_prefix" {
-  description = "prefix for the load balancer access logs storage"
-}
+# variable "lb_access_logs_prefix" {
+#   description = "prefix for the load balancer access logs storage"
+# }
 
 # Load Balancer Listener
 variable "lb_listener_protocol" {

@@ -22,13 +22,13 @@ terraform {
       version = "= 3.74.0"
     }
   }
-
-  backend "s3" {
-    bucket = "terraform-storage"
-    key    = "production"
-    region = "us-east-1"
-    dynamodb_table = "dynamodb-terraform" 
-    encrypt        = true
-    profile = "profile-name" # Configure AWS profile on local
-  }
 }
+#   backend "s3" {
+#     bucket         = "terraform-storage"
+#     key            = "production"
+#     region         = "us-east-1"
+#     dynamodb_table = "dynamodb-terraform"
+#     encrypt        = true
+#     profile        = "profile-name" # Configure AWS profile on local
+#   }
+# }
