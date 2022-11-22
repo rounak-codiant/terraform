@@ -1,0 +1,116 @@
+# AWS Provider Key
+ aws_access_key = "ABABABABBABA"
+ aws_secret_key = "ASASAXAXDSXASXXSAXSAXS"
+ aws_region = "us-east-2"
+
+
+# Backend setup
+ backend_bucket_name = "backend-bucket"
+ tfstatefile_keyname = "tfstate_file_name"
+ backend_bucket_region = "us-east-2"
+
+
+#Project
+ project_name = "Terraform-Project"
+ env_suffix = "test"
+
+
+#EC2
+ instance_type = "t2.micro"
+ ebs_volume_type = "gp2"
+ ebs_volume_size = "30"
+ key_pair_name = "test_key"
+
+
+#S3 Private Bucket
+ private_bucket_name = "private-bucket-terraform-1"
+ private_bucket_versioning  = "true"
+ private_bucket_acceleration = "Suspended"
+
+
+#S3 Public Bucket
+ public_bucket_name = "public-bucket-terraform-1"
+ public_bucket_versioning = "true"
+ public_bucket_acceleration = "Suspended"
+
+
+#Database (RDS)
+ database_cluster_identifier = "database-cluster"
+ database_cluster_engine_version = "5.7.mysql_aurora.2.10.2"
+ database_instance_identifier = "database-instance"
+ database_cluster_skip_final_snapshot = "true"
+ database_engine = "aurora-mysql"
+ database_engine_version = "5.7.mysql_aurora.2.10.2"
+ database_name = "database_name"
+ database_master_username = "admin"
+ database_master_password = "admin@password"
+ database_backup_retention_period = "7"
+ deletion_protection = "false"
+ storage_encrypted = "true"
+ database_application_sg = ""
+ allow_major_version_upgrade = "false"
+ copy_tags_to_snapshot = "true"
+ enabled_cloudwatch_logs_exports = "[error, general, audit]"
+ allocated_storage = "10"
+ database_instance_class = "t3.medium"
+ publicly_accessible = "false"
+
+
+#Cache Database (Redis)
+ cachedb_engine = "redis"
+ cachedb_name = "redis-instance-name"
+ cachedb_description = "redis-instance"
+ cachedb_engine_version = "6.0"
+ cachedb_port = "6379"
+ cachedb_node_type = "cache.t3.medium"
+ num_cache_nodes = "1"
+ cachedb_az_mode = "single-az"
+ cachedb_snapshot_retention_limit = "1"
+
+
+# IAM User
+ s3_iam_user_name = "s3-user"
+ pgp_key = "keybase:demo"
+
+
+# Secret Manager
+ secretmanager_name = "secretmanager"
+
+
+# ALB (Application Load Balancer)
+
+# Target Group
+ tg_name  = "default-tg"
+ tg_port  = "80"
+ tg_protocol =  "HTTP"
+ lb_vpc_id = "vpc-12345678"
+ tg_target_type = "instance"
+
+
+# Health Check
+ lb_tg_health_check_path = "/"
+ lb_tg_health_check_port = "80"
+ lb_tg_health_check_protocol = "HTTP"
+ lb_tg_health_check_matcher = "200"
+
+
+# Load Balancer
+ lb_name = "alb-terraform-1"
+ lb_internal = "false"
+ lb_type = "application"
+ lb_security_groups = "default"
+ lb_subnets = "[subnet-12345678,subnet-87654321]"
+ lb_deletion_protection = "false"
+
+
+# Load Balancer Access Logs
+ lb_access_logs = "false"
+ lb_access_logs_bucket = ""
+ lb_access_logs_prefix = ""
+
+
+# Load Balancer Listener
+ lb_listener_protocol =  "HTTP"
+ lb_listener_port = "80"
+
+
