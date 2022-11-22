@@ -13,8 +13,6 @@ variable "tg_port" {}
 
 variable "tg_protocol" {}
 
-variable "lb_vpc_id" {}
-
 variable "tg_target_type" {}
 
 # Register Instance to Target Group
@@ -37,10 +35,6 @@ variable "lb_internal" {}
 
 variable "lb_type" {}
 
-variable "lb_security_groups" {}
-
-variable "lb_subnets" {}
-
 variable "lb_deletion_protection" {}
 
 
@@ -55,3 +49,7 @@ variable "lb_access_logs_prefix" {}
 variable "lb_listener_protocol" {}
 
 variable "lb_listener_port" {}
+
+variable "alb_vpc_id" {}
+
+variable "lb_subnets" {}

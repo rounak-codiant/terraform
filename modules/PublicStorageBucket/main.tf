@@ -4,13 +4,13 @@ resource "aws_s3_bucket" "public_bucket" {
   # acceleration_status = var.public_bucket_acceleration
   versioning {
     enabled = var.public_bucket_versioning
-        }
+  }
 
   server_side_encryption_configuration {
     rule {
-     apply_server_side_encryption_by_default {
-        sse_algorithm     = "AES256"
-     }
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
     }
   }
 
@@ -21,7 +21,7 @@ resource "aws_s3_bucket" "public_bucket" {
 }
 
 resource "aws_s3_bucket_policy" "public_bucket_policy" {
-  bucket = aws_s3_bucket.public_bucket.id   #aws_s3_bucket.b.id
+  bucket = aws_s3_bucket.public_bucket.id #aws_s3_bucket.b.id
 
   # Terraform's "jsonencode" function converts a
   # Terraform expression's result to valid JSON syntax.

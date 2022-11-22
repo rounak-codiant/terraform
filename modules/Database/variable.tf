@@ -20,11 +20,11 @@ variable "database_cluster_engine_version" {
 }
 
 variable "database_master_username" {
-    sensitive   = true
+  sensitive = true
 }
 
 variable "database_master_password" {
-    sensitive   = true
+  sensitive = true
 }
 
 variable "database_backup_retention_period" {

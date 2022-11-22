@@ -7,18 +7,18 @@ resource "aws_secretsmanager_secret" "secretmanager" {
 #   secret_id = aws_secretsmanager_secret.secretmanager.id
 #   secret_string = <<EOF
 #    {
-        # "AWS_KEY": var.AWS_KEY,
-        # "AWS_SECRET": "value2",
-        # "AWS_PUBLIC_BUCKET": "publicbucket",
-        # "AWS_PRIVATE_BUCKET": "privatebucket",        
-        # "DB_CONNECTION": "mysql",
-        # "DB_HOST": "localhost",
-        # "DB_PORT": "3306",
-        # "DB_DATABASE": "test",
-        # "DB_USERNAME": "test",
-        # "DB_PASSWORD": "test",
-        # "REDIS_HOST": "localhost",
-        # "REDIS_PORT": "test"
+# "AWS_KEY": var.AWS_KEY,
+# "AWS_SECRET": "value2",
+# "AWS_PUBLIC_BUCKET": "publicbucket",
+# "AWS_PRIVATE_BUCKET": "privatebucket",        
+# "DB_CONNECTION": "mysql",
+# "DB_HOST": "localhost",
+# "DB_PORT": "3306",
+# "DB_DATABASE": "test",
+# "DB_USERNAME": "test",
+# "DB_PASSWORD": "test",
+# "REDIS_HOST": "localhost",
+# "REDIS_PORT": "test"
 #       }
 # EOF
 # }
@@ -55,9 +55,9 @@ resource "aws_secretsmanager_secret" "secretmanager" {
 
 # Method 4
 
- resource "aws_secretsmanager_secret_version" "sversion" {
-   secret_id = aws_secretsmanager_secret.secretmanager.id
-   secret_string = <<EOF
+resource "aws_secretsmanager_secret_version" "sversion" {
+  secret_id     = aws_secretsmanager_secret.secretmanager.id
+  secret_string = <<EOF
  {           
    "AWS_KEY": "${var.sm_iam_key}",
    "AWS_SECRET": "${var.sm_iam_secret}",

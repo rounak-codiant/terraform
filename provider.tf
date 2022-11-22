@@ -26,7 +26,7 @@ terraform {
 #   backend "s3" {
 #     bucket         = "terraform-storage"
 #     key            = "production"
-#     region         = "us-east-1"
+#     region     = var.aws_region
 #     dynamodb_table = "dynamodb-terraform"
 #     encrypt        = true
 #     profile        = "profile-name" # Configure AWS profile on local

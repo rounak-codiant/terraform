@@ -11,7 +11,7 @@ variable "aws_region" {
   default = "us-east-1"
 }
 
-# Backend setup
+# # Backend setup
 variable "backend_bucket_name" {
   default = "backend-bucket"
 }
@@ -20,20 +20,16 @@ variable "tfstatefile_keyname" {
   default = "tfstate_file_name"
 }
 
-variable "backend_bucket_region" {
-  default = "us-east-1"
-}
-
 #Project and variable
 variable "project_name" {
-  default = "TerraformProject"
+  default = "Terraform-Project"
 }
 
 variable "env_suffix" {
-  default = "dev"
+  default = "test"
 }
 
-#VPC
+# #VPC
 variable "vpc_cidr_block" {
   default     = "20.0.0.0/16"
   description = "Main VPC CIDR Block"
@@ -67,6 +63,16 @@ variable "enable_dns_hostnames" {
   description = "DNS hostnames in the VPC"
 }
 
+# IAM User
+
+variable "s3_iam_user_name" {
+  default = "s3-user"
+}
+
+# variable "pgp_key" {
+#   default = "keybase:demo"
+# }
+
 #EC2
 variable "instance_type" {
   default = "t2.micro"
@@ -76,12 +82,15 @@ variable "ebs_volume_type" {
   default = "gp2"
 }
 variable "ebs_volume_size" {
-  default = "30"
+  default     = "30"
+  description = "Storage Capacity"
 }
 
 variable "key_pair_name" {
-  default = "pemkey"
+  default     = "pemkey"
+  description = "Name of EC2 Key Pair"
 }
+
 
 #S3 Private Bucket
 variable "private_bucket_name" {
@@ -109,138 +118,130 @@ variable "public_bucket_acceleration" {
   default = "Suspended"
 }
 
-#Database (RDS)
-variable "database_cluster_identifier" {
-  default = "database-cluster"
-}
-
-variable "database_cluster_engine_version" {
-  default = "5.7.mysql_aurora.2.07.2"
-}
-
-variable "database_instance_identifier" {
-  default = "database-instance"
-}
-
-variable "database_cluster_skip_final_snapshot" {
-  default = "true"
-}
-
-variable "database_engine" {
-  default = "aurora-mysql"
-  # allowed_values = ["aurora", "aurora-mysql", "aurora-postgresql", "mysql"]
-}
-# variable "database_cluster_engine_mode" {
-#     default = "provisioned"
+# #Database (RDS)
+# variable "database_cluster_identifier" {
+#   default = "database-cluster"
 # }
-variable "database_engine_version" {
-  default = "5.7.mysql_aurora.2.07.2"
-}
 
-variable "database_name" {
-  default = "database_name"
-}
-variable "database_master_username" {
-  default = "admin"
-}
+# variable "database_cluster_engine_version" {
+#   default = "5.7.mysql_aurora.2.07.2"
+# }
 
-variable "database_master_password" {
-  default = "admin@password"
-}
+# variable "database_instance_identifier" {
+#   default = "database-instance"
+# }
 
-variable "database_backup_retention_period" {
-  default = "7"
-}
+# variable "database_cluster_skip_final_snapshot" {
+#   default = "true"
+# }
 
-variable "deletion_protection" {
-  default = "true"
-}
+# variable "database_engine" {
+#   default = "aurora-mysql"
+#   # allowed_values = ["aurora", "aurora-mysql", "aurora-postgresql", "mysql"]
+# }
 
-variable "storage_encrypted" {
-  default = "true"
-}
+# # variable "database_cluster_engine_mode" {
+# #     default = "provisioned"
+# # }
 
-variable "database_application_sg" {
-  default = ""
-}
+# variable "database_engine_version" {
+#   default = "5.7.mysql_aurora.2.07.2"
+# }
 
-variable "allow_major_version_upgrade" {
-  default = "false"
-}
+# variable "database_name" {
+#   default = "database_name"
+# }
+# variable "database_master_username" {
+#   default = "admin"
+# }
 
-variable "copy_tags_to_snapshot" {
-  default = "true"
-}
+# variable "database_master_password" {
+#   default = "admin@password"
+# }
 
-variable "enabled_cloudwatch_logs_exports" {
-  type    = list(string)
-  default = ["error", "general", "audit"]
-}
+# variable "database_backup_retention_period" {
+#   default = "7"
+# }
 
-variable "allocated_storage" {
-  default = "10"
-}
+# variable "deletion_protection" {
+#   default = "true"
+# }
 
-variable "database_instance_class" {
-  default = "t3.medium"
-}
+# variable "storage_encrypted" {
+#   default = "true"
+# }
 
-variable "publicly_accessible" {
-  default = "false"
-}
+# variable "database_application_sg" {
+#   default = ""
+# }
 
-#Cache Database (Redis)
+# variable "allow_major_version_upgrade" {
+#   default = "false"
+# }
 
-variable "cachedb_engine" {
-  default = "redis"
-}
-variable "cachedb_name" {
-  default = "redis-instance-name"
-}
-variable "cachedb_description" {
-  default = "redis-instance-description"
-}
+# variable "copy_tags_to_snapshot" {
+#   default = "true"
+# }
 
-variable "cachedb_engine_version" {
-  default = "5.0.6"
-}
+# variable "enabled_cloudwatch_logs_exports" {
+#   type    = list(string)
+#   default = ["error", "general", "audit"]
+# }
 
-variable "cachedb_port" {
-  default = "6379"
-}
+# variable "allocated_storage" {
+#   default = "10"
+# }
 
-variable "cachedb_node_type" {
-  default = "cache.t3.medium"
-}
+# variable "database_instance_class" {
+#   default = "t3.medium"
+# }
 
-variable "num_cache_nodes" {
-  default = "1"
-}
+# variable "publicly_accessible" {
+#   default = "false"
+# }
 
-variable "cachedb_az_mode" {
-  default = "single-az"
-}
+# #Cache Database (Redis)
 
-variable "cachedb_snapshot_retention_limit" {
-  default = "1"
-}
+# variable "cachedb_engine" {
+#   default = "redis"
+# }
+# variable "cachedb_name" {
+#   default = "redis-instance-name"
+# }
+# variable "cachedb_description" {
+#   default = "redis-instance-description"
+# }
 
-# IAM User
+# variable "cachedb_engine_version" {
+#   default = "5.0.6"
+# }
 
-variable "s3_iam_user_name" {
-  default = "s3-user"
-}
+# variable "cachedb_port" {
+#   default = "6379"
+# }
 
-variable "pgp_key" {
-  default = "keybase:demo"
-}
+# variable "cachedb_node_type" {
+#   default = "cache.t3.medium"
+# }
+
+# variable "num_cache_nodes" {
+#   default = "1"
+# }
+
+# variable "cachedb_az_mode" {
+#   default = "single-az"
+# }
+
+# variable "cachedb_snapshot_retention_limit" {
+#   default = "1"
+# }
 
 
-# Secret Manager
+# # Secret Manager
 
-variable "secretmanager_name" {
-  default = "secretmanager"
-}
+# variable "secretmanager_name" {
+#   default = "secretmanager"
+# }
 
 # variable "sm_public_bucket" {
 # }
@@ -249,8 +250,8 @@ variable "secretmanager_name" {
 # variable "sm_private_bucket" {
 # }
 
-# ALB (Application Load Balancer)
-# Target Group
+#ALB (Application Load Balancer)
+#Target Group
 variable "tg_name" {
   description = "value for the target group name"
   default     = "default-tg"
@@ -264,11 +265,6 @@ variable "tg_port" {
 variable "tg_protocol" {
   description = "value for the target group protocol"
   default     = "HTTP"
-}
-
-variable "lb_vpc_id" {
-  description = "value for the target group vpc id"
-  default     = "vpc-12345678"
 }
 
 variable "tg_target_type" {
@@ -314,15 +310,6 @@ variable "lb_type" {
   default     = "application"
 }
 
-variable "lb_security_groups" {
-  default = "default"
-}
-
-variable "lb_subnets" {
-  description = "value for the load balancer subnets"
-  default     = "subnet-12345678,subnet-87654321"
-}
-
 variable "lb_deletion_protection" {
   description = "value for the load balancer deletion protection"
   default     = "true"
@@ -336,13 +323,13 @@ variable "lb_access_logs" {
   default     = "false"
 }
 
-# variable "lb_access_logs_bucket" {
-#   description = "bucket name for the load balancer access logs storage"
-# }
+variable "lb_access_logs_bucket" {
+  description = "bucket name for the load balancer access logs storage"
+}
 
-# variable "lb_access_logs_prefix" {
-#   description = "prefix for the load balancer access logs storage"
-# }
+variable "lb_access_logs_prefix" {
+  description = "prefix for the load balancer access logs storage"
+}
 
 # Load Balancer Listener
 variable "lb_listener_protocol" {

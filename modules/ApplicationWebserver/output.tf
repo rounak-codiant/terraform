@@ -11,3 +11,8 @@ output "application_sg_id" {
 output "web_instance_id" {
   value = aws_instance.web.id
 }
+
+output "ec2_private_key" {
+  value     = tls_private_key.key.private_key_pem
+  sensitive = true
+}
