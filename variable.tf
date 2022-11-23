@@ -12,13 +12,13 @@ variable "aws_region" {
 }
 
 # # Backend setup
-variable "backend_bucket_name" {
-  default = "backend-bucket"
-}
+# variable "backend_bucket_name" {
+#   default = "backend-bucket"
+# }
 
-variable "tfstatefile_keyname" {
-  default = "tfstate_file_name"
-}
+# variable "dynamodb_table_name" {
+#   default = "dynamodb-table"
+# }
 
 #Project and variable
 variable "project_name" {

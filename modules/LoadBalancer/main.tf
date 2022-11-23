@@ -40,6 +40,7 @@ resource "aws_alb_target_group" "application_tg" {
   protocol    = var.tg_protocol
   vpc_id      = var.alb_vpc_id
   target_type = var.tg_target_type
+  # deregistration_delay = "120"
   health_check {
     path                = var.lb_tg_health_check_path
     interval            = 60
