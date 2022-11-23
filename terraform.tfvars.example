@@ -5,8 +5,8 @@ aws_region     = "ap-south-1"
 
 
 # Backend setup
-backend_bucket_name = "backend-bucket"
-tfstatefile_keyname = "tfstate_file_name"
+# backend_bucket_name = "backend-bucket"
+# tfstatefile_keyname = "tfstate_file_name"
 
 # VPC
 vpc_cidr_block         = "20.0.0.0/16"

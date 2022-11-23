@@ -72,6 +72,10 @@ resource "aws_iam_policy" "ec2_policy" {
   ]
 }
 EOF
+  tags = {
+    Name        = "${var.project_name}-EC2-Policy"
+    Environment = "${var.env_suffix}"
+  }
 }
 
 # Create IAM Role Foe EC2 

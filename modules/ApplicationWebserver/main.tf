@@ -75,7 +75,7 @@ resource "aws_security_group" "application_sg" {
 # Create EIP For EC2
 resource "aws_eip" "application_eip" {
   tags = {
-    Name        = "${var.project_name}"
+    Name        = "${var.project_name}-EIP"
     Environment = "${var.env_suffix}"
   }
 }
