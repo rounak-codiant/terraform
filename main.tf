@@ -18,6 +18,8 @@ module "vpc" {
 }
 
 # ######################################## Application Server Module #########################################
+# You should also enable IAM, VPC Module with it.
+
 module "application_server" {
   source = "./modules/ApplicationWebserver"
 
@@ -32,7 +34,8 @@ module "application_server" {
 }
 
 # ######################################## IAM User Module #########################################
-# 
+# You should also enable ApplicationWebserver, public_bucket, private_bucket module with it.
+
 module "iam_user" {
   source = "./modules/IAM"
 
@@ -41,12 +44,14 @@ module "iam_user" {
   s3_iam_user_name   = var.s3_iam_user_name
   public_bucket_arn  = module.public_bucket.public_bucket_arn
   private_bucket_arn = module.private_bucket.private_bucket_arn
-  # # pgp_key            = var.pgp_key
-  # # s3_iam_secret_key  = module.private_bucket.iam_access_key_s3_user
+#   # # pgp_key            = var.pgp_key
+#   # # s3_iam_secret_key  = module.private_bucket.iam_access_key_s3_user
 }
 
 
 # ######################################### S3 Private Bucket Module #########################################
+# You should also enable IAM module with it.
+
 module "private_bucket" {
   source = "./modules/PrivateStorageBucket"
   # depends_on = [
@@ -60,6 +65,8 @@ module "private_bucket" {
 }
 
 # ######################################### S3 Public Bucket Module #########################################
+# You should also enable IAM module with it.
+
 module "public_bucket" {
   source = "./modules/PublicStorageBucket"
   # depends_on = [
@@ -74,36 +81,35 @@ module "public_bucket" {
 }
 
 # ######################################### Database Module #########################################
-# module "database" {
-#   source = "./modules/Database"
-#   depends_on = [
-#     module.application_server
-#   ]
-#   # 
-#   # 
-#   database_cluster_identifier     = var.database_cluster_identifier
-#   database_instance_identifier    = var.database_instance_identifier
-#   database_engine                 = var.database_engine
-#   database_cluster_engine_version = var.database_cluster_engine_version
-#   database_engine_version         = var.database_engine_version
-#   # database_cluster_engine_mode   = var.database_cluster_engine_mode
-#   database_name                        = var.database_name
-#   database_master_username             = var.database_master_username
-#   database_master_password             = var.database_master_password
-#   database_backup_retention_period     = var.database_backup_retention_period
-#   deletion_protection                  = var.deletion_protection
-#   storage_encrypted                    = var.storage_encrypted
-#   allow_major_version_upgrade          = var.allow_major_version_upgrade
-#   copy_tags_to_snapshot                = var.copy_tags_to_snapshot
-#   enabled_cloudwatch_logs_exports      = var.enabled_cloudwatch_logs_exports
-#   project_name                         = local.local_naming
-#   env_suffix                           = local.environment
-#   database_application_sg              = module.application_server.application_sg_id
-#   allocated_storage                    = var.allocated_storage
-#   database_instance_class              = var.database_instance_class
-#   publicly_accessible                  = var.publicly_accessible
-#   database_cluster_skip_final_snapshot = var.database_cluster_skip_final_snapshot
-# }
+# You should also enable VPC module with it.
+
+module "database" {
+  source = "./modules/Database"
+  # depends_on = [
+  #   module.application_server
+  # ]
+  database_vpc_id                 = module.vpc.vpc_id
+  database_subnet_ids             = module.vpc.private_subnet
+  database_cluster_identifier     = var.database_cluster_identifier
+  database_instance_identifier    = var.database_instance_identifier
+  database_engine                 = var.database_engine
+  database_cluster_engine_version = var.database_cluster_engine_version
+  database_name                        = var.database_name
+  database_master_username             = var.database_master_username
+  database_master_password             = var.database_master_password
+  database_backup_retention_period     = var.database_backup_retention_period
+  deletion_protection                  = var.deletion_protection
+  storage_encrypted                    = var.storage_encrypted
+  allow_major_version_upgrade          = var.allow_major_version_upgrade
+  copy_tags_to_snapshot                = var.copy_tags_to_snapshot
+  project_name                         = local.local_naming
+  env_suffix                           = local.environment
+  database_application_sg              = module.application_server.application_sg_id
+  # allocated_storage                    = var.allocated_storage
+  database_instance_class              = var.database_instance_class
+  publicly_accessible                  = var.publicly_accessible
+  database_cluster_skip_final_snapshot = var.database_cluster_skip_final_snapshot
+}
 
 # ######################################## Cache Database Module #########################################
 # # 
@@ -157,6 +163,8 @@ module "public_bucket" {
 # }
 
 # ######################################### Load Balancer Module #########################################
+# # # You should also enable ApplicationWebserver, VPC module with it.
+
 module "load_balancer" {
   source = "./modules/LoadBalancer"
   # depends_on = [

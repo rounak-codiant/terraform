@@ -63,7 +63,7 @@ variable "enable_dns_hostnames" {
   description = "DNS hostnames in the VPC"
 }
 
-# IAM User
+# # IAM User
 
 variable "s3_iam_user_name" {
   default = "s3-user"
@@ -92,7 +92,7 @@ variable "key_pair_name" {
 }
 
 
-#S3 Private Bucket
+# #S3 Private Bucket
 variable "private_bucket_name" {
   default = "codiant-private-bucket-terraform-1"
 }
@@ -105,7 +105,7 @@ variable "private_bucket_acceleration" {
   default = "Suspended"
 }
 
-#S3 Public Bucket
+# #S3 Public Bucket
 variable "public_bucket_name" {
   default = "codiant-public-bucket-terraform-1"
 }
@@ -119,86 +119,73 @@ variable "public_bucket_acceleration" {
 }
 
 # #Database (RDS)
-# variable "database_cluster_identifier" {
-#   default = "database-cluster"
+variable "database_cluster_identifier" {
+  default = "database-cluster"
+}
+
+variable "database_cluster_engine_version" {
+  default = "5.7.mysql_aurora.2.07.2"
+}
+
+variable "database_instance_identifier" {
+  default = "database-instance"
+}
+
+variable "database_cluster_skip_final_snapshot" {
+  default = "true"
+}
+
+variable "database_engine" {
+  default = "aurora-mysql"
+  # allowed_values = ["aurora", "aurora-mysql", "aurora-postgresql", "mysql"]
+}
+
+# variable "database_cluster_engine_mode" {
+#     default = "provisioned"
 # }
 
-# variable "database_cluster_engine_version" {
-#   default = "5.7.mysql_aurora.2.07.2"
-# }
+variable "database_name" {
+  default = "database_name"
+}
+variable "database_master_username" {
+  default = "admin"
+}
 
-# variable "database_instance_identifier" {
-#   default = "database-instance"
-# }
+variable "database_master_password" {
+  default = "admin@password"
+}
 
-# variable "database_cluster_skip_final_snapshot" {
-#   default = "true"
-# }
+variable "database_backup_retention_period" {
+  default = "7"
+}
 
-# variable "database_engine" {
-#   default = "aurora-mysql"
-#   # allowed_values = ["aurora", "aurora-mysql", "aurora-postgresql", "mysql"]
-# }
+variable "deletion_protection" {
+  default = "true"
+}
 
-# # variable "database_cluster_engine_mode" {
-# #     default = "provisioned"
-# # }
+variable "storage_encrypted" {
+  default = "true"
+}
 
-# variable "database_engine_version" {
-#   default = "5.7.mysql_aurora.2.07.2"
-# }
+variable "allow_major_version_upgrade" {
+  default = "false"
+}
 
-# variable "database_name" {
-#   default = "database_name"
-# }
-# variable "database_master_username" {
-#   default = "admin"
-# }
-
-# variable "database_master_password" {
-#   default = "admin@password"
-# }
-
-# variable "database_backup_retention_period" {
-#   default = "7"
-# }
-
-# variable "deletion_protection" {
-#   default = "true"
-# }
-
-# variable "storage_encrypted" {
-#   default = "true"
-# }
-
-# variable "database_application_sg" {
-#   default = ""
-# }
-
-# variable "allow_major_version_upgrade" {
-#   default = "false"
-# }
-
-# variable "copy_tags_to_snapshot" {
-#   default = "true"
-# }
-
-# variable "enabled_cloudwatch_logs_exports" {
-#   type    = list(string)
-#   default = ["error", "general", "audit"]
-# }
+variable "copy_tags_to_snapshot" {
+  default = "true"
+}
 
 # variable "allocated_storage" {
 #   default = "10"
 # }
 
-# variable "database_instance_class" {
-#   default = "t3.medium"
-# }
+variable "database_instance_class" {
+  default = "t3.medium"
+}
 
-# variable "publicly_accessible" {
-#   default = "false"
-# }
+variable "publicly_accessible" {
+  default = "false"
+}
 
 # #Cache Database (Redis)
 

@@ -42,24 +42,3 @@ resource "aws_s3_bucket_policy" "public_bucket_policy" {
     ]
   })
 }
-
-
-
-# resource "aws_s3_bucket_policy" "public_bucket_policy" {
-
-#   bucket = aws_s3_bucket.public_bucket.id   #aws_s3_bucket.b.id
-
-#   policy = jsonencode({
-#     "Version": "2012-10-17",
-#     "Id": "MyPublicBucketPolicy",
-#     "Statement": [
-#       {
-#         "Effect": "Allow",
-#         "Principal": "*",
-#         "Action": "s3:GetObject",
-#         "Resource": "arn:aws:s3:::laxe-pub7ic-r3po/*"
-#       }
-#     ]
-#   })
-
-# }

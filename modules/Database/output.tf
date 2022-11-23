@@ -21,3 +21,7 @@ output "database_cluster_password" {
 output "database_cluster_database_name" {
   value = aws_rds_cluster.database_cluster.database_name
 }
+
+output "database_security_group" {
+  value = aws_security_group.database_sg.id
+}
