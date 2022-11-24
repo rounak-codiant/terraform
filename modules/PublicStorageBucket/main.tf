@@ -13,7 +13,6 @@ resource "aws_s3_bucket" "public_bucket" {
       }
     }
   }
-
   tags = {
     Name        = "${var.project_name}"
     Environment = "${var.env_suffix}"
@@ -21,7 +20,7 @@ resource "aws_s3_bucket" "public_bucket" {
 }
 
 resource "aws_s3_bucket_policy" "public_bucket_policy" {
-  bucket = aws_s3_bucket.public_bucket.id #aws_s3_bucket.b.id
+  bucket = aws_s3_bucket.public_bucket.id
 
   # Terraform's "jsonencode" function converts a
   # Terraform expression's result to valid JSON syntax.
@@ -35,8 +34,7 @@ resource "aws_s3_bucket_policy" "public_bucket_policy" {
         Principal = "*"
         Action    = "s3:GetObject"
         Resource = [
-          "${aws_s3_bucket.public_bucket.arn}/*",
-          # "arn:aws:s3:::laxe-pub7ic-r3po/*",
+          "${aws_s3_bucket.public_bucket.arn}/*"
         ]
       },
     ]

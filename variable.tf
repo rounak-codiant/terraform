@@ -11,15 +11,6 @@ variable "aws_region" {
   default = "us-east-1"
 }
 
-# # Backend setup
-# variable "backend_bucket_name" {
-#   default = "backend-bucket"
-# }
-
-# variable "dynamodb_table_name" {
-#   default = "dynamodb-table"
-# }
-
 #Project and variable
 variable "project_name" {
   default = "Terraform-Project"
@@ -226,16 +217,9 @@ variable "publicly_accessible" {
 
 # # Secret Manager
 
-# variable "secretmanager_name" {
-#   default = "secretmanager"
-# }
-
-# variable "sm_public_bucket" {
-# }
-
-
-# variable "sm_private_bucket" {
-# }
+variable "secretmanager_name" {
+  default = "secretmanager"
+}
 
 #ALB (Application Load Balancer)
 #Target Group
@@ -305,17 +289,9 @@ variable "lb_deletion_protection" {
 
 
 # Load Balancer Access Logs
-variable "lb_access_logs" {
-  description = "value for enable or disable load balancer's access logs"
-  default     = "false"
-}
-
-variable "lb_access_logs_bucket" {
-  description = "bucket name for the load balancer access logs storage"
-}
-
-variable "lb_access_logs_prefix" {
-  description = "prefix for the load balancer access logs storage"
+variable "alb_bucket_name" {
+  description = "S3 bucket name to store alb access logs"
+  default     = "alb-bucket"
 }
 
 # Load Balancer Listener

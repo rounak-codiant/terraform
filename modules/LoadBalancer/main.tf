@@ -68,6 +68,39 @@ resource "aws_lb_target_group_attachment" "register_instance_tg" {
   ]
 }
 
+
+resource "aws_s3_bucket" "alb_bucket" {
+  bucket = var.alb_bucket_name
+  acl    = "private"
+
+  tags = {
+    Name        = "${var.project_name}-alb-bucket"
+    Environment = "${var.env_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "alb_bucket_policy" {
+  bucket = aws_s3_bucket.alb_bucket.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Id      = "ALBBucketPolicy"
+    Statement = [
+      {
+        Sid       = "ReadOnlyAccess"
+        Effect    = "Allow"
+        Principal = { "Service" : "logdelivery.elasticloadbalancing.amazonaws.com" }
+        Action    = "s3:PutObject"
+        Resource = [
+          "${aws_s3_bucket.alb_bucket.arn}/*"
+        ]
+      },
+    ]
+  })
+}
+
+
+
 # Create Application Load Balancer
 resource "aws_lb" "application_lb" {
   name                       = var.lb_name
@@ -78,15 +111,18 @@ resource "aws_lb" "application_lb" {
   enable_deletion_protection = var.lb_deletion_protection
 
   access_logs {
-    enabled = var.lb_access_logs
-    bucket  = var.lb_access_logs_bucket
-    prefix  = var.lb_access_logs_prefix
+    enabled = "true"
+    bucket  = aws_s3_bucket.alb_bucket.bucket
+    prefix  = "ALBLogs"
   }
 
   tags_all = {
     Name        = "${var.project_name}"
     Environment = "${var.env_suffix}"
   }
+  depends_on = [
+    aws_s3_bucket.alb_bucket
+  ]
 }
 
 # Add ALB Listener

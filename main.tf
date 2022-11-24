@@ -18,7 +18,7 @@ module "vpc" {
 }
 
 # ######################################## Application Server Module #########################################
-# You should also enable IAM, VPC Module with it.
+# You should enable IAM, VPC Module with it.
 
 module "application_server" {
   source = "./modules/ApplicationWebserver"
@@ -34,7 +34,7 @@ module "application_server" {
 }
 
 # ######################################## IAM User Module #########################################
-# You should also enable ApplicationWebserver, public_bucket, private_bucket module with it.
+# You should enable ApplicationWebserver, public_bucket, private_bucket module with it.
 
 module "iam_user" {
   source = "./modules/IAM"
@@ -44,13 +44,13 @@ module "iam_user" {
   s3_iam_user_name   = var.s3_iam_user_name
   public_bucket_arn  = module.public_bucket.public_bucket_arn
   private_bucket_arn = module.private_bucket.private_bucket_arn
-#   # # pgp_key            = var.pgp_key
-#   # # s3_iam_secret_key  = module.private_bucket.iam_access_key_s3_user
+  #   # # pgp_key            = var.pgp_key
+  #   # # s3_iam_secret_key  = module.private_bucket.iam_access_key_s3_user
 }
 
 
 # ######################################### S3 Private Bucket Module #########################################
-# You should also enable IAM module with it.
+# You should enable IAM module with it.
 
 module "private_bucket" {
   source = "./modules/PrivateStorageBucket"
@@ -65,7 +65,7 @@ module "private_bucket" {
 }
 
 # ######################################### S3 Public Bucket Module #########################################
-# You should also enable IAM module with it.
+# You should enable IAM module with it.
 
 module "public_bucket" {
   source = "./modules/PublicStorageBucket"
@@ -88,23 +88,23 @@ module "database" {
   # depends_on = [
   #   module.application_server
   # ]
-  database_vpc_id                 = module.vpc.vpc_id
-  database_subnet_ids             = module.vpc.private_subnet
-  database_cluster_identifier     = var.database_cluster_identifier
-  database_instance_identifier    = var.database_instance_identifier
-  database_engine                 = var.database_engine
-  database_cluster_engine_version = var.database_cluster_engine_version
-  database_name                        = var.database_name
-  database_master_username             = var.database_master_username
-  database_master_password             = var.database_master_password
-  database_backup_retention_period     = var.database_backup_retention_period
-  deletion_protection                  = var.deletion_protection
-  storage_encrypted                    = var.storage_encrypted
-  allow_major_version_upgrade          = var.allow_major_version_upgrade
-  copy_tags_to_snapshot                = var.copy_tags_to_snapshot
-  project_name                         = local.local_naming
-  env_suffix                           = local.environment
-  database_application_sg              = module.application_server.application_sg_id
+  database_vpc_id                  = module.vpc.vpc_id
+  database_subnet_ids              = module.vpc.private_subnet
+  database_cluster_identifier      = var.database_cluster_identifier
+  database_instance_identifier     = var.database_instance_identifier
+  database_engine                  = var.database_engine
+  database_cluster_engine_version  = var.database_cluster_engine_version
+  database_name                    = var.database_name
+  database_master_username         = var.database_master_username
+  database_master_password         = var.database_master_password
+  database_backup_retention_period = var.database_backup_retention_period
+  deletion_protection              = var.deletion_protection
+  storage_encrypted                = var.storage_encrypted
+  allow_major_version_upgrade      = var.allow_major_version_upgrade
+  copy_tags_to_snapshot            = var.copy_tags_to_snapshot
+  project_name                     = local.local_naming
+  env_suffix                       = local.environment
+  database_application_sg          = module.application_server.application_sg_id
   # allocated_storage                    = var.allocated_storage
   database_instance_class              = var.database_instance_class
   publicly_accessible                  = var.publicly_accessible
@@ -135,32 +135,29 @@ module "database" {
 # }
 
 # ######################################### Secret Manager Module #########################################
-# # 
-# module "secret_manager" {
-#   source = "./modules/SecretManagement"
-#   # depends_on = [
-#   #   module.database
-#   # ]
-#   # 
-#   secretmanager_name = var.secretmanager_name
-#   # 
-#   sm_iam_key    = module.iam_user.s3_iam_access_key
-#   sm_iam_secret = module.iam_user.s3_iam_secret_key
-#   # 
-#   sm_public_bucket  = module.public_bucket.public_bucket_name
-#   sm_private_bucket = module.private_bucket.private_bucket_name
-#   # 
-#   sm_db_connection = module.database.database_cluster_engine
-#   sm_db_host       = module.database.database_cluster_host
-#   sm_db_port       = module.database.database_cluster_port
-#   sm_db_name       = module.database.database_cluster_database_name
-#   sm_db_user       = module.database.database_cluster_user
-#   sm_db_password   = module.database.database_cluster_password
-#   # 
-#   sm_redis_host = module.cache_database.cache_cluster_host
-#   sm_redis_port = "6379"
-#   # 
-# }
+# # # # # You should also enable all module with it.
+module "secret_manager" {
+  source = "./modules/SecretManagement"
+  # depends_on = [
+  #   module.database
+  # ]
+  # 
+  project_name       = local.local_naming
+  env_suffix         = local.environment
+  secretmanager_name = var.secretmanager_name
+  sm_iam_key         = module.iam_user.s3_iam_access_key
+  sm_iam_secret      = module.iam_user.s3_iam_secret_key
+  sm_public_bucket   = module.public_bucket.public_bucket_name
+  sm_private_bucket  = module.private_bucket.private_bucket_name
+  sm_db_connection   = module.database.database_cluster_engine
+  sm_db_host         = module.database.database_cluster_host
+  sm_db_port         = module.database.database_cluster_port
+  sm_db_name         = module.database.database_cluster_database_name
+  sm_db_user         = module.database.database_cluster_user
+  sm_db_password     = module.database.database_cluster_password
+  # sm_redis_host = module.cache_database.cache_cluster_host
+  # sm_redis_port = "6379"
+}
 
 # ######################################### Load Balancer Module #########################################
 # # # You should also enable ApplicationWebserver, VPC module with it.
@@ -171,31 +168,24 @@ module "load_balancer" {
   #   module.application_server
   # ]
   # 
-  alb_vpc_id     = module.vpc.vpc_id
-  lb_subnets     = module.vpc.public_subnet
-  tg_name        = var.tg_name
-  tg_port        = var.tg_port
-  tg_protocol    = var.tg_protocol
-  tg_target_type = var.tg_target_type
-
+  project_name                = local.local_naming
+  env_suffix                  = local.environment
+  alb_vpc_id                  = module.vpc.vpc_id
+  lb_subnets                  = module.vpc.public_subnet
+  tg_name                     = var.tg_name
+  tg_port                     = var.tg_port
+  tg_protocol                 = var.tg_protocol
+  tg_target_type              = var.tg_target_type
   lb_tg_health_check_path     = var.lb_tg_health_check_path
   lb_tg_health_check_port     = var.lb_tg_health_check_port
   lb_tg_health_check_protocol = var.lb_tg_health_check_protocol
   lb_tg_health_check_matcher  = var.lb_tg_health_check_matcher
   lb_target_id                = module.application_server.web_instance_id
   lb_deletion_protection      = var.lb_deletion_protection
-
-  lb_access_logs        = var.lb_access_logs
-  lb_access_logs_bucket = var.lb_access_logs_bucket
-  lb_access_logs_prefix = var.lb_access_logs_prefix
-
-  lb_listener_protocol = var.lb_listener_protocol
-  lb_listener_port     = var.lb_listener_port
-
-  lb_name     = var.lb_name
-  lb_internal = var.lb_internal
-  lb_type     = var.lb_type
-
-  project_name = local.local_naming
-  env_suffix   = local.environment
+  alb_bucket_name             = var.alb_bucket_name
+  lb_listener_protocol        = var.lb_listener_protocol
+  lb_listener_port            = var.lb_listener_port
+  lb_name                     = var.lb_name
+  lb_internal                 = var.lb_internal
+  lb_type                     = var.lb_type
 }

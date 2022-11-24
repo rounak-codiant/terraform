@@ -41,6 +41,7 @@ resource "aws_rds_cluster" "database_cluster" {
   # engine_mode             = var.database_cluster_engine_mode
   engine_version = var.database_cluster_engine_version
   # availability_zones      = var.db_availability_zones
+  # engine_mode             = var.database_cluster_engine_mode
   database_name               = var.database_name
   master_username             = var.database_master_username
   master_password             = var.database_master_password

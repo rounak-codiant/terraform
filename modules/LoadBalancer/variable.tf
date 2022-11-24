@@ -39,11 +39,9 @@ variable "lb_deletion_protection" {}
 
 
 # Load Balancer Access Logs
-variable "lb_access_logs" {}
 
-variable "lb_access_logs_bucket" {}
+variable "alb_bucket_name" {}
 
-variable "lb_access_logs_prefix" {}
 
 # Load Balancer Listener
 variable "lb_listener_protocol" {}

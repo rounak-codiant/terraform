@@ -58,7 +58,8 @@
 
 
 
-# Or
+
+# or Method 2
 
 
 # # Create S3 Bucket
@@ -86,6 +87,3 @@
 #     secret_key = ""
 #   }
 # }
-
-
-

@@ -1,12 +1,7 @@
 # AWS Provider Key
-aws_access_key = "AKIAX7GVIPJLQN5GXM4O"
-aws_secret_key = "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"
+aws_access_key = "xsxasdsadsadsadsd"
+aws_secret_key = "dcdsccdscdscdscdscsdscdscsadcsdac"
 aws_region     = "ap-south-1"
-
-
-# # Backend setup
-#  backend_bucket_name = "backend-bucket"
-#  dynamodb_table_name = "dynamodb-table"
 
 
 #Project
@@ -23,37 +18,36 @@ vpc_instance_tenancy   = "default"
 enable_dns_hostnames   = "true"
 
 
-#EC2
+# #EC2
 instance_type   = "t2.micro"
 ebs_volume_type = "gp2"
 ebs_volume_size = "30"
 key_pair_name   = "pemkey"
 
 
-# IAM User
+# # IAM User
 s3_iam_user_name = "storage-user"
-#  pgp_key = "keybase:demo"
+# #  pgp_key = "keybase:demo"
 
 
-#S3 Private Bucket
+# #S3 Private Bucket
 private_bucket_name         = "private-bucket-terraform-1"
 private_bucket_versioning   = "true"
 private_bucket_acceleration = "Suspended"
 
 
-#S3 Public Bucket
+# #S3 Public Bucket
 public_bucket_name         = "public-bucket-terraform-1"
 public_bucket_versioning   = "true"
 public_bucket_acceleration = "Suspended"
 
 
-# #Database (RDS)
+# # #Database (RDS)
 database_cluster_identifier          = "database-cluster"
 database_cluster_engine_version      = "5.7.mysql_aurora.2.10.2"
 database_instance_identifier         = "database-instance"
 database_cluster_skip_final_snapshot = "true"
 database_engine                      = "aurora-mysql"
-# database_engine_version              = "5.7.mysql_aurora.2.10.2"
 database_name                    = "database_name"
 database_master_username         = "admin"
 database_master_password         = "admin@password"
@@ -65,7 +59,7 @@ copy_tags_to_snapshot            = "true"
 # allocated_storage               = "10"
 database_instance_class = "t3.medium"
 publicly_accessible     = "false"
-
+# database_cluster_engine_mode = "provisioned"
 
 # #Cache Database (Redis)
 #  cachedb_engine = "redis"
@@ -79,8 +73,8 @@ publicly_accessible     = "false"
 #  cachedb_snapshot_retention_limit = "1"
 
 
-# # Secret Manager
-#  secretmanager_name = "secretmanager"
+# Secret Manager
+ secretmanager_name = "secretmanager"
 
 
 # # ALB (Application Load Balancer)
@@ -91,13 +85,11 @@ tg_port        = "80"
 tg_protocol    = "HTTP"
 tg_target_type = "instance"
 
-
 # Health Check
 lb_tg_health_check_path     = "/"
 lb_tg_health_check_port     = "80"
 lb_tg_health_check_protocol = "HTTP"
 lb_tg_health_check_matcher  = "200"
-
 
 # Load Balancer
 lb_name                = "alb-terraform-1"
@@ -105,13 +97,11 @@ lb_internal            = "false"
 lb_type                = "application"
 lb_deletion_protection = "false"
 
-
 # Load Balancer Access Logs
-lb_access_logs        = "false"
-lb_access_logs_bucket = ""
-lb_access_logs_prefix = ""
-
+alb_bucket_name   = "alb-bucket"
 
 # Load Balancer Listener
 lb_listener_protocol = "HTTP"
 lb_listener_port     = "80"
+
+
