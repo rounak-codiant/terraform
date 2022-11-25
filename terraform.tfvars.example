@@ -1,6 +1,6 @@
 # AWS Provider Key
-aws_access_key = "xsxasdsadsadsadsd"
-aws_secret_key = "dcdsccdscdscdscdscsdscdscsadcsdac"
+aws_access_key = "AANDNBSDXS&SCBCSO"
+aws_secret_key = "Pzcd3dvt59fwbuwbPaa56b8ubfdrfcxcxasaxxsaxa"
 aws_region     = "ap-south-1"
 
 
@@ -48,33 +48,35 @@ database_cluster_engine_version      = "5.7.mysql_aurora.2.10.2"
 database_instance_identifier         = "database-instance"
 database_cluster_skip_final_snapshot = "true"
 database_engine                      = "aurora-mysql"
-database_name                    = "database_name"
-database_master_username         = "admin"
-database_master_password         = "admin@password"
-database_backup_retention_period = "7"
-deletion_protection              = "false"
-storage_encrypted                = "true"
-allow_major_version_upgrade      = "false"
-copy_tags_to_snapshot            = "true"
+database_name                        = "database_name"
+database_master_username             = "admin"
+database_master_password             = "admin@password"
+database_backup_retention_period     = "7"
+deletion_protection                  = "false"
+storage_encrypted                    = "true"
+allow_major_version_upgrade          = "false"
+copy_tags_to_snapshot                = "true"
+database_instance_class              = "t3.medium"
+publicly_accessible                  = "false"
 # allocated_storage               = "10"
-database_instance_class = "t3.medium"
-publicly_accessible     = "false"
 # database_cluster_engine_mode = "provisioned"
 
+
 # #Cache Database (Redis)
-#  cachedb_engine = "redis"
-#  cachedb_name = "redis-instance-name"
-#  cachedb_description = "redis-instance"
-#  cachedb_engine_version = "6.0"
-#  cachedb_port = "6379"
-#  cachedb_node_type = "cache.t3.medium"
-#  num_cache_nodes = "1"
-#  cachedb_az_mode = "single-az"
-#  cachedb_snapshot_retention_limit = "1"
+redis_user_name                  = "redis"
+redis_user_pwd                   = "idm3#YbhsFqa1P121KEC"
+cachedb_engine                   = "redis"
+cachedb_name                     = "redis-cache"
+cachedb_description              = "Redis Database"
+cachedb_port                     = "6379"
+cachedb_node_type                = "cache.t3.small"
+num_cache_nodes                  = "1"
+cachedb_snapshot_retention_limit = "1"
+version_upgrade                  = "false"
 
 
 # Secret Manager
- secretmanager_name = "secretmanager"
+secretmanager_name = "secretmanager"
 
 
 # # ALB (Application Load Balancer)
@@ -98,7 +100,7 @@ lb_type                = "application"
 lb_deletion_protection = "false"
 
 # Load Balancer Access Logs
-alb_bucket_name   = "alb-bucket"
+alb_bucket_name = "alb-bucket"
 
 # Load Balancer Listener
 lb_listener_protocol = "HTTP"

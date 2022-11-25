@@ -33,8 +33,8 @@ module "application_server" {
   iam_instance_profile = module.iam_user.iam_instance_profile_name
 }
 
-# ######################################## IAM User Module #########################################
-# You should enable ApplicationWebserver, public_bucket, private_bucket module with it.
+######################################## IAM User Module #########################################
+# # You should enable ApplicationWebserver, public_bucket, private_bucket module with it.
 
 module "iam_user" {
   source = "./modules/IAM"
@@ -49,8 +49,8 @@ module "iam_user" {
 }
 
 
-# ######################################### S3 Private Bucket Module #########################################
-# You should enable IAM module with it.
+######################################### S3 Private Bucket Module #########################################
+# #You should enable IAM module with it.
 
 module "private_bucket" {
   source = "./modules/PrivateStorageBucket"
@@ -64,8 +64,8 @@ module "private_bucket" {
   env_suffix                  = local.environment
 }
 
-# ######################################### S3 Public Bucket Module #########################################
-# You should enable IAM module with it.
+######################################### S3 Public Bucket Module #########################################
+# #You should enable IAM module with it.
 
 module "public_bucket" {
   source = "./modules/PublicStorageBucket"
@@ -81,7 +81,7 @@ module "public_bucket" {
 }
 
 # ######################################### Database Module #########################################
-# You should also enable VPC module with it.
+# # You should also enable VPC module with it.
 
 module "database" {
   source = "./modules/Database"
@@ -112,27 +112,29 @@ module "database" {
 }
 
 # ######################################## Cache Database Module #########################################
-# # 
-# module "cache_database" {
-#   source = "./modules/CacheCluster"
-#   depends_on = [
-#     module.database
-#   ]
-#   # 
-#   cachedb_name                     = var.cachedb_name
-#   cachedb_description              = var.cachedb_description
-#   cachedb_engine                   = var.cachedb_engine
-#   cachedb_engine_version           = var.cachedb_engine_version
-#   cachedb_node_type                = var.cachedb_node_type
-#   num_cache_nodes                  = var.num_cache_nodes
-#   cachedb_az_mode                  = var.cachedb_az_mode
-#   cachedb_port                     = var.cachedb_port
-#   cachedb_snapshot_retention_limit = var.cachedb_snapshot_retention_limit
-#   # 
-#   project_name = local.local_naming
-#   env_suffix   = local.environment
-#   # 
-# }
+# 
+module "cache_database" {
+  source = "./modules/CacheCluster"
+  # depends_on = [
+  #   module.database
+  # ]
+  project_name = local.local_naming
+  env_suffix   = local.environment
+
+  redis_vpc_id  = module.vpc.vpc_id
+  redis_subnets = module.vpc.private_subnet
+  # application_sg_id = module.application_server.application_sg_id
+
+  redis_user_name                  = var.redis_user_name
+  redis_user_pwd                   = var.redis_user_pwd
+  cachedb_name                     = var.cachedb_name
+  cachedb_description              = var.cachedb_description
+  version_upgrade                  = var.version_upgrade
+  cachedb_engine                   = var.cachedb_engine
+  cachedb_node_type                = var.cachedb_node_type
+  cachedb_port                     = var.cachedb_port
+  cachedb_snapshot_retention_limit = var.cachedb_snapshot_retention_limit
+}
 
 # ######################################### Secret Manager Module #########################################
 # # # # # You should also enable all module with it.
@@ -155,12 +157,12 @@ module "secret_manager" {
   sm_db_name         = module.database.database_cluster_database_name
   sm_db_user         = module.database.database_cluster_user
   sm_db_password     = module.database.database_cluster_password
-  # sm_redis_host = module.cache_database.cache_cluster_host
-  # sm_redis_port = "6379"
+  sm_redis_host      = module.cache_database.cache_cluster_host
+  sm_redis_port      = "6379"
 }
 
-# ######################################### Load Balancer Module #########################################
-# # # You should also enable ApplicationWebserver, VPC module with it.
+######################################### Load Balancer Module #########################################
+# # You should also enable ApplicationWebserver, VPC module with it.
 
 module "load_balancer" {
   source = "./modules/LoadBalancer"

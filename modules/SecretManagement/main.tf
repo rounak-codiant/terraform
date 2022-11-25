@@ -21,8 +21,8 @@ resource "aws_secretsmanager_secret_version" "secret_value" {
       "DB_DATABASE" : "${var.sm_db_name}",
       "DB_USERNAME" : "${var.sm_db_user}",
       "DB_PASSWORD" : "${var.sm_db_password}",
-      # "REDIS_HOST": "${var.sm_redis_host}",
-      # "REDIS_PORT": "${var.sm_redis_port}"
+      "REDIS_HOST" : "${var.sm_redis_host}",
+      "REDIS_PORT" : "${var.sm_redis_port}"
     }
   )
 }

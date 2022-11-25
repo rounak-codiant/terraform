@@ -24,6 +24,6 @@ variable "sm_db_user" {}
 
 variable "sm_db_password" {}
 
-# variable "sm_redis_host" {}
+variable "sm_redis_host" {}
 
-# variable "sm_redis_port" {}
+variable "sm_redis_port" {}

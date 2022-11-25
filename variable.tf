@@ -178,42 +178,48 @@ variable "publicly_accessible" {
   default = "false"
 }
 
-# #Cache Database (Redis)
 
-# variable "cachedb_engine" {
-#   default = "redis"
-# }
-# variable "cachedb_name" {
-#   default = "redis-instance-name"
-# }
-# variable "cachedb_description" {
-#   default = "redis-instance-description"
-# }
 
-# variable "cachedb_engine_version" {
-#   default = "5.0.6"
-# }
 
-# variable "cachedb_port" {
-#   default = "6379"
-# }
+# # Elastic Cache (Redis)
+variable "redis_user_name" {
+  default = "redis"
 
-# variable "cachedb_node_type" {
-#   default = "cache.t3.medium"
-# }
+}
+variable "redis_user_pwd" {
+  type    = string
+  default = "idm3#YbhsFqa1P121KEC"
+}
 
-# variable "num_cache_nodes" {
-#   default = "1"
-# }
+variable "cachedb_engine" {
+  default = "redis"
+}
+variable "cachedb_name" {
+  default = "redis-cache"
+}
+variable "cachedb_description" {
+  default = "Redis Database"
+}
 
-# variable "cachedb_az_mode" {
-#   default = "single-az"
-# }
+variable "cachedb_port" {
+  default = "6379"
+}
 
-# variable "cachedb_snapshot_retention_limit" {
-#   default = "1"
-# }
+variable "cachedb_node_type" {
+  default = "cache.t3.small"
+}
 
+variable "num_cache_nodes" {
+  default = "1"
+}
+
+variable "cachedb_snapshot_retention_limit" {
+  default = "3"
+}
+
+variable "version_upgrade" {
+  default = "false"
+}
 
 # # Secret Manager
 

@@ -30,10 +30,10 @@
 ##########################################################################
 
 output "cache_cluster_host" {
-    value = aws_elasticache_replication_group.redis_cache.primary_endpoint_address
+  value = aws_elasticache_replication_group.redis.primary_endpoint_address
 }
 
-# output "cache_cluster_port" {
-#     value = aws_elasticache_cluster.redis_cache.port
-# }
+output "cache_cluster_port" {
+  value = aws_elasticache_replication_group.redis.port
+}
 
