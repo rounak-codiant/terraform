@@ -94,6 +94,10 @@ resource "aws_key_pair" "keypair" {
   provisioner "local-exec" {
     command = "echo '${tls_private_key.key.private_key_pem}' > ./pemkey.pem" // change value as key_pair_name
   }
+  tags = {
+    Name        = "${var.project_name}-Key"
+    Environment = "${var.env_suffix}"
+  }
 }
 
 # Create EC2 instance
@@ -104,6 +108,8 @@ resource "aws_instance" "web" {
   key_name               = aws_key_pair.keypair.key_name
   vpc_security_group_ids = ["${aws_security_group.application_sg.id}"]
   iam_instance_profile   = var.iam_instance_profile
+  monitoring             = var.ec2_monitoring
+  security_groups        = ["${aws_security_group.application_sg.name}"]
   root_block_device {
     volume_type           = var.ebs_volume_type
     volume_size           = var.ebs_volume_size

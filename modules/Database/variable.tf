@@ -48,3 +48,11 @@ variable "database_instance_class" {}
 variable "publicly_accessible" {}
 
 variable "database_instance_identifier" {}
+
+variable "cluster_parameter_group" {}
+
+variable "db_instance_pg_name" {}
+
+variable "long_query_time" {}
+
+variable "max_allowed_packet" {}

@@ -82,7 +82,17 @@ variable "key_pair_name" {
   description = "Name of EC2 Key Pair"
 }
 
+variable "ec2_role_name" {
+  default = "ec2-role"
+}
 
+variable "ec2_policy_name" {
+  default = "ec2-role-policy"
+}
+
+variable "ec2_monitoring" {
+  default = "true"
+}
 # #S3 Private Bucket
 variable "private_bucket_name" {
   default = "codiant-private-bucket-terraform-1"
@@ -95,6 +105,7 @@ variable "private_bucket_versioning" {
 variable "private_bucket_acceleration" {
   default = "Suspended"
 }
+
 
 # #S3 Public Bucket
 variable "public_bucket_name" {
@@ -179,8 +190,22 @@ variable "publicly_accessible" {
 }
 
 
+variable "cluster_parameter_group" {
+  default = "cluster-parameter-group"
+}
+
+variable "db_instance_pg_name" {
+  default = "db-instance-parameter-group"
+}
 
 
+variable "long_query_time" {
+  default = "10" //10 second
+}
+
+variable "max_allowed_packet" {
+  default = "64000000" //64MB
+}
 # # Elastic Cache (Redis)
 variable "redis_user_name" {
   default = "redis"

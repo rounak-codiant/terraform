@@ -1,6 +1,6 @@
 locals {
   local_naming = var.project_name
-  environment  = terraform.workspace
+  environment  = var.env_suffix
 }
 
 ######################################### VPC Module #########################################
@@ -22,7 +22,10 @@ module "vpc" {
 
 module "application_server" {
   source = "./modules/ApplicationWebserver"
-
+  # depends_on = [
+  #   module.iam_user,
+  #   module.vpc
+  # ]
   instance_type        = var.instance_type
   ebs_volume_type      = var.ebs_volume_type
   ebs_volume_size      = var.ebs_volume_size
@@ -31,6 +34,7 @@ module "application_server" {
   env_suffix           = local.environment
   vpc_id               = module.vpc.vpc_id
   iam_instance_profile = module.iam_user.iam_instance_profile_name
+  ec2_monitoring       = var.ec2_monitoring
 }
 
 ######################################## IAM User Module #########################################
@@ -38,12 +42,17 @@ module "application_server" {
 
 module "iam_user" {
   source = "./modules/IAM"
-
+  # depends_on = [
+  #   module.private_bucket,
+  #   module.public_bucket,
+  # ]
   project_name       = local.local_naming
   env_suffix         = local.environment
   s3_iam_user_name   = var.s3_iam_user_name
   public_bucket_arn  = module.public_bucket.public_bucket_arn
   private_bucket_arn = module.private_bucket.private_bucket_arn
+  ec2_role_name      = var.ec2_role_name
+  ec2_policy_name    = var.ec2_policy_name
   #   # # pgp_key            = var.pgp_key
   #   # # s3_iam_secret_key  = module.private_bucket.iam_access_key_s3_user
 }
@@ -54,9 +63,7 @@ module "iam_user" {
 
 module "private_bucket" {
   source = "./modules/PrivateStorageBucket"
-  # depends_on = [
-  #   module.application_server
-  # ]
+
   private_bucket_name         = var.private_bucket_name
   private_bucket_versioning   = var.private_bucket_versioning
   private_bucket_acceleration = var.private_bucket_acceleration
@@ -69,10 +76,7 @@ module "private_bucket" {
 
 module "public_bucket" {
   source = "./modules/PublicStorageBucket"
-  # depends_on = [
-  #   module.private_bucket
-  # ]
-  # 
+
   public_bucket_name         = var.public_bucket_name
   public_bucket_versioning   = var.public_bucket_versioning
   public_bucket_acceleration = var.public_bucket_acceleration
@@ -86,7 +90,8 @@ module "public_bucket" {
 module "database" {
   source = "./modules/Database"
   # depends_on = [
-  #   module.application_server
+  #   module.vpc
+  #   # module.application_server
   # ]
   database_vpc_id                  = module.vpc.vpc_id
   database_subnet_ids              = module.vpc.private_subnet
@@ -102,12 +107,16 @@ module "database" {
   storage_encrypted                = var.storage_encrypted
   allow_major_version_upgrade      = var.allow_major_version_upgrade
   copy_tags_to_snapshot            = var.copy_tags_to_snapshot
+  long_query_time                  = var.long_query_time
+  max_allowed_packet               = var.max_allowed_packet
   project_name                     = local.local_naming
   env_suffix                       = local.environment
   database_application_sg          = module.application_server.application_sg_id
   # allocated_storage                    = var.allocated_storage
   database_instance_class              = var.database_instance_class
   publicly_accessible                  = var.publicly_accessible
+  cluster_parameter_group              = var.cluster_parameter_group
+  db_instance_pg_name                  = var.db_instance_pg_name
   database_cluster_skip_final_snapshot = var.database_cluster_skip_final_snapshot
 }
 
@@ -116,7 +125,7 @@ module "database" {
 module "cache_database" {
   source = "./modules/CacheCluster"
   # depends_on = [
-  #   module.database
+  #   module.vpc
   # ]
   project_name = local.local_naming
   env_suffix   = local.environment
@@ -141,24 +150,27 @@ module "cache_database" {
 module "secret_manager" {
   source = "./modules/SecretManagement"
   # depends_on = [
-  #   module.database
+  #   module.database,
+  #   module.cache_database,
+  #   module.private_bucket,
+  #   module.public_bucket,
   # ]
-  # 
+
   project_name       = local.local_naming
   env_suffix         = local.environment
   secretmanager_name = var.secretmanager_name
-  sm_iam_key         = module.iam_user.s3_iam_access_key
-  sm_iam_secret      = module.iam_user.s3_iam_secret_key
-  sm_public_bucket   = module.public_bucket.public_bucket_name
-  sm_private_bucket  = module.private_bucket.private_bucket_name
-  sm_db_connection   = module.database.database_cluster_engine
-  sm_db_host         = module.database.database_cluster_host
-  sm_db_port         = module.database.database_cluster_port
-  sm_db_name         = module.database.database_cluster_database_name
-  sm_db_user         = module.database.database_cluster_user
-  sm_db_password     = module.database.database_cluster_password
-  sm_redis_host      = module.cache_database.cache_cluster_host
-  sm_redis_port      = "6379"
+  # sm_iam_key         = module.iam_user.s3_iam_access_key
+  # sm_iam_secret      = module.iam_user.s3_iam_secret_key
+  sm_public_bucket  = module.public_bucket.public_bucket_name
+  sm_private_bucket = module.private_bucket.private_bucket_name
+  sm_db_connection  = module.database.database_cluster_engine
+  sm_db_host        = module.database.database_cluster_host
+  sm_db_port        = module.database.database_cluster_port
+  sm_db_name        = module.database.database_cluster_database_name
+  sm_db_user        = module.database.database_cluster_user
+  sm_db_password    = module.database.database_cluster_password
+  sm_redis_host     = module.cache_database.cache_cluster_host
+  sm_redis_port     = "6379"
 }
 
 ######################################### Load Balancer Module #########################################
@@ -167,9 +179,10 @@ module "secret_manager" {
 module "load_balancer" {
   source = "./modules/LoadBalancer"
   # depends_on = [
-  #   module.application_server
+  #   module.application_server,
+  #   module.vpc
   # ]
-  # 
+
   project_name                = local.local_naming
   env_suffix                  = local.environment
   alb_vpc_id                  = module.vpc.vpc_id

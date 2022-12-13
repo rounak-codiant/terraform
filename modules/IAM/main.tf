@@ -30,6 +30,11 @@ EOF
 resource "aws_iam_user" "s3_user" {
   name = var.s3_iam_user_name
   path = "/"
+
+  tags = {
+    Name        = "${var.project_name}-User"
+    Environment = "${var.env_suffix}"
+  }
 }
 
 # Create IAM User Secret Keys
@@ -42,7 +47,7 @@ resource "aws_iam_access_key" "s3_user_access" {
 
 # Create IAM Policy For EC2 Role
 resource "aws_iam_policy" "ec2_policy" {
-  name        = "EC2-Policy"
+  name        = var.ec2_policy_name
   description = "S3 SM and CloudWatch Access Policy For EC2"
   policy      = <<EOF
 {
@@ -80,7 +85,7 @@ EOF
 
 # Create IAM Role Foe EC2 
 resource "aws_iam_role" "ec2_s3_sm_access_role" {
-  name = "EC2-Role"
+  name = var.ec2_role_name
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"

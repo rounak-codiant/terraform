@@ -35,12 +35,12 @@ resource "aws_security_group" "alb_sg" {
 
 # Create Target Group
 resource "aws_alb_target_group" "application_tg" {
-  name        = var.tg_name
-  port        = var.tg_port
-  protocol    = var.tg_protocol
-  vpc_id      = var.alb_vpc_id
-  target_type = var.tg_target_type
-  # deregistration_delay = "120"
+  name                 = var.tg_name
+  port                 = var.tg_port
+  protocol             = var.tg_protocol
+  vpc_id               = var.alb_vpc_id
+  target_type          = var.tg_target_type
+  deregistration_delay = "120"
   health_check {
     path                = var.lb_tg_health_check_path
     interval            = 60
@@ -52,7 +52,7 @@ resource "aws_alb_target_group" "application_tg" {
     matcher             = var.lb_tg_health_check_matcher
   }
   tags_all = {
-    Name        = "${var.project_name}"
+    Name        = "${var.project_name}-TG"
     Environment = "${var.env_suffix}"
   }
 }

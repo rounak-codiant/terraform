@@ -13,3 +13,6 @@ variable "ebs_volume_size" {}
 variable "vpc_id" {}
 
 variable "iam_instance_profile" {}
+
+
+variable "ec2_monitoring" {}

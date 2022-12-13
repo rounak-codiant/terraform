@@ -30,6 +30,7 @@ resource "aws_security_group" "redis_sg" {
 resource "aws_elasticache_security_group" "sg" {
   name                 = "redis-security-group"
   security_group_names = [aws_security_group.redis_sg.name]
+  description          = "Elasticache Security Group"
   depends_on = [
     aws_security_group.redis_sg
   ]
@@ -37,8 +38,14 @@ resource "aws_elasticache_security_group" "sg" {
 
 # Create Redis Subnet Group
 resource "aws_elasticache_subnet_group" "subnet_group" {
-  name       = "redis-subnet_group"
-  subnet_ids = var.redis_subnets
+  name        = "redis-subnet_group"
+  subnet_ids  = var.redis_subnets
+  description = "Elasticache Private Subnets Group"
+
+  tags = {
+    Name        = "${var.project_name}-Redis"
+    Environment = "${var.env_suffix}"
+  }
 }
 
 # Create Redis User

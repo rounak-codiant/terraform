@@ -23,3 +23,29 @@ terraform {
     }
   }
 }
+
+
+# # Method 1
+
+# terraform {
+#   backend "s3" {
+#     encrypt        = true
+#     key            = "terraform.tfstate"
+#     bucket         = "backend-bucket"    // You have to create S3 bucket manually and update here
+#     dynamodb_table = "dynamodb-table"    // You have to create dynamodb table manually and update here
+#     region         = "ap-south-1"        // Update the region value as per your region
+#     profile        = "profile-name"     // Configure AWS profile on local
+#   }
+# }
+
+
+# # Method 2
+
+# terraform {
+#   backend "s3" {
+#     key     = "terraform.tfstate"
+#     bucket  = "backend-bucket"     // You have to create S3 bucket manually  
+#     region  = "ap-south-1"         // Update the region value as per your region
+#     profile = "profile-name"       // Configure AWS profile on local
+#   }
+# }

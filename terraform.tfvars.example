@@ -1,12 +1,12 @@
 # AWS Provider Key
-aws_access_key = "AANDNBSDXS&SCBCSO"
-aws_secret_key = "Pzcd3dvt59fwbuwbPaa56b8ubfdrfcxcxasaxxsaxa"
+aws_access_key = "XXXXXXXXXXXXXXXXXXXXX"
+aws_secret_key = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 aws_region     = "ap-south-1"
 
 
 #Project
 project_name = "Project"
-env_suffix   = "default"
+env_suffix   = "test"
 
 
 #VPC
@@ -23,7 +23,9 @@ instance_type   = "t2.micro"
 ebs_volume_type = "gp2"
 ebs_volume_size = "30"
 key_pair_name   = "pemkey"
-
+ec2_role_name   = "ec2-role"
+ec2_policy_name = "ec2-role-policy"
+ec2_monitoring  = "true"
 
 # # IAM User
 s3_iam_user_name = "storage-user"
@@ -56,8 +58,12 @@ deletion_protection                  = "false"
 storage_encrypted                    = "true"
 allow_major_version_upgrade          = "false"
 copy_tags_to_snapshot                = "true"
-database_instance_class              = "t3.medium"
+database_instance_class              = "db.t3.small"
 publicly_accessible                  = "false"
+cluster_parameter_group              = "cluster-parameter-group"
+db_instance_pg_name                  = "db-instance-parameter-group"
+long_query_time                      = "10"       //10 second
+max_allowed_packet                   = "64000000" //64MB
 # allocated_storage               = "10"
 # database_cluster_engine_mode = "provisioned"
 
