@@ -12,7 +12,10 @@ variable "ebs_volume_size" {}
 
 variable "vpc_id" {}
 
-variable "iam_instance_profile" {}
-
-
 variable "ec2_monitoring" {}
+
+variable "ec2_role_name" {}
+
+variable "ec2_policy_name" {}
+
+variable "ec2_subnet_id" {}

@@ -4,9 +4,9 @@ variable "env_suffix" {}
 
 variable "secretmanager_name" {}
 
-# variable "sm_iam_key" {}
+variable "sm_iam_key" {}
 
-# variable "sm_iam_secret" {}
+variable "sm_iam_secret" {}
 
 variable "sm_public_bucket" {}
 

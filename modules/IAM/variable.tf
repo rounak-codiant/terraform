@@ -8,9 +8,7 @@ variable "project_name" {}
 
 variable "env_suffix" {}
 
-variable "ec2_role_name" {}
-
-variable "ec2_policy_name" {}
+# variable "secret_manager_arn" {}
 
 # variable "pgp_key" {}
 

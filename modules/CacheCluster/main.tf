@@ -10,7 +10,6 @@ resource "aws_security_group" "redis_sg" {
     to_port     = 6379
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-    # security_groups = [var.application_sg_id]
     description = "Redis Traffic"
   }
 
@@ -27,18 +26,9 @@ resource "aws_security_group" "redis_sg" {
   }
 }
 
-resource "aws_elasticache_security_group" "sg" {
-  name                 = "redis-security-group"
-  security_group_names = [aws_security_group.redis_sg.name]
-  description          = "Elasticache Security Group"
-  depends_on = [
-    aws_security_group.redis_sg
-  ]
-}
-
 # Create Redis Subnet Group
 resource "aws_elasticache_subnet_group" "subnet_group" {
-  name        = "redis-subnet_group"
+  name        = "redis-subnet-group"
   subnet_ids  = var.redis_subnets
   description = "Elasticache Private Subnets Group"
 
@@ -52,7 +42,7 @@ resource "aws_elasticache_subnet_group" "subnet_group" {
 resource "aws_elasticache_user" "redis_user" {
   user_id       = var.redis_user_name
   user_name     = "default"
-  access_string = "on ~* @all"
+  access_string = "on ~* +@all"
   engine        = "REDIS"
   passwords     = [var.redis_user_pwd]
 }
@@ -76,10 +66,10 @@ resource "aws_elasticache_replication_group" "redis" {
   at_rest_encryption_enabled    = true
   transit_encryption_enabled    = true
   automatic_failover_enabled    = false
-  user_group_ids                = [aws_elasticache_user_group.redis_user_group.user_group_id]
+  user_group_ids                = [aws_elasticache_user_group.redis_user_group.id]
   subnet_group_name             = aws_elasticache_subnet_group.subnet_group.name
   security_group_ids            = ["${aws_security_group.redis_sg.id}"]
-  security_group_names          = ["${aws_security_group.redis_sg.name}"]
+  snapshot_retention_limit      = "3"
 
   tags = {
     Name        = "${var.project_name}-Redis"

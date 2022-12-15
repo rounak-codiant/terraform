@@ -30,8 +30,6 @@ variable "deletion_protection" {}
 
 variable "storage_encrypted" {}
 
-variable "database_application_sg" {}
-
 variable "allow_major_version_upgrade" {}
 
 variable "copy_tags_to_snapshot" {}
@@ -40,8 +38,6 @@ variable "database_cluster_skip_final_snapshot" {}
 
 
 ############# Database Instance #############
-
-# variable "allocated_storage" {}
 
 variable "database_instance_class" {}
 

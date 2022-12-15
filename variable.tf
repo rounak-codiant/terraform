@@ -38,17 +38,6 @@ variable "private_cidr_block" {
   description = "Private subnet CIDR blocks"
 }
 
-variable "vpc_availability_zones" {
-  type        = list(string)
-  default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
-  description = "All Available AZs"
-}
-
-variable "vpc_instance_tenancy" {
-  default     = "default"
-  description = "A tenancy option for instances launched into the VPC"
-}
-
 variable "enable_dns_hostnames" {
   default     = "true"
   description = "DNS hostnames in the VPC"
@@ -93,6 +82,7 @@ variable "ec2_policy_name" {
 variable "ec2_monitoring" {
   default = "true"
 }
+
 # #S3 Private Bucket
 variable "private_bucket_name" {
   default = "codiant-private-bucket-terraform-1"
@@ -206,6 +196,8 @@ variable "long_query_time" {
 variable "max_allowed_packet" {
   default = "64000000" //64MB
 }
+
+
 # # Elastic Cache (Redis)
 variable "redis_user_name" {
   default = "redis"
@@ -246,8 +238,9 @@ variable "version_upgrade" {
   default = "false"
 }
 
-# # Secret Manager
 
+
+# # Secret Manager
 variable "secretmanager_name" {
   default = "secretmanager"
 }

@@ -25,5 +25,3 @@ variable "redis_user_name" {}
 variable "redis_user_pwd" {
   type = string
 }
-
-# variable "application_sg_id" {}

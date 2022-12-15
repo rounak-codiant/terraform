@@ -6,6 +6,11 @@ output "public_subnet" {
   value = aws_subnet.public_subnet.*.id
 }
 
+output "ec2_public_subnet" {
+  value = flatten(aws_subnet.public_subnet.*.id)[0]
+
+}
+
 output "private_subnet" {
   value = aws_subnet.private_subnet.*.id
 }

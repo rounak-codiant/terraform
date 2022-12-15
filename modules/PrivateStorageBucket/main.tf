@@ -1,6 +1,7 @@
 resource "aws_s3_bucket" "private_bucket" {
-  bucket = var.private_bucket_name
-  acl    = "private"
+  bucket        = var.private_bucket_name
+  acl           = "private"
+  force_destroy = true
   # acceleration_status = var.private_bucket_acceleration
 
   versioning {
@@ -16,7 +17,15 @@ resource "aws_s3_bucket" "private_bucket" {
   }
 
   tags = {
-    Name        = "${var.project_name}"
+    Name        = "${var.project_name}-${var.private_bucket_name}"
     Environment = "${var.env_suffix}"
   }
+}
+
+resource "aws_s3_bucket_public_access_block" "app" {
+  bucket                  = aws_s3_bucket.private_bucket.id
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
