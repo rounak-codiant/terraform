@@ -10,7 +10,7 @@ data "aws_ami" "instance_ami" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal*-amd64*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy*-amd64*"]
   }
 
   filter {
@@ -201,7 +201,7 @@ resource "aws_instance" "web" {
   }
 
   tags = {
-    Name        = "${var.project_name}-EC2"
+    Name        = "${var.project_name}-${var.env_suffix}"
     Environment = "${var.env_suffix}"
   }
 
