@@ -1,15 +1,15 @@
 # Get the random string
 resource "random_id" "id" {
-  byte_length = 8
+  byte_length = 4
 }
 
 # Create Secret Manager
 resource "aws_secretsmanager_secret" "secretmanager" {
-  name                    = "${var.secretmanager_name}${random_id.id.hex}"
+  name                    = "${var.secretmanager_name}-${random_id.id.hex}"
   description             = "To store secret keys"
   recovery_window_in_days = "7"
   tags = {
-    Name        = "${var.project_name}-SecretManager"
+    Name        = "${var.project_name}-Secret-Manager"
     Environment = "${var.env_suffix}"
   }
 }
