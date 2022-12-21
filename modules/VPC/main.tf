@@ -1,19 +1,14 @@
-#-------------------------------
-# VPC Create
-#-------------------------------
 
-resource "aws_vpc" "vpc" {
-  cidr_block           = var.vpc_cidr_block
-  enable_dns_hostnames = var.enable_dns_hostnames
-  instance_tenancy     = var.vpc_instance_tenancy
-  tags = {
-    Name        = "${var.project_name}-VPC"
-    Environment = "${var.env_suffix}"
-  }
+# Fatch availability zones
+data "aws_availability_zones" "available" {
+  state = "available"
+  #   filter {
+  #   name   = "opt-in-status"
+  #   values = ["opted-in"]
+  # }
 }
-#----------------------------
+
 # Internet Gateway Create
-#-----------------------------
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
   tags = {
@@ -21,35 +16,32 @@ resource "aws_internet_gateway" "igw" {
     Environment = "${var.env_suffix}"
   }
 }
-#-------------------------------
-# Public Subnet Create
-#-------------------------------
+
+# Create Public Subnet 
 resource "aws_subnet" "public_subnet" {
   count             = length(var.public_cidr_block)
   vpc_id            = aws_vpc.vpc.id
   cidr_block        = element(var.public_cidr_block, count.index)
-  availability_zone = element(var.vpc_availability_zones, count.index)
+  availability_zone = data.aws_availability_zones.available.names[count.index % length(var.public_cidr_block)]
   tags = {
     Name        = "${var.project_name}-Public-Subnet-${count.index}"
     Environment = "${var.env_suffix}"
   }
 }
-#-------------------------------
-# Private Subnet Create
-#-------------------------------
+
+# Create Private Subnet 
 resource "aws_subnet" "private_subnet" {
   count             = length(var.private_cidr_block)
   vpc_id            = aws_vpc.vpc.id
   cidr_block        = element(var.private_cidr_block, count.index)
-  availability_zone = element(var.vpc_availability_zones, count.index)
+  availability_zone = data.aws_availability_zones.available.names[count.index % length(var.private_cidr_block)]
   tags = {
     Name        = "${var.project_name}-Private-Subnet-${count.index}"
     Environment = "${var.env_suffix}"
   }
 }
-#-----------------------------
-# Public Route Table Create
-#------------------------------
+
+# Create Public Route Table 
 resource "aws_route_table" "public_route_table" {
   vpc_id = aws_vpc.vpc.id
   route {
@@ -61,17 +53,15 @@ resource "aws_route_table" "public_route_table" {
     Environment = "${var.env_suffix}"
   }
 }
-#-------------------------------
+
 # Public Subnet Association
-#-------------------------------
 resource "aws_route_table_association" "public_rt_association" {
   count          = length(aws_subnet.public_subnet.*.id)
   subnet_id      = element(aws_subnet.public_subnet.*.id, count.index)
   route_table_id = aws_route_table.public_route_table.id
 }
-#-------------------------------
-# Private Route Table Create
-#-------------------------------
+
+# Create Private Route Table 
 resource "aws_route_table" "private_route_table" {
   vpc_id = aws_vpc.vpc.id
   route  = []
@@ -84,18 +74,27 @@ resource "aws_route_table" "private_route_table" {
     Environment = "${var.env_suffix}"
   }
 }
-#-------------------------------
+
 # Private Subnet Association
-#-------------------------------
 resource "aws_route_table_association" "private_rt_association" {
   count          = length(aws_subnet.private_subnet.*.id)
   subnet_id      = element(aws_subnet.private_subnet.*.id, count.index)
   route_table_id = aws_route_table.private_route_table.id
 }
 
+# VPC Create
+resource "aws_vpc" "vpc" {
+  cidr_block           = var.vpc_cidr_block
+  enable_dns_hostnames = var.enable_dns_hostnames
+  tags = {
+    Name        = "${var.project_name}-VPC"
+    Environment = "${var.env_suffix}"
+  }
+}
+
+
 
 # Enable when you want create NAT Gataways
-
 # #-----------------------------
 # # EIP For NAT Gateway
 # #----------------------------

@@ -8,6 +8,8 @@ variable "project_name" {}
 
 variable "env_suffix" {}
 
+# variable "secret_manager_arn" {}
+
 # variable "pgp_key" {}
 
 # variable "s3_iam_access_key" {}

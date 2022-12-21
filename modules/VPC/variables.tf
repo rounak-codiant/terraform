@@ -8,15 +8,6 @@ variable "private_cidr_block" {
   description = "Private subnet CIDR blocks"
 }
 
-variable "vpc_availability_zones" {
-  type        = list(string)
-  description = "All Available AZs"
-}
-
-variable "vpc_instance_tenancy" {
-  description = "A tenancy option for instances launched into the VPC"
-}
-
 variable "enable_dns_hostnames" {
   description = "DNS hostnames in the VPC"
 }

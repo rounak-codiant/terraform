@@ -38,17 +38,6 @@ variable "private_cidr_block" {
   description = "Private subnet CIDR blocks"
 }
 
-variable "vpc_availability_zones" {
-  type        = list(string)
-  default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
-  description = "All Available AZs"
-}
-
-variable "vpc_instance_tenancy" {
-  default     = "default"
-  description = "A tenancy option for instances launched into the VPC"
-}
-
 variable "enable_dns_hostnames" {
   default     = "true"
   description = "DNS hostnames in the VPC"
@@ -82,6 +71,17 @@ variable "key_pair_name" {
   description = "Name of EC2 Key Pair"
 }
 
+variable "ec2_role_name" {
+  default = "ec2-role"
+}
+
+variable "ec2_policy_name" {
+  default = "ec2-role-policy"
+}
+
+variable "ec2_monitoring" {
+  default = "true"
+}
 
 # #S3 Private Bucket
 variable "private_bucket_name" {
@@ -95,6 +95,7 @@ variable "private_bucket_versioning" {
 variable "private_bucket_acceleration" {
   default = "Suspended"
 }
+
 
 # #S3 Public Bucket
 variable "public_bucket_name" {
@@ -179,6 +180,22 @@ variable "publicly_accessible" {
 }
 
 
+variable "cluster_parameter_group" {
+  default = "cluster-parameter-group"
+}
+
+variable "db_instance_pg_name" {
+  default = "db-instance-parameter-group"
+}
+
+
+variable "long_query_time" {
+  default = "10" //10 second
+}
+
+variable "max_allowed_packet" {
+  default = "64000000" //64MB
+}
 
 
 # # Elastic Cache (Redis)
@@ -221,8 +238,9 @@ variable "version_upgrade" {
   default = "false"
 }
 
-# # Secret Manager
 
+
+# # Secret Manager
 variable "secretmanager_name" {
   default = "secretmanager"
 }

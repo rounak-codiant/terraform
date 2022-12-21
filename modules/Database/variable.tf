@@ -30,8 +30,6 @@ variable "deletion_protection" {}
 
 variable "storage_encrypted" {}
 
-variable "database_application_sg" {}
-
 variable "allow_major_version_upgrade" {}
 
 variable "copy_tags_to_snapshot" {}
@@ -41,10 +39,16 @@ variable "database_cluster_skip_final_snapshot" {}
 
 ############# Database Instance #############
 
-# variable "allocated_storage" {}
-
 variable "database_instance_class" {}
 
 variable "publicly_accessible" {}
 
 variable "database_instance_identifier" {}
+
+variable "cluster_parameter_group" {}
+
+variable "db_instance_pg_name" {}
+
+variable "long_query_time" {}
+
+variable "max_allowed_packet" {}

@@ -1,4 +1,3 @@
-
 # Create a Security Group For ALB
 resource "aws_security_group" "alb_sg" {
   name        = "ALB-SG"
@@ -6,19 +5,21 @@ resource "aws_security_group" "alb_sg" {
   vpc_id      = var.alb_vpc_id
 
   ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    description = "HTTP Traffic"
+    from_port        = 80
+    to_port          = 80
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+    description      = "HTTP Traffic"
   }
 
   ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    description = "HTTPS Traffic"
+    from_port        = 443
+    to_port          = 443
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+    description      = "HTTPS Traffic"
   }
 
   egress {
@@ -35,12 +36,12 @@ resource "aws_security_group" "alb_sg" {
 
 # Create Target Group
 resource "aws_alb_target_group" "application_tg" {
-  name        = var.tg_name
-  port        = var.tg_port
-  protocol    = var.tg_protocol
-  vpc_id      = var.alb_vpc_id
-  target_type = var.tg_target_type
-  # deregistration_delay = "120"
+  name                 = var.tg_name
+  port                 = var.tg_port
+  protocol             = var.tg_protocol
+  vpc_id               = var.alb_vpc_id
+  target_type          = var.tg_target_type
+  deregistration_delay = "120"
   health_check {
     path                = var.lb_tg_health_check_path
     interval            = 60
@@ -52,7 +53,7 @@ resource "aws_alb_target_group" "application_tg" {
     matcher             = var.lb_tg_health_check_matcher
   }
   tags_all = {
-    Name        = "${var.project_name}"
+    Name        = "${var.project_name}-TG"
     Environment = "${var.env_suffix}"
   }
 }
@@ -68,39 +69,6 @@ resource "aws_lb_target_group_attachment" "register_instance_tg" {
   ]
 }
 
-
-resource "aws_s3_bucket" "alb_bucket" {
-  bucket = var.alb_bucket_name
-  acl    = "private"
-
-  tags = {
-    Name        = "${var.project_name}-alb-bucket"
-    Environment = "${var.env_suffix}"
-  }
-}
-
-resource "aws_s3_bucket_policy" "alb_bucket_policy" {
-  bucket = aws_s3_bucket.alb_bucket.id
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Id      = "ALBBucketPolicy"
-    Statement = [
-      {
-        Sid       = "ReadOnlyAccess"
-        Effect    = "Allow"
-        Principal = { "Service" : "logdelivery.elasticloadbalancing.amazonaws.com" }
-        Action    = "s3:PutObject"
-        Resource = [
-          "${aws_s3_bucket.alb_bucket.arn}/*"
-        ]
-      },
-    ]
-  })
-}
-
-
-
 # Create Application Load Balancer
 resource "aws_lb" "application_lb" {
   name                       = var.lb_name
@@ -110,19 +78,10 @@ resource "aws_lb" "application_lb" {
   subnets                    = var.lb_subnets
   enable_deletion_protection = var.lb_deletion_protection
 
-  access_logs {
-    enabled = "true"
-    bucket  = aws_s3_bucket.alb_bucket.bucket
-    prefix  = "ALBLogs"
-  }
-
   tags_all = {
     Name        = "${var.project_name}"
     Environment = "${var.env_suffix}"
   }
-  depends_on = [
-    aws_s3_bucket.alb_bucket
-  ]
 }
 
 # Add ALB Listener
