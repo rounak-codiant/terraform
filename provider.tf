@@ -1,18 +1,9 @@
-# terraform {
-#   required_providers {
-#     aws = {
-#       source  = "registry.terraform.io/hashicorp/aws"
-#       version = "= 3.74.0" ## or whatever version you need
-#     }
-#   }
-# }
-
-
 # Configure the AWS Provider
 provider "aws" {
-  region     = var.aws_region
-  access_key = var.aws_access_key
-  secret_key = var.aws_secret_key
+  region  = var.aws_region
+  profile = var.aws_profile_name
+  # access_key = var.aws_access_key
+  # secret_key = var.aws_secret_key
 }
 
 terraform {
@@ -25,7 +16,7 @@ terraform {
 }
 
 
-# # Method 1
+# Method 1
 
 # terraform {
 #   backend "s3" {
@@ -39,7 +30,7 @@ terraform {
 # }
 
 
-# # Method 2
+# Method 2
 
 # terraform {
 #   backend "s3" {

@@ -36,6 +36,7 @@ variable "copy_tags_to_snapshot" {}
 
 variable "database_cluster_skip_final_snapshot" {}
 
+variable "snapshot_identifier_name" {}
 
 ############# Database Instance #############
 

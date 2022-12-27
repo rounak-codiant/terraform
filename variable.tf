@@ -7,6 +7,10 @@ variable "aws_secret_key" {
   default = ""
 }
 
+variable "aws_profile_name" {
+  default = ""
+}
+
 variable "aws_region" {
   default = "us-east-1"
 }
@@ -165,6 +169,10 @@ variable "allow_major_version_upgrade" {
 
 variable "copy_tags_to_snapshot" {
   default = "true"
+}
+
+variable "snapshot_identifier_name" {
+  default = "db-snap"
 }
 
 # variable "allocated_storage" {

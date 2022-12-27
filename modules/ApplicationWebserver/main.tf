@@ -18,7 +18,7 @@ data "aws_ami" "instance_ami" {
     values = ["hvm"]
   }
 
-  owners = ["099720109477"] # Canonical
+  owners = ["099720109477"] # Canonical/Ubuntu
 }
 
 
@@ -186,7 +186,6 @@ resource "aws_iam_instance_profile" "ec2_profile" {
 
 # Create EC2 instance
 resource "aws_instance" "web" {
-  # ami           = "ami-0fdb3f3ff5d7c40db"
   ami                    = data.aws_ami.instance_ami.id
   instance_type          = var.instance_type
   key_name               = aws_key_pair.keypair.key_name
@@ -195,6 +194,7 @@ resource "aws_instance" "web" {
   monitoring             = var.ec2_monitoring
   subnet_id              = var.ec2_subnet_id
   root_block_device {
+    encrypted             = true 
     volume_type           = var.ebs_volume_type
     volume_size           = var.ebs_volume_size
     delete_on_termination = true

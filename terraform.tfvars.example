@@ -1,6 +1,7 @@
-# AWS Provider Key
+#AWS Provider Key
 aws_access_key = "XXXXXXXXXXXXX"
 aws_secret_key = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+aws_profile_name = "aws_profile_name"
 aws_region     = "us-east-1"
 
 
@@ -16,7 +17,7 @@ public_cidr_block    = ["20.0.48.0/20", "20.0.64.0/20", "20.0.80.0/20"]
 enable_dns_hostnames = "true"
 
 
-# #EC2
+#EC2
 instance_type   = "t2.nano"
 ebs_volume_type = "gp2"
 ebs_volume_size = "10"
@@ -26,24 +27,24 @@ ec2_policy_name = "ec2-role-policy"
 ec2_monitoring  = "true"
 
 
-# # IAM User
+#IAM User
 s3_iam_user_name = "storage-user"
-# #  pgp_key = "keybase:demo"
+# pgp_key = "keybase:demo"
 
 
-# #S3 Private Bucket
+#S3 Private Bucket
 private_bucket_name         = "private-bucket-terraform-1"
 private_bucket_versioning   = "true"
 private_bucket_acceleration = "Suspended"
 
 
-# #S3 Public Bucket
+#S3 Public Bucket
 public_bucket_name         = "public-bucket-terraform-1"
 public_bucket_versioning   = "true"
 public_bucket_acceleration = "Suspended"
 
 
-# # #Database (RDS)
+#Database (RDS)
 database_cluster_identifier          = "database-cluster"
 database_cluster_engine_version      = "5.7.mysql_aurora.2.10.2"
 database_instance_identifier         = "database-instance"
@@ -57,6 +58,7 @@ deletion_protection                  = "false"
 storage_encrypted                    = "true"
 allow_major_version_upgrade          = "false"
 copy_tags_to_snapshot                = "true"
+snapshot_identifier_name             = "db-snap"
 database_instance_class              = "db.t2.small"
 publicly_accessible                  = "false"
 cluster_parameter_group              = "cluster-parameter-group"
@@ -66,7 +68,7 @@ max_allowed_packet                   = "64000000" //64MB
 # database_cluster_engine_mode = "provisioned"
 
 
-# #Cache Database (Redis)
+#Cache Database (Redis)
 redis_user_name                  = "redis"
 redis_user_pwd                   = "idm3#YbhsFqa1P121KEC"
 cachedb_engine                   = "redis"
@@ -79,31 +81,31 @@ cachedb_snapshot_retention_limit = "1"
 version_upgrade                  = "false"
 
 
-# Secret Manager
+#Secret Manager
 secretmanager_name = "SecretManager"
 
 
-# # ALB (Application Load Balancer)
+#ALB (Application Load Balancer)
 
-# Target Group
+#Target Group
 tg_name        = "default-tg"
 tg_port        = "80"
 tg_protocol    = "HTTP"
 tg_target_type = "instance"
 
-# Health Check
+#Health Check
 lb_tg_health_check_path     = "/"
 lb_tg_health_check_port     = "80"
 lb_tg_health_check_protocol = "HTTP"
 lb_tg_health_check_matcher  = "200"
 
-# Load Balancer
+#Load Balancer
 lb_name                = "alb-terraform-1"
 lb_internal            = "false"
 lb_type                = "application"
 lb_deletion_protection = "false"
 
 
-# Load Balancer Listener
+#Load Balancer Listener
 lb_listener_protocol = "HTTP"
 lb_listener_port     = "80"

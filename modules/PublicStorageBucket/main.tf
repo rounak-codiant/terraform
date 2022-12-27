@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "public_bucket" {
   bucket        = var.public_bucket_name
-  acl           = "public-read"
+  acl           = "private"
   force_destroy = true
   # acceleration_status = var.public_bucket_acceleration
 
@@ -16,7 +16,7 @@ resource "aws_s3_bucket" "public_bucket" {
     }
   }
   tags = {
-    Name        = "${var.project_name}-${var.public_bucket_name}"
+    Name        = "${var.public_bucket_name}"
     Environment = "${var.env_suffix}"
   }
 }

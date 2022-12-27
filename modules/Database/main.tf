@@ -56,6 +56,11 @@ resource "aws_rds_cluster_parameter_group" "cluster_pg" {
     value = var.long_query_time # 10
   }
 
+  parameter {
+    name  = "max_allowed_packet"
+    value = var.max_allowed_packet #"64000000"   //64MB
+  }
+
   tags_all = {
     Name        = "${var.project_name}-Cluster-Parameter-Group"
     Environment = "${var.env_suffix}"
@@ -81,12 +86,12 @@ resource "aws_db_parameter_group" "db_instance_pg" {
 
   parameter {
     name  = "long_query_time"
-    value = var.long_query_time # 10
+    value = var.long_query_time
   }
 
   parameter {
     name  = "max_allowed_packet"
-    value = var.max_allowed_packet #"64000000"   //64MB
+    value = var.max_allowed_packet
   }
   tags_all = {
     Name        = "${var.project_name}-Instance-Parameter-Group"
@@ -98,7 +103,7 @@ resource "aws_db_parameter_group" "db_instance_pg" {
 resource "aws_rds_cluster" "database_cluster" {
   cluster_identifier = var.database_cluster_identifier
   engine             = var.database_engine
-  # engine_mode             = var.database_cluster_engine_mode
+  # engine_mode                   = var.database_cluster_engine_mode
   engine_version                  = var.database_cluster_engine_version
   apply_immediately               = true
   database_name                   = var.database_name
@@ -113,7 +118,7 @@ resource "aws_rds_cluster" "database_cluster" {
   allow_major_version_upgrade     = var.allow_major_version_upgrade
   copy_tags_to_snapshot           = var.copy_tags_to_snapshot
   skip_final_snapshot             = var.database_cluster_skip_final_snapshot
-  final_snapshot_identifier       = "backup-cluster"
+  final_snapshot_identifier       = var.snapshot_identifier_name
 
   tags = {
     Name        = "${var.project_name}-db-cluster"
@@ -134,6 +139,7 @@ resource "aws_rds_cluster_instance" "database_instance" {
   publicly_accessible     = var.publicly_accessible
   copy_tags_to_snapshot   = var.copy_tags_to_snapshot
   db_parameter_group_name = aws_db_parameter_group.db_instance_pg.name
+  # monitoring_interval     = "60"
 
   tags = {
     Name        = "${var.project_name}-db-instance"

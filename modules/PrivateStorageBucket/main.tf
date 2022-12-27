@@ -17,7 +17,7 @@ resource "aws_s3_bucket" "private_bucket" {
   }
 
   tags = {
-    Name        = "${var.project_name}-${var.private_bucket_name}"
+    Name        = "${var.private_bucket_name}"
     Environment = "${var.env_suffix}"
   }
 }
