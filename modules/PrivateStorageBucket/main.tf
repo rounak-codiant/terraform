@@ -1,8 +1,8 @@
 resource "aws_s3_bucket" "private_bucket" {
-  bucket = var.private_bucket_name
+  bucket        = var.private_bucket_name
   force_destroy = true
   # acceleration_status = var.private_bucket_acceleration
-  
+
   tags = {
     Name        = "${var.private_bucket_name}"
     Environment = "${var.env_suffix}"
