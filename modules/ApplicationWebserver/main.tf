@@ -194,7 +194,7 @@ resource "aws_instance" "web" {
   monitoring             = var.ec2_monitoring
   subnet_id              = var.ec2_subnet_id
   root_block_device {
-    encrypted             = true 
+    encrypted             = true
     volume_type           = var.ebs_volume_type
     volume_size           = var.ebs_volume_size
     delete_on_termination = true

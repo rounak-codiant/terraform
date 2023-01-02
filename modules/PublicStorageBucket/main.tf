@@ -1,23 +1,32 @@
 resource "aws_s3_bucket" "public_bucket" {
   bucket        = var.public_bucket_name
-  acl           = "private"
   force_destroy = true
   # acceleration_status = var.public_bucket_acceleration
 
-  versioning {
-    enabled = var.public_bucket_versioning
-  }
-
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm = "AES256"
-      }
-    }
-  }
   tags = {
     Name        = "${var.public_bucket_name}"
     Environment = "${var.env_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_acl" "public_bucket_acl" {
+  bucket = aws_s3_bucket.public_bucket.id
+  acl    = "private"
+}
+
+resource "aws_s3_bucket_versioning" "public_bucket_versioning" {
+  bucket = aws_s3_bucket.public_bucket.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "public_bucket_encryption" {
+  bucket = aws_s3_bucket.public_bucket.bucket
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
+    }
   }
 }
 

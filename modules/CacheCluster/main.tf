@@ -56,20 +56,20 @@ resource "aws_elasticache_user_group" "redis_user_group" {
 
 # Redis Cluster Mode Enabled
 resource "aws_elasticache_replication_group" "redis" {
-  replication_group_id          = var.cachedb_name
-  replication_group_description = var.cachedb_description
-  auto_minor_version_upgrade    = var.version_upgrade
-  engine                        = var.cachedb_engine
-  node_type                     = var.cachedb_node_type
-  port                          = var.cachedb_port
-  apply_immediately             = true
-  at_rest_encryption_enabled    = true
-  transit_encryption_enabled    = true
-  automatic_failover_enabled    = false
-  user_group_ids                = [aws_elasticache_user_group.redis_user_group.id]
-  subnet_group_name             = aws_elasticache_subnet_group.subnet_group.name
-  security_group_ids            = ["${aws_security_group.redis_sg.id}"]
-  snapshot_retention_limit      = "3"
+  replication_group_id       = var.cachedb_name
+  description                = var.cachedb_description
+  auto_minor_version_upgrade = var.version_upgrade
+  engine                     = var.cachedb_engine
+  node_type                  = var.cachedb_node_type
+  port                       = var.cachedb_port
+  apply_immediately          = true
+  at_rest_encryption_enabled = true
+  transit_encryption_enabled = true
+  automatic_failover_enabled = false
+  user_group_ids             = [aws_elasticache_user_group.redis_user_group.id]
+  subnet_group_name          = aws_elasticache_subnet_group.subnet_group.name
+  security_group_ids         = ["${aws_security_group.redis_sg.id}"]
+  snapshot_retention_limit   = "3"
 
   tags = {
     Name        = "${var.project_name}-Redis"
