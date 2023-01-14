@@ -109,3 +109,7 @@ lb_deletion_protection = "false"
 #Load Balancer Listener
 lb_listener_protocol = "HTTP"
 lb_listener_port     = "80"
+
+
+#CDN
+headers_policy_name = "CustomHeadersPolicy"

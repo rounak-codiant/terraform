@@ -198,3 +198,22 @@ module "secret_manager" {
   # sm_redis_host     = module.cache_database.cache_cluster_host
   # sm_redis_port     = "6379"
 }
+
+
+
+########################################## CloudFront Module #########################################
+
+
+
+
+module "cloudfront" {
+  source = "./modules/CloudFront"
+  depends_on = [
+    module.public_bucket
+  ]
+  headers_policy_name = var.headers_policy_name
+  public_s3_bucket_domain_name = module.public_bucket.public_bucket_domain_name
+  public_s3_bucket_id =  module.public_bucket.public_bucket_name
+  public_s3_bucket_arn = module.public_bucket.public_bucket_arn
+}
+
