@@ -6,16 +6,6 @@ provider "aws" {
   # secret_key = var.aws_secret_key
 }
 
-# terraform {
-#   required_providers {
-#     aws = {
-#       source  = "hashicorp/aws"
-#       version = "~> 3.74.0"
-#     }
-#   }
-# }
-
-
 terraform {
   required_providers {
     aws = {

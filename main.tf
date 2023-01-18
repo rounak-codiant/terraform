@@ -199,21 +199,30 @@ module "secret_manager" {
   # sm_redis_port     = "6379"
 }
 
+########################################## Public CloudFront Module #########################################
 
-
-########################################## CloudFront Module #########################################
-
-
-
-
-module "cloudfront" {
+module "public_cloudfront" {
   source = "./modules/CloudFront"
   depends_on = [
     module.public_bucket
   ]
-  headers_policy_name = var.headers_policy_name
-  public_s3_bucket_domain_name = module.public_bucket.public_bucket_domain_name
-  public_s3_bucket_id =  module.public_bucket.public_bucket_name
-  public_s3_bucket_arn = module.public_bucket.public_bucket_arn
+  headers_policy_name   = var.public_headers_policy_name
+  s3_bucket_domain_name = module.public_bucket.public_bucket_domain_name
+  s3_bucket_id          = module.public_bucket.public_bucket_name
+  s3_bucket_arn         = module.public_bucket.public_bucket_arn
 }
 
+
+########################################## Private CloudFront Module #########################################
+
+module "private_cloudfront" {
+  source = "./modules/CloudFront"
+  depends_on = [
+    module.private_bucket,
+    module.public_cloudfront
+  ]
+  headers_policy_name   = var.private_headers_policy_name
+  s3_bucket_domain_name = module.private_bucket.private_bucket_domain_name
+  s3_bucket_id          = module.private_bucket.private_bucket_name
+  s3_bucket_arn         = module.private_bucket.private_bucket_arn
+}

@@ -1,4 +1,5 @@
 
+# https://github.com/hashicorp/terraform-provider-aws/issues/22467
 
 # Create Custom Security HeaCloudFront ders Policy
 resource "aws_cloudfront_response_headers_policy" "headers_policy" {
@@ -71,7 +72,7 @@ resource "aws_cloudfront_response_headers_policy" "headers_policy" {
 
 # Create S3 Bucket Policy
 resource "aws_s3_bucket_policy" "s3_cdn_policy" {
-  bucket = var.public_s3_bucket_id
+  bucket = var.s3_bucket_id
   policy = data.aws_iam_policy_document.s3-cdn-policy.json
 }
 
@@ -89,7 +90,7 @@ data "aws_iam_policy_document" "s3-cdn-policy" {
     ]
 
     resources = [
-      "${var.public_s3_bucket_arn}/*"
+      "${var.s3_bucket_arn}/*"
     ]
   }
 }
@@ -97,20 +98,20 @@ data "aws_iam_policy_document" "s3-cdn-policy" {
 
 # Create CloudFront Identity
 resource "aws_cloudfront_origin_access_identity" "access_identity" {
-  comment = var.public_s3_bucket_domain_name
+  comment = var.s3_bucket_domain_name
 }
 
-# Fatching Cache Policy
-data "aws_cloudfront_cache_policy" "cache_policy" {
-  name = "Managed-CachingOptimized"
-}
+# # Fatching Cache Policy
+# data "aws_cloudfront_cache_policy" "cache_policy" {
+#   name = "Managed-CachingOptimized"
+# }
 
 
 # Create CloudFront Distribution
 resource "aws_cloudfront_distribution" "distribution" {
   origin {
-    domain_name = var.public_s3_bucket_domain_name
-    origin_id   = var.public_s3_bucket_domain_name
+    domain_name = var.s3_bucket_domain_name
+    origin_id   = var.s3_bucket_domain_name
 
     s3_origin_config {
       origin_access_identity = aws_cloudfront_origin_access_identity.access_identity.cloudfront_access_identity_path
@@ -124,15 +125,26 @@ resource "aws_cloudfront_distribution" "distribution" {
   default_root_object = ""
 
   default_cache_behavior {
-    target_origin_id       = var.public_s3_bucket_domain_name
+    target_origin_id       = var.s3_bucket_domain_name
     allowed_methods        = ["GET", "HEAD", "OPTIONS"]
     cached_methods         = ["GET", "HEAD"]
     viewer_protocol_policy = "allow-all"
     compress               = true
 
-    # Attached Security Headers & Cache Policy
+    # Attached Security Headers
     response_headers_policy_id = aws_cloudfront_response_headers_policy.headers_policy.id
-    cache_policy_id            = data.aws_cloudfront_cache_policy.cache_policy.id
+    # cache_policy_id            = data.aws_cloudfront_cache_policy.cache_policy.id
+    forwarded_values {
+      query_string = false
+
+      cookies {
+        forward = "none"
+      }
+    }
+
+    min_ttl                = 0
+    default_ttl            = 3600
+    max_ttl                = 86400
   }
 
   restrictions {

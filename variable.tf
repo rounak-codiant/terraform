@@ -339,6 +339,10 @@ variable "lb_listener_port" {
 
 
 #CDN
-variable "headers_policy_name" {
+variable "public_headers_policy_name" {
+  default = "CustomHeadersPolicy"
+}
+
+variable "private_headers_policy_name" {
   default = "CustomHeadersPolicy"
 }

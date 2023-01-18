@@ -112,4 +112,5 @@ lb_listener_port     = "80"
 
 
 #CDN
-headers_policy_name = "CustomHeadersPolicy"
+public_headers_policy_name  = "PublicCDNCustomHeadersPolicy"
+private_headers_policy_name = "PrivateCDNCustomHeadersPolicy"
