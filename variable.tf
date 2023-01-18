@@ -336,3 +336,13 @@ variable "lb_listener_port" {
   description = "value for the load balancer listener port"
   default     = "80"
 }
+
+
+#CDN
+variable "public_headers_policy_name" {
+  default = "CustomHeadersPolicy"
+}
+
+variable "private_headers_policy_name" {
+  default = "CustomHeadersPolicy"
+}
