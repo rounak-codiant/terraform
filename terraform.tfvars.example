@@ -1,11 +1,9 @@
 #AWS Provider Key
-aws_access_key = "XXXXXXXXXXXXX"
-aws_secret_key = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 aws_profile_name = "aws_profile_name"
 aws_region     = "us-east-1"
 
 
-#Project
+#Project name & ENV
 project_name = "Terraform"
 env_suffix   = "test"
 
@@ -29,8 +27,6 @@ ec2_monitoring  = "true"
 
 #IAM User
 s3_iam_user_name = "storage-user"
-# pgp_key = "keybase:demo"
-
 
 #S3 Private Bucket
 private_bucket_name         = "private-bucket-terraform-1"
@@ -46,13 +42,13 @@ public_bucket_acceleration = "Suspended"
 
 #Database (RDS)
 database_cluster_identifier          = "database-cluster"
-database_cluster_engine_version      = "5.7.mysql_aurora.2.10.2"
+database_cluster_engine_version      = "5.7.mysql_aurora.2.11.1"
 database_instance_identifier         = "database-instance"
 database_cluster_skip_final_snapshot = "true"
 database_engine                      = "aurora-mysql"
 database_name                        = "databasename"
 database_master_username             = "admin"
-database_master_password             = "a44N9$PPR2gNXJakI1g!#P6"
+database_master_password             = "a44N9PPR2gNXJakI1g#@P6"
 database_backup_retention_period     = "7"
 deletion_protection                  = "false"
 storage_encrypted                    = "true"
@@ -70,7 +66,7 @@ max_allowed_packet                   = "64000000" //64MB
 
 #Cache Database (Redis)
 redis_user_name                  = "redis"
-redis_user_pwd                   = "idm3#YbhsFqa1P121KEC"
+redis_user_pwd                   = "dm3YbhsFqa1P121KEC"
 cachedb_engine                   = "redis"
 cachedb_name                     = "redis-cache"
 cachedb_description              = "Redis Database"
@@ -105,12 +101,11 @@ lb_internal            = "false"
 lb_type                = "application"
 lb_deletion_protection = "false"
 
-
 #Load Balancer Listener
 lb_listener_protocol = "HTTP"
 lb_listener_port     = "80"
 
 
 #CDN
-public_headers_policy_name  = "PublicCDNCustomHeadersPolicy"
-private_headers_policy_name = "PrivateCDNCustomHeadersPolicy"
+public_headers_policy_name  = "PublicCDN-HeadersPolicy"
+private_headers_policy_name = "PrivateCDN-HeadersPolicy"

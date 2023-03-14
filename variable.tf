@@ -53,10 +53,6 @@ variable "s3_iam_user_name" {
   default = "s3-user"
 }
 
-# variable "pgp_key" {
-#   default = "keybase:demo"
-# }
-
 #EC2
 variable "instance_type" {
   default = "t2.micro"
@@ -180,7 +176,7 @@ variable "snapshot_identifier_name" {
 # }
 
 variable "database_instance_class" {
-  default = "t3.medium"
+  default = "db.t3.medium"
 }
 
 variable "publicly_accessible" {
@@ -213,7 +209,7 @@ variable "redis_user_name" {
 }
 variable "redis_user_pwd" {
   type    = string
-  default = "idm3#YbhsFqa1P121KEC"
+  default = "dm3YbhsFqa1P121KEC"
 }
 
 variable "cachedb_engine" {

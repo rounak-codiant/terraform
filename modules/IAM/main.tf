@@ -39,6 +39,4 @@ resource "aws_iam_user" "s3_user" {
 # Create IAM User Secret Keys
 resource "aws_iam_access_key" "s3_user_access" {
   user = aws_iam_user.s3_user.name
-  # pgp_key = "keybase:s3access"
-  # pgp_key = var.pgp_key
 }

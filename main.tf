@@ -122,7 +122,7 @@ module "cache_database" {
   project_name                     = local.local_naming
   env_suffix                       = local.environment
   redis_vpc_id                     = module.vpc.vpc_id
-  redis_subnets                    = module.vpc.private_subnet
+  redis_subnets                    = module.vpc.public_subnet
   redis_user_name                  = var.redis_user_name
   redis_user_pwd                   = var.redis_user_pwd
   cachedb_name                     = var.cachedb_name

@@ -115,6 +115,7 @@ resource "aws_iam_policy" "ec2_policy" {
     {
       "Action": [
         "s3:GetObject",
+        "s3:ListAllMyBuckets",
         "s3:PutObject",
         "s3:PutObjectAcl",
         "s3:DeleteObject",
