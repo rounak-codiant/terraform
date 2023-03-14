@@ -2,7 +2,6 @@ locals {
   local_naming = var.project_name
   environment  = var.env_suffix
 }
-
 ######################################### VPC Module #########################################
 module "vpc" {
   source = "./modules/VPC"
@@ -74,7 +73,6 @@ module "iam_user" {
   s3_iam_user_name   = var.s3_iam_user_name
   public_bucket_arn  = module.public_bucket.public_bucket_arn
   private_bucket_arn = module.private_bucket.private_bucket_arn
-  # pgp_key            = var.pgp_key
 }
 
 # # ######################################### Database Module #########################################
@@ -134,7 +132,6 @@ module "cache_database" {
   cachedb_snapshot_retention_limit = var.cachedb_snapshot_retention_limit
 }
 
-
 ######################################### Load Balancer Module #########################################
 # # You should also enable ApplicationWebserver, VPC module with it.
 
@@ -174,29 +171,45 @@ module "secret_manager" {
   project_name       = local.local_naming
   env_suffix         = local.environment
   secretmanager_name = var.secretmanager_name
-  sm_public_bucket   = var.public_bucket_name
-  sm_private_bucket  = var.private_bucket_name
-  sm_db_connection   = ""
-  sm_db_host         = ""
-  sm_db_port         = "3306"
-  sm_db_name         = var.database_name
-  sm_db_user         = var.database_master_username
-  sm_db_password     = var.database_master_password
-  sm_redis_host      = ""
-  sm_redis_port      = "6379"
-  sm_iam_key         = ""
-  sm_iam_secret      = ""
 
-  # sm_public_bucket  = module.public_bucket.public_bucket_name
-  # sm_private_bucket = module.private_bucket.private_bucket_name
-  # sm_db_connection  = module.database.database_cluster_engine
+  #  Database Keys
+  sm_db_connection = "mysql"
+  sm_db_host       = "db_host_name"
+  sm_db_read_host  = "db_read_host_name"
+  sm_db_port       = "3306"
+  sm_db_name       = var.database_name
+  sm_db_user       = var.database_master_username
+  sm_db_password   = var.database_master_password
+
+  # SMTP Keys
+  sm_mail_driver       = "smtp"
+  sm_mail_host         = ""
+  sm_mail_port         = "465"
+  sm_mail_user         = ""
+  sm_mail_password     = ""
+  sm_mail_encryption   = "ssl"
+  sm_mail_from_address = ""
+  sm_mail_from_name    = ""
+
+  #  AWS Keys
+  sm_public_bucket  = var.public_bucket_name
+  sm_private_bucket = var.private_bucket_name
+  sm_aws_region     = var.aws_region
+  sm_bucket_name    = var.public_bucket_name
+  sm_access_id      = ""
+  sm_access_key     = ""
+
+  # Redis DB Keys
+  sm_redis_host     = "redis_host_name"
+  sm_redis_port     = "6379"
+  sm_redis_user     = var.redis_user_name
+  sm_redis_password = var.redis_user_pwd
+
+  # sm_access_id      = ""
+  # sm_access_key     = ""
   # sm_db_host        = module.database.database_cluster_host
-  # sm_db_port        = module.database.database_cluster_port
-  # sm_db_name        = module.database.database_cluster_database_name
-  # sm_db_user        = module.database.database_cluster_user
-  # sm_db_password    = module.database.database_cluster_password
+  # sm_db_read_host  = ""
   # sm_redis_host     = module.cache_database.cache_cluster_host
-  # sm_redis_port     = "6379"
 }
 
 ########################################## Public CloudFront Module #########################################
