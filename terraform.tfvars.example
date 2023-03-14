@@ -65,7 +65,7 @@ max_allowed_packet                   = "64000000" //64MB
 
 
 #Cache Database (Redis)
-redis_user_name                  = "redis"
+redis_user_name                  = "admin"
 redis_user_pwd                   = "dm3YbhsFqa1P121KEC"
 cachedb_engine                   = "redis"
 cachedb_name                     = "redis-cache"
