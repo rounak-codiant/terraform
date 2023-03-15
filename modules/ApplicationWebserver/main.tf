@@ -200,6 +200,7 @@ resource "aws_instance" "web" {
     volume_size           = var.ebs_volume_size
     delete_on_termination = true
   }
+  user_data = file("modules/ApplicationWebserver/install.sh")
 
   tags = {
     Name        = "${var.project_name}-${var.env_suffix}"
