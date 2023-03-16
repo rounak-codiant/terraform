@@ -66,21 +66,6 @@ module "public_bucket" {
   public_bucket_acceleration = var.public_bucket_acceleration
 }
 
-# ######################################## IAM User Module #########################################
-
-module "iam_user" {
-  source = "./modules/IAM"
-  depends_on = [
-    module.public_bucket,
-    module.private_bucket
-  ]
-  project_name       = local.local_naming
-  env_suffix         = local.environment
-  s3_iam_user_name   = var.s3_iam_user_name
-  public_bucket_arn  = module.public_bucket.public_bucket_arn
-  private_bucket_arn = module.private_bucket.private_bucket_arn
-}
-
 # # ######################################### Database Module #########################################
 # # # You should also enable VPC module with it.
 
@@ -230,7 +215,6 @@ module "public_cloudfront" {
   s3_bucket_id          = module.public_bucket.public_bucket_name
   s3_bucket_arn         = module.public_bucket.public_bucket_arn
 }
-
 
 ########################################## Private CloudFront Module #########################################
 

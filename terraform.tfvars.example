@@ -31,9 +31,6 @@ php-module         = "yes"
 nginx-nginx-config = "no"
 
 
-#IAM User
-s3_iam_user_name = "storage-user"
-
 #S3 Private Bucket
 private_bucket_name         = "private-bucket-terraform-1"
 private_bucket_versioning   = "true"

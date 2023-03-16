@@ -12,7 +12,7 @@ Terraform
 
 ### Provider and Version
     source  = hashicorp/aws
-    version = 3.74.0
+    version = 4.48.0
 
 -------------------------------
 
