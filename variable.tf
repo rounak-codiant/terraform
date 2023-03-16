@@ -107,12 +107,13 @@ variable "private_bucket_name" {
   default = "codiant-private-bucket-terraform-1"
 }
 
-variable "private_bucket_versioning" {
-  default = "true"
-}
-
 variable "private_bucket_acceleration" {
   default = "Suspended"
+}
+
+variable "private_bucket_versioning" {
+  default     = "Enabled"
+  description = "Options are Enabled/Disabled"
 }
 
 # #S3 Public Bucket
@@ -120,12 +121,13 @@ variable "public_bucket_name" {
   default = "codiant-public-bucket-terraform-1"
 }
 
-variable "public_bucket_versioning" {
-  default = "true"
-}
-
 variable "public_bucket_acceleration" {
   default = "Suspended"
+}
+
+variable "public_bucket_versioning" {
+  default     = "Enabled"
+  description = "Options are Enabled/Disabled"
 }
 
 # #Database (RDS)

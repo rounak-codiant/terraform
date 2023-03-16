@@ -33,13 +33,13 @@ nginx-nginx-config = "no"
 
 #S3 Private Bucket
 private_bucket_name         = "private-bucket-terraform-1"
-private_bucket_versioning   = "true"
+private_bucket_versioning   = "Enabled"
 private_bucket_acceleration = "Suspended"
 
 
 #S3 Public Bucket
 public_bucket_name         = "public-bucket-terraform-1"
-public_bucket_versioning   = "true"
+public_bucket_versioning   = "Enabled"
 public_bucket_acceleration = "Suspended"
 
 
