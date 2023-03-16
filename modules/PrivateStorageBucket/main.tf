@@ -17,7 +17,7 @@ resource "aws_s3_bucket_acl" "private_bucket_acl" {
 resource "aws_s3_bucket_versioning" "private_bucket_versioning" {
   bucket = aws_s3_bucket.private_bucket.id
   versioning_configuration {
-    status = "Enabled"
+    status = var.private_bucket_versioning
   }
 }
 
@@ -30,9 +30,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "private_bucket_en
   }
 }
 
-
-
-resource "aws_s3_bucket_public_access_block" "app" {
+resource "aws_s3_bucket_public_access_block" "public_access_block" {
   bucket                  = aws_s3_bucket.private_bucket.id
   block_public_acls       = true
   block_public_policy     = true
