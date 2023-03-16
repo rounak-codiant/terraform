@@ -26,8 +26,6 @@ variable "sm_public_bucket" {}
 variable "sm_private_bucket" {}
 variable "sm_aws_region" {}
 variable "sm_bucket_name" {}
-variable "sm_access_id" {}
-variable "sm_access_key" {}
 
 # Redis DB Keys
 variable "sm_redis_host" {}

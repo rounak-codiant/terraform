@@ -187,8 +187,6 @@ module "secret_manager" {
   sm_private_bucket = var.private_bucket_name
   sm_aws_region     = var.aws_region
   sm_bucket_name    = var.public_bucket_name
-  sm_access_id      = ""
-  sm_access_key     = ""
 
   # Redis DB Keys
   sm_redis_host     = "redis_host_name"
