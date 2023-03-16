@@ -16,13 +16,19 @@ enable_dns_hostnames = "true"
 
 
 #EC2
-instance_type   = "t2.nano"
-ebs_volume_type = "gp2"
-ebs_volume_size = "10"
-key_pair_name   = "pemkey"
-ec2_role_name   = "ec2-role"
-ec2_policy_name = "ec2-role-policy"
-ec2_monitoring  = "true"
+instance_type      = "t2.nano"
+ebs_volume_type    = "gp2"
+ebs_volume_size    = "10"
+key_pair_name      = "pemkey"
+ec2_role_name      = "ec2-role"
+ec2_policy_name    = "ec2-role-policy"
+ec2_monitoring     = "true"
+php-version        = "8.1"
+node-version       = "16"
+composer-install   = "yes"
+php-nginx-config   = "yes"
+php-module         = "yes"
+nginx-nginx-config = "no"
 
 
 #IAM User

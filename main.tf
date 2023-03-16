@@ -22,17 +22,23 @@ module "application_server" {
   depends_on = [
     module.vpc
   ]
-  instance_type   = var.instance_type
-  ebs_volume_type = var.ebs_volume_type
-  ebs_volume_size = var.ebs_volume_size
-  key_pair_name   = var.key_pair_name
-  project_name    = local.local_naming
-  env_suffix      = local.environment
-  vpc_id          = module.vpc.vpc_id
-  ec2_monitoring  = var.ec2_monitoring
-  ec2_policy_name = var.ec2_policy_name
-  ec2_role_name   = var.ec2_role_name
-  ec2_subnet_id   = module.vpc.ec2_public_subnet
+  instance_type      = var.instance_type
+  ebs_volume_type    = var.ebs_volume_type
+  ebs_volume_size    = var.ebs_volume_size
+  key_pair_name      = var.key_pair_name
+  project_name       = local.local_naming
+  env_suffix         = local.environment
+  vpc_id             = module.vpc.vpc_id
+  ec2_monitoring     = var.ec2_monitoring
+  ec2_policy_name    = var.ec2_policy_name
+  ec2_role_name      = var.ec2_role_name
+  ec2_subnet_id      = module.vpc.ec2_public_subnet
+  php-version        = var.php-version
+  node-version       = var.node-version
+  composer-install   = var.composer-install
+  php-nginx-config   = var.php-nginx-config
+  php-module         = var.php-module
+  nginx-nginx-config = var.nginx-nginx-config
 }
 
 
