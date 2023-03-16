@@ -1,9 +1,6 @@
 #!/bin/bash
 
 sudo apt update
-# Install Nginx
-sudo apt install nginx -y
-sudo systemctl enable nginx
 
 # Install CloudWatch Agent
 sudo wget https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
@@ -11,7 +8,7 @@ sudo dpkg -i -E amazon-cloudwatch-agent.deb
 sudo mkdir -p /usr/share/collectd/
 sudo touch /usr/share/collectd/types.db
 sudo apt install python3-pip -y
-sudo pip3 install collectd
+sudo pip3 install collectd -y
 sudo systemctl enable amazon-cloudwatch-agent
 sudo systemctl start amazon-cloudwatch-agent
 

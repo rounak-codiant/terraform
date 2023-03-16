@@ -83,6 +83,31 @@ variable "ec2_monitoring" {
   default = "true"
 }
 
+variable "php-version" {
+  default     = "8.1"
+  description = "PHP "
+}
+
+variable "node-version" {
+  default = "16"
+}
+
+variable "composer-install" {
+  default = "yes"
+}
+
+variable "php-nginx-config" {
+  default = "yes"
+}
+
+variable "php-module" {
+  default = "yes"
+}
+
+variable "nginx-nginx-config" {
+  default = "no"
+}
+
 # #S3 Private Bucket
 variable "private_bucket_name" {
   default = "codiant-private-bucket-terraform-1"

@@ -184,6 +184,14 @@ resource "aws_iam_instance_profile" "ec2_profile" {
   role = aws_iam_role.ec2_s3_sm_access_role.name
 }
 
+locals {
+  php-version        = var.php-version
+  node-version       = var.node-version
+  composer-install   = var.composer-install
+  php-nginx-config   = var.php-nginx-config
+  php-module         = var.php-module
+  nginx-nginx-config = var.nginx-nginx-config
+}
 
 # Create EC2 instance
 resource "aws_instance" "web" {
@@ -200,7 +208,31 @@ resource "aws_instance" "web" {
     volume_size           = var.ebs_volume_size
     delete_on_termination = true
   }
-  user_data = file("modules/ApplicationWebserver/install.sh")
+
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = file("${var.key_pair_name}.pem")
+    host        = self.public_dns
+  }
+
+  provisioner "file" {
+    source      = "modules/ApplicationWebserver/php-install.sh"
+    destination = "/home/ubuntu/php-install.sh"
+  }
+
+  provisioner "file" {
+    source      = "modules/ApplicationWebserver/install.sh"
+    destination = "/home/ubuntu/install.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /home/ubuntu/*.sh",
+      "sudo /home/ubuntu/php-install.sh --php-version ${local.php-version} --node-version ${local.node-version} --composer-install ${local.composer-install} --php-nginx-config ${local.php-nginx-config} --php-modules ${local.php-module} --node-nginx-config ${local.nginx-nginx-config}",
+      "sudo /home/ubuntu/install.sh",
+    ]
+  }
 
   tags = {
     Name        = "${var.project_name}-${var.env_suffix}"

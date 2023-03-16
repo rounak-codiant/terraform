@@ -19,3 +19,15 @@ variable "ec2_role_name" {}
 variable "ec2_policy_name" {}
 
 variable "ec2_subnet_id" {}
+
+variable "php-version" {}
+
+variable "node-version" {}
+
+variable "composer-install" {}
+
+variable "php-nginx-config" {}
+
+variable "php-module" {}
+
+variable "nginx-nginx-config" {}
