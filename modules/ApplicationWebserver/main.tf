@@ -212,7 +212,7 @@ resource "aws_instance" "web" {
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = file("pemkey.pem")
+    private_key = file("${var.key_pair_name}.pem")
     host        = self.public_dns
   }
 

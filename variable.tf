@@ -84,7 +84,7 @@ variable "ec2_monitoring" {
 }
 
 variable "php-version" {
-  default = "8.1"
+  default     = "8.1"
   description = "PHP "
 }
 
