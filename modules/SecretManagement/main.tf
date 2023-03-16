@@ -46,8 +46,6 @@ resource "aws_secretsmanager_secret_version" "secret_value" {
       "AWS_PRIVATE_BUCKET" : "${var.sm_private_bucket}",
       "AWS_DEFAULT_REGION" : "${var.sm_aws_region}",
       "AWS_BUCKET" : "${var.sm_bucket_name}"
-      "AWS_ACCESS_KEY_ID" : "${var.sm_access_id}"
-      "AWS_SECRET_ACCESS_KEY" : "${var.sm_access_key}"
     }
   )
 }

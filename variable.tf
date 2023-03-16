@@ -47,12 +47,6 @@ variable "enable_dns_hostnames" {
   description = "DNS hostnames in the VPC"
 }
 
-# # IAM User
-
-variable "s3_iam_user_name" {
-  default = "s3-user"
-}
-
 #EC2
 variable "instance_type" {
   default = "t2.micro"
@@ -120,7 +114,6 @@ variable "private_bucket_versioning" {
 variable "private_bucket_acceleration" {
   default = "Suspended"
 }
-
 
 # #S3 Public Bucket
 variable "public_bucket_name" {
