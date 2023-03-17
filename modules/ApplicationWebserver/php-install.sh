@@ -104,63 +104,17 @@ sudo apt-get install nodejs -y; echo "Installed\nNodeJs Version: $(node -v)\nNPM
 
 if [ $node_nginx_config = "yes" ] &&  [ $php_nginx_config = "yes" ]; then
 sudo mv /etc/nginx/sites-available/default /etc/nginx/sites-available/default_bak
-# PHP & Node Configuration
 sudo sh -c 'cat << EOF > /etc/nginx/sites-available/default
 server {
-    listen 80;
-    server_name _;
-    root /var/www/html/public;
-    client_max_body_size 200M;
-
-    add_header X-Frame-Options "SAMEORIGIN";
-    add_header X-XSS-Protection "1; mode=block";
-    add_header X-Content-Type-Options "nosniff";
-
-    index index.nginx-debian.html index.php index.html;
-    error_page 404 /index.php;
-    charset utf-8;
-
-    location / {
-        try_files \$uri \$uri/ /index.php?\$query_string;
-    }
-    location = /favicon.ico { access_log off; log_not_found off; }
-    location = /robots.txt  { access_log off; log_not_found off; }
-
-
-    location ~ \.php$ {
-        fastcgi_pass unix:/var/run/php/php$varname-fpm.sock;
-        fastcgi_param SCRIPT_FILENAME \$realpath_root\$fastcgi_script_name;
-        include fastcgi_params;
-        include snippets/fastcgi-php.conf;
-    }
-    location ~ /\.ht {
-    deny all;
-    }
-
-    location ~ /\.env {
-    deny all;
-    }
-}
-
-server {
-   listen 80;
-   listen [::]:80;
+   listen 80 default_server;
+   listen [::]:80 default_server;
    server_name _;
-   client_max_body_size 200M;
-
-   access_log /var/log/nginx/access.log;
-   error_log /var/log/nginx/error.log;
+   root /var/www/html;
+   index index.html index.htm index.nginx-debian.html;
 
    location / {
-      proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-      proxy_set_header X-Real-IP \$remote_addr;
-      proxy_set_header Host \$http_host;
-      proxy_set_header X-Forwarded-Proto \$scheme;
-      proxy_pass http://localhost:3000/;
-      proxy_http_version 1.1;
-      proxy_set_header Upgrade \$http_upgrade;
-      proxy_set_header Connection "upgrade";
-  }
+      try_files $uri $uri/ =404;
+     }
 }
 EOF
 '
