@@ -38,27 +38,27 @@ resource "aws_db_subnet_group" "subnet_group" {
 
 resource "aws_rds_cluster_parameter_group" "cluster_pg" {
   name        = var.cluster_parameter_group
-  family      = "aurora-mysql5.7"
+  family      = var.cluster_parameter_group_family
   description = "RDS cluster Custom Parameter Group"
 
   parameter {
     name  = "general_log"
-    value = "1"
+    value = var.general_log
   }
 
   parameter {
     name  = "slow_query_log"
-    value = "1"
+    value = var.slow_query_log
   }
 
   parameter {
     name  = "long_query_time"
-    value = var.long_query_time # 10
+    value = var.long_query_time
   }
 
   parameter {
     name  = "max_allowed_packet"
-    value = var.max_allowed_packet #"64000000"   //64MB
+    value = var.max_allowed_packet
   }
 
   tags_all = {
@@ -67,21 +67,19 @@ resource "aws_rds_cluster_parameter_group" "cluster_pg" {
   }
 }
 
-
-
 resource "aws_db_parameter_group" "db_instance_pg" {
   name        = var.db_instance_pg_name
-  family      = "aurora-mysql5.7"
+  family      = var.db_parameter_group_family
   description = "RDS instance Custom Parameter Group"
 
   parameter {
     name  = "general_log"
-    value = "1"
+    value = var.general_log
   }
 
   parameter {
     name  = "slow_query_log"
-    value = "1"
+    value = var.slow_query_log
   }
 
   parameter {
@@ -119,7 +117,8 @@ resource "aws_rds_cluster" "database_cluster" {
   copy_tags_to_snapshot           = var.copy_tags_to_snapshot
   skip_final_snapshot             = var.database_cluster_skip_final_snapshot
   final_snapshot_identifier       = var.snapshot_identifier_name
-
+  enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
+  
   tags = {
     Name        = "${var.project_name}-db-cluster"
     Environment = "${var.env_suffix}"

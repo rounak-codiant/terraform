@@ -53,3 +53,11 @@ variable "db_instance_pg_name" {}
 variable "long_query_time" {}
 
 variable "max_allowed_packet" {}
+
+variable "general_log" {}
+
+variable "slow_query_log" {}
+
+variable "db_parameter_group_family" {}
+
+variable "cluster_parameter_group_family" {}

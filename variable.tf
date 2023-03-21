@@ -222,6 +222,23 @@ variable "max_allowed_packet" {
 }
 
 
+variable "general_log" {
+  default = "1"
+}
+
+variable "slow_query_log" {
+  default = "1"
+}
+
+variable "db_parameter_group_family" {
+  default = "aurora-mysql5.7"
+}
+
+variable "cluster_parameter_group_family" {
+  default = "aurora-mysql5.7"
+}
+
+
 # # Elastic Cache (Redis)
 variable "redis_user_name" {
   default = "redis"

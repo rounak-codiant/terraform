@@ -98,6 +98,10 @@ module "database" {
   db_instance_pg_name                  = var.db_instance_pg_name
   database_cluster_skip_final_snapshot = var.database_cluster_skip_final_snapshot
   snapshot_identifier_name             = var.snapshot_identifier_name
+  general_log                          = var.general_log
+  slow_query_log                       = var.slow_query_log
+  db_parameter_group_family            = var.db_parameter_group_family
+  cluster_parameter_group_family       = var.cluster_parameter_group_family
 }
 
 # # ######################################## Cache Database Module #########################################
