@@ -45,7 +45,7 @@ public_bucket_acceleration = "Suspended"
 
 #Database (RDS)
 database_cluster_identifier          = "database-cluster"
-database_cluster_engine_version      = "5.7.mysql_aurora.2.10.2"
+database_cluster_engine_version      = "5.7.mysql_aurora.2.11.1"
 database_instance_identifier         = "database-instance"
 database_cluster_skip_final_snapshot = "true"
 database_engine                      = "aurora-mysql"
@@ -64,6 +64,10 @@ cluster_parameter_group              = "cluster-parameter-group"
 db_instance_pg_name                  = "db-instance-parameter-group"
 long_query_time                      = "10"       //10 second
 max_allowed_packet                   = "64000000" //64MB
+general_log                          = "1"
+slow_query_log                       = "1"
+db_parameter_group_family            = "aurora-mysql5.7"
+cluster_parameter_group_family       = "aurora-mysql5.7"
 # database_cluster_engine_mode = "provisioned"
 
 
@@ -78,7 +82,10 @@ cachedb_node_type                = "cache.t2.micro"
 num_cache_nodes                  = "1"
 cachedb_snapshot_retention_limit = "1"
 version_upgrade                  = "false"
-
+snapshot_retention_limit         = "7"
+rest_encryption_enabled          = "true"
+transit_encryption_enabled       = "true"
+automatic_failover_enabled       = "false"
 
 #Secret Manager
 secretmanager_name = "SecretManager"
