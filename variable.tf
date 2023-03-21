@@ -368,7 +368,9 @@ variable "alb_logs_enable" {
   default = "true"
 }
 
-
+variable "alb_idle_timeout" {
+  default = "120"
+}
 #CDN
 variable "public_headers_policy_name" {
   default = "CustomHeadersPolicy"

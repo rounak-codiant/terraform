@@ -146,6 +146,7 @@ resource "aws_lb" "application_lb" {
   security_groups            = ["${aws_security_group.alb_sg.id}"]
   subnets                    = var.lb_subnets
   enable_deletion_protection = var.lb_deletion_protection
+  idle_timeout               = var.alb_idle_timeout
 
   access_logs {
     bucket  = aws_s3_bucket.elb_logs.id

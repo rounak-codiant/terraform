@@ -156,6 +156,7 @@ module "load_balancer" {
   alb_bucket_versioning       = var.alb_bucket_versioning
   alb_logs_bucket_name        = var.alb_logs_bucket_name
   alb_logs_enable             = var.alb_logs_enable
+  alb_idle_timeout            = var.alb_idle_timeout
 }
 
 # ######################################### Secret Manager Module #########################################

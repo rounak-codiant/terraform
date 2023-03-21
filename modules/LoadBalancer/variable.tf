@@ -55,3 +55,5 @@ variable "alb_bucket_versioning" {}
 variable "alb_logs_bucket_name" {}
 
 variable "alb_logs_enable" {}
+
+variable "alb_idle_timeout" {}

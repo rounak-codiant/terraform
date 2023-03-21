@@ -114,7 +114,7 @@ alb_log_prefix        = "ALB"
 alb_bucket_versioning = "Enabled"
 alb_logs_bucket_name  = "alb-logs-bucket-112w233"
 alb_logs_enable       = "true"
-
+alb_idle_timeout      = "120"
 
 #CDN
 public_headers_policy_name  = "PublicCDN-HeadersPolicy"
