@@ -279,7 +279,21 @@ variable "version_upgrade" {
   default = "false"
 }
 
+variable "snapshot_retention_limit" {
+  default = "7"
+}
 
+variable "rest_encryption_enabled" {
+  default = "true"
+}
+
+variable "transit_encryption_enabled" {
+  default = "true"
+}
+
+variable "automatic_failover_enabled" {
+  default = "false"
+}
 
 # # Secret Manager
 variable "secretmanager_name" {

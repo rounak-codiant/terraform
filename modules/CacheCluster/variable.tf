@@ -25,3 +25,11 @@ variable "redis_user_name" {}
 variable "redis_user_pwd" {
   type = string
 }
+
+variable "snapshot_retention_limit" {}
+
+variable "rest_encryption_enabled" {}
+
+variable "transit_encryption_enabled" {}
+
+variable "automatic_failover_enabled" {}

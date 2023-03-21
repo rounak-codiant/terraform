@@ -118,7 +118,7 @@ resource "aws_rds_cluster" "database_cluster" {
   skip_final_snapshot             = var.database_cluster_skip_final_snapshot
   final_snapshot_identifier       = var.snapshot_identifier_name
   enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
-  
+
   tags = {
     Name        = "${var.project_name}-db-cluster"
     Environment = "${var.env_suffix}"

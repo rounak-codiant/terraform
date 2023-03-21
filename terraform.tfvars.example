@@ -82,7 +82,10 @@ cachedb_node_type                = "cache.t2.micro"
 num_cache_nodes                  = "1"
 cachedb_snapshot_retention_limit = "1"
 version_upgrade                  = "false"
-
+snapshot_retention_limit         = "7"
+rest_encryption_enabled          = "true"
+transit_encryption_enabled       = "true"
+automatic_failover_enabled       = "false"
 
 #Secret Manager
 secretmanager_name = "SecretManager"
