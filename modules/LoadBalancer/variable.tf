@@ -47,3 +47,11 @@ variable "lb_listener_port" {}
 variable "alb_vpc_id" {}
 
 variable "lb_subnets" {}
+
+variable "alb_log_prefix" {}
+
+variable "alb_bucket_versioning" {}
+
+variable "alb_logs_bucket_name" {}
+
+variable "alb_logs_enable" {}

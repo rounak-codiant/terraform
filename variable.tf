@@ -334,8 +334,6 @@ variable "lb_deletion_protection" {
   default     = "true"
 }
 
-
-
 # Load Balancer Access Logs
 variable "alb_bucket_name" {
   description = "S3 bucket name to store alb access logs"
@@ -351,6 +349,23 @@ variable "lb_listener_protocol" {
 variable "lb_listener_port" {
   description = "value for the load balancer listener port"
   default     = "80"
+}
+
+
+variable "alb_log_prefix" {
+  default = "ALB"
+}
+
+variable "alb_bucket_versioning" {
+  default = "Enabled"
+}
+
+variable "alb_logs_bucket_name" {
+  default = "alb-logs-bucket"
+}
+
+variable "alb_logs_enable" {
+  default = "true"
 }
 
 

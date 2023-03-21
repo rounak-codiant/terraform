@@ -1,3 +1,10 @@
+## Get Account ID
+data "aws_caller_identity" "account_id" {}
+
+locals {
+  account_id = data.aws_caller_identity.account_id.account_id
+}
+
 # Create a Security Group For ALB
 resource "aws_security_group" "alb_sg" {
   name        = "ALB-SG"
@@ -69,6 +76,68 @@ resource "aws_lb_target_group_attachment" "register_instance_tg" {
   ]
 }
 
+## Get ALB Account ID
+data "aws_elb_service_account" "main" {}
+
+## Create Bucket for ALB logs store
+resource "aws_s3_bucket" "elb_logs" {
+  bucket        = var.alb_logs_bucket_name
+  force_destroy = true
+
+  tags = {
+    Name        = "${var.alb_logs_bucket_name}"
+    Environment = "${var.env_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_public_access_block" "alb_access_block" {
+  bucket                  = aws_s3_bucket.elb_logs.id
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
+## Enable bucket versioning
+resource "aws_s3_bucket_versioning" "alb_public_bucket_versioning" {
+  bucket = aws_s3_bucket.elb_logs.id
+  versioning_configuration {
+    status = var.alb_bucket_versioning
+  }
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "alb_bucket_encryption" {
+  bucket = aws_s3_bucket.elb_logs.bucket
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
+    }
+  }
+}
+resource "aws_s3_bucket_acl" "elb_logs_acl" {
+  bucket = aws_s3_bucket.elb_logs.id
+  acl    = "private"
+}
+
+data "aws_iam_policy_document" "allow_elb_logging" {
+  statement {
+    effect = "Allow"
+
+    principals {
+      type        = "AWS"
+      identifiers = [data.aws_elb_service_account.main.arn]
+    }
+
+    actions   = ["s3:PutObject"]
+    resources = ["${aws_s3_bucket.elb_logs.arn}/${var.alb_log_prefix}/AWSLogs/${local.account_id}/*"]
+  }
+}
+
+resource "aws_s3_bucket_policy" "allow_elb_logging" {
+  bucket = aws_s3_bucket.elb_logs.id
+  policy = data.aws_iam_policy_document.allow_elb_logging.json
+}
+
 # Create Application Load Balancer
 resource "aws_lb" "application_lb" {
   name                       = var.lb_name
@@ -77,6 +146,12 @@ resource "aws_lb" "application_lb" {
   security_groups            = ["${aws_security_group.alb_sg.id}"]
   subnets                    = var.lb_subnets
   enable_deletion_protection = var.lb_deletion_protection
+
+  access_logs {
+    bucket  = aws_s3_bucket.elb_logs.id
+    prefix  = var.alb_log_prefix
+    enabled = var.alb_logs_enable
+  }
 
   tags_all = {
     Name        = "${var.project_name}"
