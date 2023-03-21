@@ -224,6 +224,12 @@ module "public_cloudfront" {
   s3_bucket_domain_name = module.public_bucket.public_bucket_domain_name
   s3_bucket_id          = module.public_bucket.public_bucket_name
   s3_bucket_arn         = module.public_bucket.public_bucket_arn
+  objects_compress      = var.objects_compress
+  ipv6_enabled          = var.ipv6_enabled
+  http_version          = var.http_version
+  min_ttl               = var.min_ttl
+  default_ttl           = var.default_ttl
+  max_ttl               = var.max_ttl
 }
 
 ########################################## Private CloudFront Module #########################################
@@ -238,4 +244,10 @@ module "private_cloudfront" {
   s3_bucket_domain_name = module.private_bucket.private_bucket_domain_name
   s3_bucket_id          = module.private_bucket.private_bucket_name
   s3_bucket_arn         = module.private_bucket.private_bucket_arn
+  objects_compress      = var.objects_compress
+  ipv6_enabled          = var.ipv6_enabled
+  http_version          = var.http_version
+  min_ttl               = var.min_ttl
+  default_ttl           = var.default_ttl
+  max_ttl               = var.max_ttl
 }

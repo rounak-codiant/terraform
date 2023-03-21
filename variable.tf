@@ -415,3 +415,28 @@ variable "public_headers_policy_name" {
 variable "private_headers_policy_name" {
   default = "CustomHeadersPolicy"
 }
+
+variable "objects_compress" {
+  default = "true"
+}
+
+variable "ipv6_enabled" {
+  default = "true"
+}
+
+variable "http_version" {
+  default     = "http2and3"
+  description = "We can use (http1.1, http2, http2and3, http3)"
+}
+
+variable "min_ttl" {
+  default = "0"
+}
+
+variable "default_ttl" {
+  default = "3600"
+}
+
+variable "max_ttl" {
+  default = "86400"
+}
