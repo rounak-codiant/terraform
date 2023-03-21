@@ -102,6 +102,11 @@ variable "nginx-nginx-config" {
   default = "no"
 }
 
+variable "ami_name" {
+  default     = "jammy"
+  description = "AMI name can be (jammy => ubuntu 22, focal => ubuntu 20, bionic => ubuntu 18)"
+}
+
 # #S3 Private Bucket
 variable "private_bucket_name" {
   default = "codiant-private-bucket-terraform-1"

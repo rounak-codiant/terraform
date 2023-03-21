@@ -31,3 +31,5 @@ variable "php-nginx-config" {}
 variable "php-module" {}
 
 variable "nginx-nginx-config" {}
+
+variable "ami_name" {}

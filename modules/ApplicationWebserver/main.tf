@@ -3,14 +3,9 @@
 data "aws_ami" "instance_ami" {
   most_recent = true
 
-  # filter {
-  #   name   = "name"
-  #   values = ["ubuntu/images/hvm-ssd*-amd64*"]
-  # }
-
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy*-amd64*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-${var.ami_name}*-amd64*"]
   }
 
   filter {
