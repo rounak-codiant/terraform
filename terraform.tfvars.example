@@ -45,19 +45,19 @@ public_bucket_acceleration = "Suspended"
 
 #Database (RDS)
 database_cluster_identifier          = "database-cluster"
-database_cluster_engine_version      = "5.7.mysql_aurora.2.11.1"
+database_cluster_engine_version      = "5.7.mysql_aurora.2.10.2"
 database_instance_identifier         = "database-instance"
 database_cluster_skip_final_snapshot = "true"
 database_engine                      = "aurora-mysql"
 database_name                        = "databasename"
 database_master_username             = "admin"
-database_master_password             = "a44N9PPR2gNXJakI1g#@P6"
+database_master_password             = "a44N9PPR2gNXJakI1gP6"
 database_backup_retention_period     = "7"
 deletion_protection                  = "false"
 storage_encrypted                    = "true"
 allow_major_version_upgrade          = "false"
 copy_tags_to_snapshot                = "true"
-snapshot_identifier_name             = "db-snap"
+snapshot_identifier_name             = "db-snap"
 database_instance_class              = "db.t2.small"
 publicly_accessible                  = "false"
 cluster_parameter_group              = "cluster-parameter-group"
@@ -68,8 +68,8 @@ max_allowed_packet                   = "64000000" //64MB
 
 
 #Cache Database (Redis)
-redis_user_name                  = "admin"
-redis_user_pwd                   = "dm3YbhsFqa1P121KEC"
+redis_user_name                  = "redis"
+redis_user_pwd                   = "Redis@YbhsFqa1P121KEC"
 cachedb_engine                   = "redis"
 cachedb_name                     = "redis-cache"
 cachedb_description              = "Redis Database"
@@ -87,7 +87,7 @@ secretmanager_name = "SecretManager"
 #ALB (Application Load Balancer)
 
 #Target Group
-tg_name        = "default-tg"
+tg_name        = "target-group"
 tg_port        = "80"
 tg_protocol    = "HTTP"
 tg_target_type = "instance"
@@ -99,15 +99,22 @@ lb_tg_health_check_protocol = "HTTP"
 lb_tg_health_check_matcher  = "200"
 
 #Load Balancer
-lb_name                = "alb-terraform-1"
+lb_name                = "alb-1"
 lb_internal            = "false"
 lb_type                = "application"
 lb_deletion_protection = "false"
+
 
 #Load Balancer Listener
 lb_listener_protocol = "HTTP"
 lb_listener_port     = "80"
 
+#ALB Logs
+alb_log_prefix        = "ALB"
+alb_bucket_versioning = "Enabled"
+alb_logs_bucket_name  = "alb-logs-bucket-112w233"
+alb_logs_enable       = "true"
+alb_idle_timeout      = "120"
 
 #CDN
 public_headers_policy_name  = "PublicCDN-HeadersPolicy"

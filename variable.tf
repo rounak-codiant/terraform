@@ -334,8 +334,6 @@ variable "lb_deletion_protection" {
   default     = "true"
 }
 
-
-
 # Load Balancer Access Logs
 variable "alb_bucket_name" {
   description = "S3 bucket name to store alb access logs"
@@ -354,6 +352,25 @@ variable "lb_listener_port" {
 }
 
 
+variable "alb_log_prefix" {
+  default = "ALB"
+}
+
+variable "alb_bucket_versioning" {
+  default = "Enabled"
+}
+
+variable "alb_logs_bucket_name" {
+  default = "alb-logs-bucket"
+}
+
+variable "alb_logs_enable" {
+  default = "true"
+}
+
+variable "alb_idle_timeout" {
+  default = "120"
+}
 #CDN
 variable "public_headers_policy_name" {
   default = "CustomHeadersPolicy"

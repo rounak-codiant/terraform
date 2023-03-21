@@ -152,6 +152,11 @@ module "load_balancer" {
   lb_name                     = var.lb_name
   lb_internal                 = var.lb_internal
   lb_type                     = var.lb_type
+  alb_log_prefix              = var.alb_log_prefix
+  alb_bucket_versioning       = var.alb_bucket_versioning
+  alb_logs_bucket_name        = var.alb_logs_bucket_name
+  alb_logs_enable             = var.alb_logs_enable
+  alb_idle_timeout            = var.alb_idle_timeout
 }
 
 # ######################################### Secret Manager Module #########################################
@@ -194,8 +199,6 @@ module "secret_manager" {
   sm_redis_user     = var.redis_user_name
   sm_redis_password = var.redis_user_pwd
 
-  # sm_access_id      = ""
-  # sm_access_key     = ""
   # sm_db_host        = module.database.database_cluster_host
   # sm_db_read_host  = ""
   # sm_redis_host     = module.cache_database.cache_cluster_host

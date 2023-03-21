@@ -213,9 +213,8 @@ resource "aws_instance" "web" {
     type        = "ssh"
     user        = "ubuntu"
     private_key = file("${var.key_pair_name}.pem")
-    host        = self.public_dns
+    host        = self.public_ip
   }
-
   provisioner "file" {
     source      = "modules/ApplicationWebserver/php-install.sh"
     destination = "/home/ubuntu/php-install.sh"
@@ -224,16 +223,16 @@ resource "aws_instance" "web" {
   provisioner "file" {
     source      = "modules/ApplicationWebserver/install.sh"
     destination = "/home/ubuntu/install.sh"
+
   }
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /home/ubuntu/*.sh",
+      "sudo chmod +x /home/ubuntu/*.sh",
       "sudo /home/ubuntu/php-install.sh --php-version ${local.php-version} --node-version ${local.node-version} --composer-install ${local.composer-install} --php-nginx-config ${local.php-nginx-config} --php-modules ${local.php-module} --node-nginx-config ${local.nginx-nginx-config}",
-      "sudo /home/ubuntu/install.sh",
+      "sudo /home/ubuntu/install.sh"
     ]
   }
-
   tags = {
     Name        = "${var.project_name}-${var.env_suffix}"
     Environment = "${var.env_suffix}"
@@ -241,7 +240,8 @@ resource "aws_instance" "web" {
 
   depends_on = [
     aws_security_group.application_sg,
-    aws_key_pair.keypair
+    aws_key_pair.keypair,
+    aws_eip.application_eip
   ]
 }
 
