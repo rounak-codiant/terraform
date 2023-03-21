@@ -18,3 +18,5 @@ variable "min_ttl" {}
 variable "default_ttl" {}
 
 variable "max_ttl" {}
+
+variable "cloudfront_description" {}

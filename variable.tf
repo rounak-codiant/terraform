@@ -440,3 +440,11 @@ variable "default_ttl" {
 variable "max_ttl" {
   default = "86400"
 }
+
+variable "public_cloudfront_description" {
+  default = "Public CloudFront Distribution"
+}
+
+variable "private_cloudfront_description" {
+  default = "Private CloudFront Distribution"
+}

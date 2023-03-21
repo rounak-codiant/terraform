@@ -119,7 +119,7 @@ resource "aws_cloudfront_distribution" "distribution" {
   enabled             = true
   is_ipv6_enabled     = var.ipv6_enabled
   http_version        = var.http_version
-  comment             = "CloudFront Distribution"
+  comment             = var.cloudfront_description
   default_root_object = ""
 
   default_cache_behavior {
