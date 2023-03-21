@@ -39,6 +39,7 @@ module "application_server" {
   php-nginx-config   = var.php-nginx-config
   php-module         = var.php-module
   nginx-nginx-config = var.nginx-nginx-config
+  ami_name           = var.ami_name
 }
 
 

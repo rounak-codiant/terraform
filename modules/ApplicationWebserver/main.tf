@@ -3,14 +3,9 @@
 data "aws_ami" "instance_ami" {
   most_recent = true
 
-  # filter {
-  #   name   = "name"
-  #   values = ["ubuntu/images/hvm-ssd*-amd64*"]
-  # }
-
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy*-amd64*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-${var.ami_name}*-amd64*"]
   }
 
   filter {
@@ -209,30 +204,30 @@ resource "aws_instance" "web" {
     delete_on_termination = true
   }
 
-  connection {
-    type        = "ssh"
-    user        = "ubuntu"
-    private_key = file("${var.key_pair_name}.pem")
-    host        = self.public_ip
-  }
-  provisioner "file" {
-    source      = "modules/ApplicationWebserver/php-install.sh"
-    destination = "/home/ubuntu/php-install.sh"
-  }
+  # connection {
+  #   type        = "ssh"
+  #   user        = "ubuntu"
+  #   private_key = file("${var.key_pair_name}.pem")
+  #   host        = self.public_ip
+  # }
+  # provisioner "file" {
+  #   source      = "modules/ApplicationWebserver/php-install.sh"
+  #   destination = "/home/ubuntu/php-install.sh"
+  # }
 
-  provisioner "file" {
-    source      = "modules/ApplicationWebserver/install.sh"
-    destination = "/home/ubuntu/install.sh"
+  # provisioner "file" {
+  #   source      = "modules/ApplicationWebserver/install.sh"
+  #   destination = "/home/ubuntu/install.sh"
 
-  }
+  # }
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo chmod +x /home/ubuntu/*.sh",
-      "sudo /home/ubuntu/php-install.sh --php-version ${local.php-version} --node-version ${local.node-version} --composer-install ${local.composer-install} --php-nginx-config ${local.php-nginx-config} --php-modules ${local.php-module} --node-nginx-config ${local.nginx-nginx-config}",
-      "sudo /home/ubuntu/install.sh"
-    ]
-  }
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     "sudo chmod +x /home/ubuntu/*.sh",
+  #     "sudo /home/ubuntu/php-install.sh --php-version ${local.php-version} --node-version ${local.node-version} --composer-install ${local.composer-install} --php-nginx-config ${local.php-nginx-config} --php-modules ${local.php-module} --node-nginx-config ${local.nginx-nginx-config}",
+  #     "sudo /home/ubuntu/install.sh"
+  #   ]
+  # }
   tags = {
     Name        = "${var.project_name}-${var.env_suffix}"
     Environment = "${var.env_suffix}"
