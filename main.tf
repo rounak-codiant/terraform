@@ -265,4 +265,29 @@ module "codecommit" {
   repository_description = var.repository_description
   codecommit_user_name   = var.codecommit_user_name
   iam_force_destroy      = var.iam_force_destroy
+  repo_default_branch    = var.repo_default_branch
+}
+
+
+########################################## CodeBuild Module #########################################
+
+module "codebuild" {
+  source = "./modules/CodeBuild"
+  depends_on = [
+    module.codecommit
+  ]
+
+  project_name                  = local.local_naming
+  env_suffix                    = local.environment
+  codebuild_bucket_name         = var.codebuild_bucket_name
+  codebuild_bucket_versioning   = var.codebuild_bucket_versioning
+  codebuild_role_name           = var.codebuild_role_name
+  codebuild_project_name        = var.codebuild_project_name
+  codebuild_project_description = var.codebuild_project_description
+  codebuild_image               = var.codebuild_image
+  build_timeout                 = var.build_timeout
+  codebuild_compute_type        = var.codebuild_compute_type
+  repo_name                     = module.codecommit.codecommit_repo_name
+  codebuild_source_branch       = module.codecommit.repo_branch
+  codecommit_arn                = module.codecommit.repo_arn
 }

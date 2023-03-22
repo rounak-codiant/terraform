@@ -9,3 +9,5 @@ variable "repository_description" {}
 variable "codecommit_user_name" {}
 
 variable "iam_force_destroy" {}
+
+variable "repo_default_branch" {}

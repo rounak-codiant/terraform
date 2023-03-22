@@ -13,4 +13,3 @@ output "repo_user_name" {
 output "repo_password" {
   value = nonsensitive(module.codecommit.repo_password)
 }
-

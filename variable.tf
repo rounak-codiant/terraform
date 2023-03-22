@@ -467,3 +467,41 @@ variable "codecommit_user_name" {
 variable "iam_force_destroy" {
   default = "true"
 }
+variable "repo_default_branch" {
+  default = "main"
+}
+
+## CodeBuild
+variable "codebuild_bucket_name" {
+  default = "codebuild1243"
+}
+
+variable "codebuild_bucket_versioning" {
+  default = "Enabled"
+}
+
+variable "codebuild_role_name" {
+  default = "codebuild-role"
+}
+
+variable "codebuild_project_name" {
+  default = "code-build-project"
+}
+
+variable "codebuild_project_description" {
+  default = "Code Build Project"
+}
+
+variable "build_timeout" {
+  default = "15" //min
+}
+
+variable "codebuild_image" {
+  default     = "aws/codebuild/standard:6.0"
+  description = "You can select (aws/codebuild/standard:6.0, aws/codebuild/standard:5.0, aws/codebuild/standard:4.0)"
+}
+
+variable "codebuild_compute_type" {
+  default     = "BUILD_GENERAL1_SMALL"
+  description = "You can select (BUILD_GENERAL1_SMALL, BUILD_GENERAL1_MEDIUM, BUILD_GENERAL1_LARGE, BUILD_GENERAL1_2XLARGE)"
+}
