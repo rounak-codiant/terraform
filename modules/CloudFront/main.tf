@@ -1,6 +1,4 @@
 
-# https://github.com/hashicorp/terraform-provider-aws/issues/22467
-
 # Create Custom Security HeaCloudFront ders Policy
 resource "aws_cloudfront_response_headers_policy" "headers_policy" {
   name    = var.headers_policy_name
@@ -119,9 +117,9 @@ resource "aws_cloudfront_distribution" "distribution" {
   }
 
   enabled             = true
-  is_ipv6_enabled     = true
-  http_version        = "http2and3"
-  comment             = "CloudFront Distribution"
+  is_ipv6_enabled     = var.ipv6_enabled
+  http_version        = var.http_version
+  comment             = var.cloudfront_description
   default_root_object = ""
 
   default_cache_behavior {
@@ -129,7 +127,7 @@ resource "aws_cloudfront_distribution" "distribution" {
     allowed_methods        = ["GET", "HEAD", "OPTIONS"]
     cached_methods         = ["GET", "HEAD"]
     viewer_protocol_policy = "allow-all"
-    compress               = true
+    compress               = var.objects_compress
 
     # Attached Security Headers
     response_headers_policy_id = aws_cloudfront_response_headers_policy.headers_policy.id
@@ -142,9 +140,9 @@ resource "aws_cloudfront_distribution" "distribution" {
       }
     }
 
-    min_ttl     = 0
-    default_ttl = 3600
-    max_ttl     = 86400
+    min_ttl     = var.min_ttl
+    default_ttl = var.default_ttl
+    max_ttl     = var.max_ttl
   }
 
   restrictions {
