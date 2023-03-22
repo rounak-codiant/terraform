@@ -134,3 +134,10 @@ default_ttl                    = "3600"
 max_ttl                        = "86400"
 public_cloudfront_description  =  "Public CloudFront Distribution"
 private_cloudfront_description =  "Private CloudFront Distribution"
+
+
+## CodeCommit
+repository_name        = "codecommit-repo"
+repository_description = "CodeCommit Git Repo"
+codecommit_user_name   = "codecommit"
+iam_force_destroy      = "true"

@@ -253,3 +253,16 @@ module "private_cloudfront" {
   max_ttl                = var.max_ttl
   cloudfront_description = var.private_cloudfront_description
 }
+
+########################################## CodeCommit Module #########################################
+
+module "codecommit" {
+  source = "./modules/CodeCommit"
+
+  project_name           = local.local_naming
+  env_suffix             = local.environment
+  repository_name        = var.repository_name
+  repository_description = var.repository_description
+  codecommit_user_name   = var.codecommit_user_name
+  iam_force_destroy      = var.iam_force_destroy
+}

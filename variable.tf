@@ -448,3 +448,22 @@ variable "public_cloudfront_description" {
 variable "private_cloudfront_description" {
   default = "Private CloudFront Distribution"
 }
+
+
+## AWS CodeCommit
+
+variable "repository_name" {
+  default = "codecommit-repo"
+}
+
+variable "repository_description" {
+  default = "Code Commit Git Repo"
+}
+
+variable "codecommit_user_name" {
+  default = "codecommit"
+}
+
+variable "iam_force_destroy" {
+  default = "true"
+}
