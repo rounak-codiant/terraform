@@ -505,3 +505,23 @@ variable "codebuild_compute_type" {
   default     = "BUILD_GENERAL1_SMALL"
   description = "You can select (BUILD_GENERAL1_SMALL, BUILD_GENERAL1_MEDIUM, BUILD_GENERAL1_LARGE, BUILD_GENERAL1_2XLARGE)"
 }
+
+
+
+## Code Deploy
+variable "codedeploy_app_name" {
+  default = "CodedDeploy-App"
+}
+
+variable "deployment_group_name" {
+  default = "Deployment-Group"
+}
+
+variable "codedeploy_service_role_name" {
+  default = "CodeDeploy-Serivce-Role"
+}
+
+
+variable "instances_terminate_time" {
+  default = "5"
+}

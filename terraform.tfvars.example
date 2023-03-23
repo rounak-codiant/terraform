@@ -152,3 +152,9 @@ codebuild_project_description = "Code Build Project"
 build_timeout                 = "15"
 codebuild_image               = "aws/codebuild/standard:6.0"
 codebuild_compute_type        = "BUILD_GENERAL1_SMALL"
+
+## CodeDeploy
+codedeploy_app_name          = "CodedDeploy-App"
+deployment_group_name        = "Deployment-Group"
+codedeploy_service_role_name = "CodeDeploy-Serivce-Role"
+instances_terminate_time     = "5"

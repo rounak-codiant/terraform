@@ -291,3 +291,21 @@ module "codebuild" {
   codebuild_source_branch       = module.codecommit.repo_branch
   codecommit_arn                = module.codecommit.repo_arn
 }
+
+
+########################################## CodeDeploy Module #########################################
+
+module "codedeploy" {
+  source = "./modules/CodeDeploy"
+  depends_on = [
+    module.load_balancer
+  ]
+
+  project_name                 = local.local_naming
+  env_suffix                   = local.environment
+  codedeploy_app_name          = var.codedeploy_app_name
+  deployment_group_name        = var.deployment_group_name
+  codedeploy_service_role_name = var.codedeploy_service_role_name
+  instances_terminate_time     = var.instances_terminate_time
+  target_group_name            = var.tg_name
+}
