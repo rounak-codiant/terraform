@@ -309,3 +309,24 @@ module "codedeploy" {
   instances_terminate_time     = var.instances_terminate_time
   target_group_name            = var.tg_name
 }
+
+
+
+########################################## CodePipeline Module #########################################
+
+module "codepipeline" {
+  source = "./modules/CodePipeline"
+  depends_on = [
+    module.codebuild,
+    module.codedeploy
+  ]
+
+  pipeline_name             = var.pipeline_name
+  artifact_store_bucket     = module.codebuild.codebuild_bucket
+  bucket_arn                = module.codebuild.codebuild_bucket_arn
+  codebuild_project_name    = var.codebuild_project_name
+  codedeploy_app_name       = var.codedeploy_app_name
+  codedeployment_group_name = var.deployment_group_name
+  repository_name           = module.codecommit.codecommit_repo_name
+  branch_name               = module.codecommit.repo_branch
+}

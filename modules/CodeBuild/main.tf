@@ -77,7 +77,7 @@ data "aws_iam_policy_document" "codebuild" {
       "codebuild:BatchPutCodeCoverages"
     ]
 
-    resources = ["*"]
+    resources = ["${aws_codebuild_project.codebuild_project.arn}"]
   }
   statement {
     effect = "Allow"

@@ -158,3 +158,6 @@ codedeploy_app_name          = "CodedDeploy-App"
 deployment_group_name        = "Deployment-Group"
 codedeploy_service_role_name = "CodeDeploy-Serivce-Role"
 instances_terminate_time     = "5"
+
+## Code Pipeline 
+pipeline_name = "CodePipeline"

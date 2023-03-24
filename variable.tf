@@ -525,3 +525,11 @@ variable "codedeploy_service_role_name" {
 variable "instances_terminate_time" {
   default = "5"
 }
+
+
+## Code Pipeline 
+variable "pipeline_name" {
+  default = "CodePipeline"
+}
+
+

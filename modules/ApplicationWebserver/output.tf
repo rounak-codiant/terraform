@@ -19,5 +19,5 @@ output "ec2_private_key" {
 
 
 output "ec2_role_arn" {
- value = aws_iam_role.ec2_s3_sm_access_role.arn
+  value = aws_iam_role.ec2_s3_sm_access_role.arn
 }
