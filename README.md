@@ -93,6 +93,58 @@ To learn more about compiling Terraform and contributing suggested changes, plea
 
 To learn more about how we handle bug reports, please read the [bug triage guide](./BUGPROCESS.md).
 
+## Terraform Instructions:
+
+```
+To apply this script you have to follow below instructions:
+```
+
+-------------------------------
+
+### Step1: Terraform Backend Configuration & Update Variables
+```
+1. Create a S3 bucket in your selected region.
+2. Create DynamoDB table.
+3. Configure AWS profile on local with this command
+       aws configure --profile projectname
+
+4. Create a terraform.tfvars file from terraform.tfvars.example file.
+5. Update the required values in provider.tf file.
+       Note: You can select Method 1 by uncommenting it.
+6. Update the variable's values in terraform.tfvars files as per your need.
+
+```
+## Reference Link: 
+- [To create Bucket and DynamoDB table ](https://www.golinuxcloud.com/configure-s3-bucket-as-terraform-backend/)
+- [To Configure AWS Profile ](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html/)
+-------------------------------
+### Step2: To Create All Resources
+```
+1. terraform init
+2. terraform plan -var-file=terraform.tfvars
+3. terraform apply -var-file=terraform.tfvars
+```
+-------------------------------
+
+### To Create Specific Modules/Resources.
+
+```
+1. terraform init
+2. terraform plan -var-file=terraform.tfvars -target=module.vpc
+3. terraform apply -var-file=terraform.tfvars -target=module.vpc
+```
+-------------------------------
+
+### Step3: To Destroy/Delete All Resources.
+```
+1. terraform destroy -var-file=terraform.tfvars
+```
+-------------------------------
+
+### To Destroy/Delete Specific Modules/Resources.
+```
+terraform destroy -var-file=terraform.tfvars -target=module.vpc
+```
 
 -------------------------------
 
