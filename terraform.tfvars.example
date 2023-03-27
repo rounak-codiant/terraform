@@ -28,8 +28,13 @@ node-version       = "16"
 composer-install   = "yes"
 php-nginx-config   = "yes"
 php-module         = "yes"
-node-nginx-config = "no"
-ami_name           = "jammy"    // jammy => ubuntu 22, focal => ubuntu 20, bionic => ubuntu 18
+node-nginx-config  = "no"
+ami_name           = "ubuntu/images/hvm-ssd/ubuntu-jammy-*arm64"  // For Ubuntu 22
+# ami_name         = "ubuntu/images/hvm-ssd/ubuntu-focal-*arm64"    // For Ubuntu 20
+# ami_name         = "ubuntu/images/hvm-ssd/ubuntu-bionic-*arm64"   // For Ubuntu 18
+# ami_name         = "amzn2-ami-hvm*-arm64"                         // For Amazon Linux
+# ami_name         = "CentOS Stream 9 aarch64"                      // For Centos 9
+
 
 #S3 Private Bucket
 private_bucket_name         = "private-bucket-terraform-1"

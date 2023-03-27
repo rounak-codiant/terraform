@@ -38,7 +38,7 @@ module "application_server" {
   composer-install   = var.composer-install
   php-nginx-config   = var.php-nginx-config
   php-module         = var.php-module
-  node-nginx-config = var.node-nginx-config
+  node-nginx-config  = var.node-nginx-config
   ami_name           = var.ami_name
 }
 

@@ -5,7 +5,7 @@ data "aws_ami" "instance_ami" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-${var.ami_name}*-amd64*"]
+    values = ["${var.ami_name}*"]
   }
 
   filter {
@@ -13,7 +13,10 @@ data "aws_ami" "instance_ami" {
     values = ["hvm"]
   }
 
-  owners = ["099720109477"] # Canonical/Ubuntu
+  filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
 }
 
 
@@ -180,12 +183,12 @@ resource "aws_iam_instance_profile" "ec2_profile" {
 }
 
 locals {
-  php-version        = var.php-version
-  node-version       = var.node-version
-  composer-install   = var.composer-install
-  php-nginx-config   = var.php-nginx-config
-  php-module         = var.php-module
-  node-nginx-config  = var.node-nginx-config
+  php-version       = var.php-version
+  node-version      = var.node-version
+  composer-install  = var.composer-install
+  php-nginx-config  = var.php-nginx-config
+  php-module        = var.php-module
+  node-nginx-config = var.node-nginx-config
 }
 
 # Create EC2 instance
