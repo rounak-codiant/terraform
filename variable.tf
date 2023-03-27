@@ -98,7 +98,7 @@ variable "php-module" {
   default = "yes"
 }
 
-variable "nginx-nginx-config" {
+variable "node-nginx-config" {
   default = "no"
 }
 

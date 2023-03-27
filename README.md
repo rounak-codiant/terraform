@@ -200,7 +200,7 @@ terraform destroy -var-file=terraform.tfvars -target=module.vpc
 ```
 ## Reference Links: 
 - [To Create S3 Bucket and DynamoDB Table ](https://www.golinuxcloud.com/configure-s3-bucket-as-terraform-backend/)
-- [To Configure AWS Profile ](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html/)
+- [To Configure AWS Profile ](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
 -------------------------------
 
 

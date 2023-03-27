@@ -185,7 +185,7 @@ locals {
   composer-install   = var.composer-install
   php-nginx-config   = var.php-nginx-config
   php-module         = var.php-module
-  nginx-nginx-config = var.nginx-nginx-config
+  node-nginx-config  = var.node-nginx-config
 }
 
 # Create EC2 instance
@@ -224,7 +224,7 @@ resource "aws_instance" "web" {
   provisioner "remote-exec" {
     inline = [
       "sudo chmod +x /home/ubuntu/*.sh",
-      "sudo /home/ubuntu/php-install.sh --php-version ${local.php-version} --node-version ${local.node-version} --composer-install ${local.composer-install} --php-nginx-config ${local.php-nginx-config} --php-modules ${local.php-module} --node-nginx-config ${local.nginx-nginx-config}",
+      "sudo /home/ubuntu/php-install.sh --php-version ${local.php-version} --node-version ${local.node-version} --composer-install ${local.composer-install} --php-nginx-config ${local.php-nginx-config} --php-modules ${local.php-module} --node-nginx-config ${local.node-nginx-config}",
       "sudo /home/ubuntu/install.sh"
     ]
   }
