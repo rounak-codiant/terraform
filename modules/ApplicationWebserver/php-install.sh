@@ -68,7 +68,6 @@ sudo apt install software-properties-common -y
 echo "------------------ Adding PHP Repo --------------------------"
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt-get update -y
-sudo apt remove purge apache2 -y
 
 ## Nginx Installation
 echo "------------------ Nginx Installing --------------------------"
@@ -189,9 +188,6 @@ EOF
 fi
 fi
 fi
-sudo systemctl disable apache2
-sudo apt remove apache2 -y
 sudo service nginx restart
 sudo apt autoremove -y
-sudo chown -R ubuntu:www-data /var/www/html/
 exit 0
