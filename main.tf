@@ -22,24 +22,24 @@ module "application_server" {
   depends_on = [
     module.vpc
   ]
-  instance_type      = var.instance_type
-  ebs_volume_type    = var.ebs_volume_type
-  ebs_volume_size    = var.ebs_volume_size
-  key_pair_name      = var.key_pair_name
-  project_name       = local.local_naming
-  env_suffix         = local.environment
-  vpc_id             = module.vpc.vpc_id
-  ec2_monitoring     = var.ec2_monitoring
-  ec2_policy_name    = var.ec2_policy_name
-  ec2_role_name      = var.ec2_role_name
-  ec2_subnet_id      = module.vpc.ec2_public_subnet
-  php-version        = var.php-version
-  node-version       = var.node-version
-  composer-install   = var.composer-install
-  php-nginx-config   = var.php-nginx-config
-  php-module         = var.php-module
-  node-nginx-config  = var.node-nginx-config
-  ami_name           = var.ami_name
+  instance_type     = var.instance_type
+  ebs_volume_type   = var.ebs_volume_type
+  ebs_volume_size   = var.ebs_volume_size
+  key_pair_name     = var.key_pair_name
+  project_name      = local.local_naming
+  env_suffix        = local.environment
+  vpc_id            = module.vpc.vpc_id
+  ec2_monitoring    = var.ec2_monitoring
+  ec2_policy_name   = var.ec2_policy_name
+  ec2_role_name     = var.ec2_role_name
+  ec2_subnet_id     = module.vpc.ec2_public_subnet
+  php-version       = var.php-version
+  node-version      = var.node-version
+  composer-install  = var.composer-install
+  php-nginx-config  = var.php-nginx-config
+  php-module        = var.php-module
+  node-nginx-config = var.node-nginx-config
+  ami_name          = var.ami_name
 }
 
 
@@ -48,11 +48,16 @@ module "application_server" {
 module "private_bucket" {
   source = "./modules/PrivateStorageBucket"
 
-  project_name                = local.local_naming
-  env_suffix                  = local.environment
-  private_bucket_name         = var.private_bucket_name
-  private_bucket_versioning   = var.private_bucket_versioning
-  private_bucket_acceleration = var.private_bucket_acceleration
+  project_name                      = local.local_naming
+  env_suffix                        = local.environment
+  private_bucket_name               = var.private_bucket_name
+  private_bucket_versioning         = var.private_bucket_versioning
+  private_bucket_acceleration       = var.private_bucket_acceleration
+  private_destination_bucket_name   = var.private_destination_bucket_name
+  private_bucket_replication_option = var.private_bucket_replication_option
+  private_bucket_replica_rule_name  = var.private_bucket_replica_rule_name
+  private_replication_role_name     = var.private_replication_role_name
+  private_replication_policy_name   = var.private_replication_policy_name
 }
 
 # ######################################### S3 Public Bucket Module #########################################
@@ -60,11 +65,16 @@ module "private_bucket" {
 module "public_bucket" {
   source = "./modules/PublicStorageBucket"
 
-  project_name               = local.local_naming
-  env_suffix                 = local.environment
-  public_bucket_name         = var.public_bucket_name
-  public_bucket_versioning   = var.public_bucket_versioning
-  public_bucket_acceleration = var.public_bucket_acceleration
+  project_name                     = local.local_naming
+  env_suffix                       = local.environment
+  public_bucket_name               = var.public_bucket_name
+  public_bucket_versioning         = var.public_bucket_versioning
+  public_bucket_acceleration       = var.public_bucket_acceleration
+  public_destination_bucket_name   = var.public_destination_bucket_name
+  public_bucket_replication_option = var.public_bucket_replication_option
+  public_bucket_replica_rule_name  = var.public_bucket_replica_rule_name
+  public_replication_role_name     = var.public_replication_role_name
+  public_replication_policy_name   = var.public_replication_policy_name
 }
 
 # # ######################################### Database Module #########################################
