@@ -128,7 +128,7 @@ variable "ami_name" {
 
 # #S3 Private Bucket
 variable "private_bucket_name" {
-  default = "codiant-private-bucket-terraform-1"
+  default = "private-bucket-terraform-1"
 }
 
 variable "private_bucket_acceleration" {
@@ -140,9 +140,31 @@ variable "private_bucket_versioning" {
   description = "Options are Enabled/Disabled"
 }
 
+variable "private_destination_bucket_name" {
+  default = "private-bucket-replica-bucket"
+}
+
+variable "private_bucket_replication_option" {
+  default     = "Enabled"
+  description = "Options are Enabled/Disabled"
+}
+
+variable "private_bucket_replica_rule_name" {
+  default = "Private-Bucket-Replica-Rule"
+}
+
+variable "private_replication_role_name" {
+  default = "Private-S3-Replica-Role"
+}
+
+variable "private_replication_policy_name" {
+  default = "Private-S3-Replica-Policy"
+}
+
+
 # #S3 Public Bucket
 variable "public_bucket_name" {
-  default = "codiant-public-bucket-terraform-1"
+  default = "public-bucket-terraform-1"
 }
 
 variable "public_bucket_acceleration" {
@@ -152,6 +174,27 @@ variable "public_bucket_acceleration" {
 variable "public_bucket_versioning" {
   default     = "Enabled"
   description = "Options are Enabled/Disabled"
+}
+
+variable "public_destination_bucket_name" {
+  default = "public-bucket-replica-bucket"
+}
+
+variable "public_bucket_replication_option" {
+  default     = "Enabled"
+  description = "Options are Enabled/Disabled"
+}
+
+variable "public_bucket_replica_rule_name" {
+  default = "Public-Bucket-Replica-Rule"
+}
+
+variable "public_replication_role_name" {
+  default = "Public-S3-Replica-Role"
+}
+
+variable "public_replication_policy_name" {
+  default = "Public-S3-Replica-Policy"
 }
 
 # #Database (RDS)
