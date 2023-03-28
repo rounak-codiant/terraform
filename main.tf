@@ -38,7 +38,7 @@ module "application_server" {
   composer-install   = var.composer-install
   php-nginx-config   = var.php-nginx-config
   php-module         = var.php-module
-  nginx-nginx-config = var.nginx-nginx-config
+  node-nginx-config  = var.node-nginx-config
   ami_name           = var.ami_name
 }
 
@@ -252,4 +252,81 @@ module "private_cloudfront" {
   default_ttl            = var.default_ttl
   max_ttl                = var.max_ttl
   cloudfront_description = var.private_cloudfront_description
+}
+
+########################################## CodeCommit Module #########################################
+
+module "codecommit" {
+  source = "./modules/CodeCommit"
+
+  project_name           = local.local_naming
+  env_suffix             = local.environment
+  repository_name        = var.repository_name
+  repository_description = var.repository_description
+  codecommit_user_name   = var.codecommit_user_name
+  iam_force_destroy      = var.iam_force_destroy
+  repo_default_branch    = var.repo_default_branch
+}
+
+
+########################################## CodeBuild Module #########################################
+
+module "codebuild" {
+  source = "./modules/CodeBuild"
+  depends_on = [
+    module.codecommit
+  ]
+
+  project_name                  = local.local_naming
+  env_suffix                    = local.environment
+  codebuild_bucket_name         = var.codebuild_bucket_name
+  codebuild_bucket_versioning   = var.codebuild_bucket_versioning
+  codebuild_role_name           = var.codebuild_role_name
+  codebuild_project_name        = var.codebuild_project_name
+  codebuild_project_description = var.codebuild_project_description
+  codebuild_image               = var.codebuild_image
+  build_timeout                 = var.build_timeout
+  codebuild_compute_type        = var.codebuild_compute_type
+  repo_name                     = module.codecommit.codecommit_repo_name
+  codebuild_source_branch       = module.codecommit.repo_branch
+  codecommit_arn                = module.codecommit.repo_arn
+}
+
+
+########################################## CodeDeploy Module #########################################
+
+module "codedeploy" {
+  source = "./modules/CodeDeploy"
+  depends_on = [
+    module.load_balancer
+  ]
+
+  project_name                 = local.local_naming
+  env_suffix                   = local.environment
+  codedeploy_app_name          = var.codedeploy_app_name
+  deployment_group_name        = var.deployment_group_name
+  codedeploy_service_role_name = var.codedeploy_service_role_name
+  instances_terminate_time     = var.instances_terminate_time
+  target_group_name            = var.tg_name
+}
+
+
+
+########################################## CodePipeline Module #########################################
+
+module "codepipeline" {
+  source = "./modules/CodePipeline"
+  depends_on = [
+    module.codebuild,
+    module.codedeploy
+  ]
+
+  pipeline_name             = var.pipeline_name
+  artifact_store_bucket     = module.codebuild.codebuild_bucket
+  bucket_arn                = module.codebuild.codebuild_bucket_arn
+  codebuild_project_name    = var.codebuild_project_name
+  codedeploy_app_name       = var.codedeploy_app_name
+  codedeployment_group_name = var.deployment_group_name
+  repository_name           = module.codecommit.codecommit_repo_name
+  branch_name               = module.codecommit.repo_branch
 }

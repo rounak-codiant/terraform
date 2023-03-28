@@ -16,3 +16,8 @@ output "ec2_private_key" {
   value     = tls_private_key.key.private_key_pem
   sensitive = true
 }
+
+
+output "ec2_role_arn" {
+  value = aws_iam_role.ec2_s3_sm_access_role.arn
+}

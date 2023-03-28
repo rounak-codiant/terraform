@@ -98,13 +98,12 @@ variable "php-module" {
   default = "yes"
 }
 
-variable "nginx-nginx-config" {
+variable "node-nginx-config" {
   default = "no"
 }
 
 variable "ami_name" {
-  default     = "jammy"
-  description = "AMI name can be (jammy => ubuntu 22, focal => ubuntu 20, bionic => ubuntu 18)"
+  default = "ubuntu/images/hvm-ssd/ubuntu-jammy-*arm64"
 }
 
 # #S3 Private Bucket
@@ -448,3 +447,88 @@ variable "public_cloudfront_description" {
 variable "private_cloudfront_description" {
   default = "Private CloudFront Distribution"
 }
+
+
+## AWS CodeCommit
+
+variable "repository_name" {
+  default = "codecommit-repo"
+}
+
+variable "repository_description" {
+  default = "Code Commit Git Repo"
+}
+
+variable "codecommit_user_name" {
+  default = "codecommit"
+}
+
+variable "iam_force_destroy" {
+  default = "true"
+}
+variable "repo_default_branch" {
+  default = "main"
+}
+
+## CodeBuild
+variable "codebuild_bucket_name" {
+  default = "codebuild1243"
+}
+
+variable "codebuild_bucket_versioning" {
+  default = "Enabled"
+}
+
+variable "codebuild_role_name" {
+  default = "codebuild-role"
+}
+
+variable "codebuild_project_name" {
+  default = "code-build-project"
+}
+
+variable "codebuild_project_description" {
+  default = "Code Build Project"
+}
+
+variable "build_timeout" {
+  default = "15" //min
+}
+
+variable "codebuild_image" {
+  default     = "aws/codebuild/standard:6.0"
+  description = "You can select (aws/codebuild/standard:6.0, aws/codebuild/standard:5.0, aws/codebuild/standard:4.0)"
+}
+
+variable "codebuild_compute_type" {
+  default     = "BUILD_GENERAL1_SMALL"
+  description = "You can select (BUILD_GENERAL1_SMALL, BUILD_GENERAL1_MEDIUM, BUILD_GENERAL1_LARGE, BUILD_GENERAL1_2XLARGE)"
+}
+
+
+
+## Code Deploy
+variable "codedeploy_app_name" {
+  default = "CodedDeploy-App"
+}
+
+variable "deployment_group_name" {
+  default = "Deployment-Group"
+}
+
+variable "codedeploy_service_role_name" {
+  default = "CodeDeploy-Serivce-Role"
+}
+
+
+variable "instances_terminate_time" {
+  default = "5"
+}
+
+
+## Code Pipeline 
+variable "pipeline_name" {
+  default = "CodePipeline"
+}
+
+
