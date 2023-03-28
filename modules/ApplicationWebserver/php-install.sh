@@ -65,13 +65,12 @@ sudo apt-get update -y && sudo apt-get install curl -y
 sudo apt install software-properties-common -y
 
 ## Adding PHP Repo
-echo ------------------ Adding PHP Repo --------------------------
+echo "------------------ Adding PHP Repo --------------------------"
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt-get update -y
-sudo apt remove purge apache2 -y
 
 ## Nginx Installation
-echo ------------------ Nginx Installing --------------------------
+echo "------------------ Nginx Installing --------------------------"
 sudo apt-get install nginx -y
 sudo systemctl enable nginx
 
@@ -143,7 +142,6 @@ server {
     location = /favicon.ico { access_log off; log_not_found off; }
     location = /robots.txt  { access_log off; log_not_found off; }
 
-
     location ~ \.php$ {
         fastcgi_pass unix:/var/run/php/php$varname-fpm.sock;
         fastcgi_param SCRIPT_FILENAME \$realpath_root\$fastcgi_script_name;
@@ -190,9 +188,6 @@ EOF
 fi
 fi
 fi
-sudo systemctl disable apache2
-sudo apt remove apache2 -y
 sudo service nginx restart
 sudo apt autoremove -y
-sudo chown -R ubuntu:www-data /var/www/html/
 exit 0

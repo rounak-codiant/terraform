@@ -98,13 +98,12 @@ variable "php-module" {
   default = "yes"
 }
 
-variable "nginx-nginx-config" {
+variable "node-nginx-config" {
   default = "no"
 }
 
 variable "ami_name" {
-  default     = "jammy"
-  description = "AMI name can be (jammy => ubuntu 22, focal => ubuntu 20, bionic => ubuntu 18)"
+  default = "ubuntu/images/hvm-ssd/ubuntu-jammy-*arm64"
 }
 
 # #S3 Private Bucket

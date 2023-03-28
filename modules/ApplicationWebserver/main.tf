@@ -5,7 +5,7 @@ data "aws_ami" "instance_ami" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-${var.ami_name}*-amd64*"]
+    values = ["${var.ami_name}*"]
   }
 
   filter {
@@ -13,7 +13,10 @@ data "aws_ami" "instance_ami" {
     values = ["hvm"]
   }
 
-  owners = ["099720109477"] # Canonical/Ubuntu
+  filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
 }
 
 
@@ -180,12 +183,12 @@ resource "aws_iam_instance_profile" "ec2_profile" {
 }
 
 locals {
-  php-version        = var.php-version
-  node-version       = var.node-version
-  composer-install   = var.composer-install
-  php-nginx-config   = var.php-nginx-config
-  php-module         = var.php-module
-  nginx-nginx-config = var.nginx-nginx-config
+  php-version       = var.php-version
+  node-version      = var.node-version
+  composer-install  = var.composer-install
+  php-nginx-config  = var.php-nginx-config
+  php-module        = var.php-module
+  node-nginx-config = var.node-nginx-config
 }
 
 # Create EC2 instance
@@ -224,7 +227,7 @@ resource "aws_instance" "web" {
   provisioner "remote-exec" {
     inline = [
       "sudo chmod +x /home/ubuntu/*.sh",
-      "sudo /home/ubuntu/php-install.sh --php-version ${local.php-version} --node-version ${local.node-version} --composer-install ${local.composer-install} --php-nginx-config ${local.php-nginx-config} --php-modules ${local.php-module} --node-nginx-config ${local.nginx-nginx-config}",
+      "sudo /home/ubuntu/php-install.sh --php-version ${local.php-version} --node-version ${local.node-version} --composer-install ${local.composer-install} --php-nginx-config ${local.php-nginx-config} --php-modules ${local.php-module} --node-nginx-config ${local.node-nginx-config}",
       "sudo /home/ubuntu/install.sh"
     ]
   }
