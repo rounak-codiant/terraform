@@ -48,8 +48,8 @@ resource "aws_dynamodb_table" "terraform_backend" {
     name = "LockID" #To create a lock on the resource being modified.
     type = "S"
   }
-  attribute {
-    name = "Digest" #To detect whether the state has been modified by another user or process since the lock was acquired
-    type = "S"
-  }
+  # attribute {
+  #   name = "Digest" #To detect whether the state has been modified by another user or process since the lock was acquired
+  #   type = "S"
+  # }
 }

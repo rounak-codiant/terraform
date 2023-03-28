@@ -24,7 +24,7 @@ variable "env_suffix" {
   default = "test"
 }
 
-# #Terraform Module
+#Terraform Backend Module
 
 variable "terraform_bucket_name" {
   type        = string

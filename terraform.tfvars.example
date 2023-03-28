@@ -7,6 +7,10 @@ aws_region     = "us-east-1"
 project_name = "Terraform"
 env_suffix   = "test"
 
+# Terraform Backend Module
+terraform_bucket_name       = "terraform-sample-backend-bucket-2121"
+terraform_bucket_versioning = "Enabled"
+table_name                  = "terraform-backend-sample-tablename"
 
 #VPC
 vpc_cidr_block       = "20.0.0.0/16"
