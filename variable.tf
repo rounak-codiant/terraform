@@ -631,3 +631,22 @@ variable "instances_terminate_time" {
 variable "pipeline_name" {
   default = "CodePipeline"
 }
+
+
+## AWS WAF
+variable "alb_waf_acl_name" {
+  default = "alb-waf-acl"
+}
+
+variable "cdn_waf_acl_name" {
+  default = "cdn-waf-acl"
+}
+
+variable "alb_waf_acl_description" {
+  default = "Application Load Balancer Waf ACL"
+}
+
+variable "cdn_waf_acl_description" {
+  default = "CloudFront Waf ACL"
+}
+
