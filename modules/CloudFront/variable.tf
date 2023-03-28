@@ -20,3 +20,11 @@ variable "default_ttl" {}
 variable "max_ttl" {}
 
 variable "cloudfront_description" {}
+
+variable "permissions_policy" {}
+
+variable "access_control_allow_origins" {}
+
+variable "content_security_policy" {}
+
+variable "access_control_max_age" {}
