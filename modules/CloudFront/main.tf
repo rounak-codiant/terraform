@@ -22,13 +22,13 @@ resource "aws_cloudfront_response_headers_policy" "headers_policy" {
       override   = false
     }
     strict_transport_security {
-      access_control_max_age_sec = "31536000"
+      access_control_max_age_sec = var.access_control_max_age
       include_subdomains         = true
       preload                    = true
       override                   = false
     }
     content_security_policy {
-      content_security_policy = "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'"
+      content_security_policy = var.content_security_policy
       override                = false
     }
   }
@@ -52,7 +52,7 @@ resource "aws_cloudfront_response_headers_policy" "headers_policy" {
     }
 
     access_control_allow_origins {
-      items = ["*.test.com"]
+      items = [var.access_control_allow_origins]
     }
 
     origin_override = false
@@ -62,7 +62,7 @@ resource "aws_cloudfront_response_headers_policy" "headers_policy" {
     items {
       header   = "Permissions-Policy"
       override = false
-      value    = "accelerometer=(self), camera=(self), cross-origin-isolated=(self), encrypted-media=(self), geolocation=(self), gyroscope=(self), microphone=(self), payment=*, usb=(), interest-cohort=()"
+      value    = var.permissions_policy
     }
   }
 }

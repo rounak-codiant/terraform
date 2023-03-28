@@ -518,6 +518,37 @@ variable "private_cloudfront_description" {
   default = "Private CloudFront Distribution"
 }
 
+variable "public_permissions_policy" {
+  default = "accelerometer=(self), camera=(self), cross-origin-isolated=(self), encrypted-media=(self), geolocation=(self), microphone=(self), interest-cohort=()"
+}
+
+variable "public_access_control_allow_origins" {
+  default = "*.test.com"
+}
+
+variable "public_content_security_policy" {
+  default = "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'"
+}
+
+variable "public_access_control_max_age" {
+  default = "31536000"
+}
+
+variable "private_permissions_policy" {
+  default = "accelerometer=(self), camera=(self), cross-origin-isolated=(self), encrypted-media=(self), geolocation=(self), microphone=(self), interest-cohort=()"
+}
+
+variable "private_access_control_allow_origins" {
+  default = "*.test.com"
+}
+
+variable "private_content_security_policy" {
+  default = "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'"
+}
+
+variable "private_access_control_max_age" {
+  default = "31536000"
+}
 
 ## AWS CodeCommit
 
