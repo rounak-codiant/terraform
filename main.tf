@@ -343,8 +343,6 @@ module "codedeploy" {
   target_group_name            = var.tg_name
 }
 
-
-
 ########################################## CodePipeline Module #########################################
 
 module "codepipeline" {
@@ -362,4 +360,27 @@ module "codepipeline" {
   codedeployment_group_name = var.deployment_group_name
   repository_name           = module.codecommit.codecommit_repo_name
   branch_name               = module.codecommit.repo_branch
+}
+
+
+##########################################  ALB (Application Load Balancer) Firewall Module #########################################
+
+module "firewall_waf_alb" {
+  source = "./modules/FirewallWAF"
+
+  env_suffix          = local.environment
+  waf_acl_name        = var.alb_waf_acl_name
+  waf_acl_description = var.alb_waf_acl_description
+  waf_acl_scope       = "REGIONAL"
+}
+
+########################################## CDN (CloudFront) Firewall Module #########################################
+
+module "firewall_waf_cdn" {
+  source = "./modules/FirewallWAF"
+
+  env_suffix          = local.environment
+  waf_acl_name        = var.cdn_waf_acl_name
+  waf_acl_description = var.cdn_waf_acl_description
+  waf_acl_scope       = "CLOUDFRONT"
 }

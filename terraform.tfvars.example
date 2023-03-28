@@ -190,3 +190,10 @@ instances_terminate_time     = "5"
 
 ## Code Pipeline 
 pipeline_name = "CodePipeline"
+
+
+## AWS WAF
+alb_waf_acl_name        = "alb-waf-acl"
+cdn_waf_acl_name        = "cdn-waf-acl"
+alb_waf_acl_description = "Application Load Balancer Waf ACL"
+cdn_waf_acl_description = "CloudFront Waf ACL"
