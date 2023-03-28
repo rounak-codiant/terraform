@@ -161,6 +161,9 @@ variable "private_replication_policy_name" {
   default = "Private-S3-Replica-Policy"
 }
 
+variable "private_replication_destination_region" {
+  default = "us-east-2"
+}
 
 # #S3 Public Bucket
 variable "public_bucket_name" {
@@ -195,6 +198,10 @@ variable "public_replication_role_name" {
 
 variable "public_replication_policy_name" {
   default = "Public-S3-Replica-Policy"
+}
+
+variable "public_replication_destination_region" {
+  default = "us-east-2"
 }
 
 # #Database (RDS)
