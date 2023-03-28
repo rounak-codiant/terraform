@@ -32,7 +32,7 @@ terraform {
 # terraform {
 #   backend "s3" {
 #     key     = "terraform.tfstate"
-#     bucket  = "backend-bucket"     // You have to create S3 bucket manually  
+#     bucket  = "backend-bucket"     // You have to create S3 bucket manually
 #     region  = "ap-south-1"         // Update the region value as per your region
 #     profile = "profile-name"       // Configure AWS profile on local
 #   }

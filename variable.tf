@@ -24,6 +24,26 @@ variable "env_suffix" {
   default = "test"
 }
 
+# #Terraform Module
+
+variable "terraform_bucket_name" {
+  type        = string
+  default     = "terraform-sample-backend-bucket"
+  description = "Terrafrom backend bucket name"
+}
+
+variable "terraform_bucket_versioning" {
+  type        = string
+  default     = "Enabled"
+  description = "Terrafrom backend bucket versioning Enabled or Disabled"
+}
+
+variable "table_name" {
+  type        = string
+  default     = "terraform-backend-sample-tablename"
+  description = "Terrafrom backend dynamoDB table name"
+}
+
 # #VPC
 variable "vpc_cidr_block" {
   default     = "20.0.0.0/16"
@@ -526,9 +546,7 @@ variable "instances_terminate_time" {
 }
 
 
-## Code Pipeline 
+## Code Pipeline
 variable "pipeline_name" {
   default = "CodePipeline"
 }
-
-

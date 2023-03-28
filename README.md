@@ -34,6 +34,7 @@ No providers.
 | <a name="module_public_bucket"></a> [public\_bucket](#module\_public\_bucket) | ./modules/PublicStorageBucket | n/a |
 | <a name="module_public_cloudfront"></a> [public\_cloudfront](#module\_public\_cloudfront) | ./modules/CloudFront | n/a |
 | <a name="module_secret_manager"></a> [secret\_manager](#module\_secret\_manager) | ./modules/SecretManagement | n/a |
+| <a name="module_terraform_backend"></a> [terraform\_backend](#module\_terraform\_backend) | ./modules/TF_Backend | n/a |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | ./modules/VPC | n/a |
 
 ## Resources
@@ -136,6 +137,9 @@ No resources.
 | <a name="input_snapshot_identifier_name"></a> [snapshot\_identifier\_name](#input\_snapshot\_identifier\_name) | n/a | `string` | `"db-snap"` | no |
 | <a name="input_snapshot_retention_limit"></a> [snapshot\_retention\_limit](#input\_snapshot\_retention\_limit) | n/a | `string` | `"7"` | no |
 | <a name="input_storage_encrypted"></a> [storage\_encrypted](#input\_storage\_encrypted) | n/a | `string` | `"true"` | no |
+| <a name="input_table_name"></a> [table\_name](#input\_table\_name) | Terrafrom backend dynamoDB table name | `string` | `"terraform-backend-sample-tablename"` | no |
+| <a name="input_terraform_bucket_name"></a> [terraform\_bucket\_name](#input\_terraform\_bucket\_name) | Terrafrom backend bucket name | `string` | `"terraform-sample-backend-bucket"` | no |
+| <a name="input_terraform_bucket_versioning"></a> [terraform\_bucket\_versioning](#input\_terraform\_bucket\_versioning) | Terrafrom backend bucket versioning Enabled or Disabled | `string` | `"Enabled"` | no |
 | <a name="input_tg_name"></a> [tg\_name](#input\_tg\_name) | value for the target group name | `string` | `"default-tg"` | no |
 | <a name="input_tg_port"></a> [tg\_port](#input\_tg\_port) | value for the target group port | `string` | `"80"` | no |
 | <a name="input_tg_protocol"></a> [tg\_protocol](#input\_tg\_protocol) | value for the target group protocol | `string` | `"HTTP"` | no |
@@ -160,13 +164,13 @@ To apply this script you have to follow below instructions:
 2. Create DynamoDB table.
 3. Configure AWS profile on local with this command
        aws configure --profile projectname
-       
+
 4. Create a terraform.tfvars file from terraform.tfvars.example file.
 5. Update the required values in provider.tf file.
 6. Update the variable's values in terraform.tfvars files as per your need.
 ```
 
-##### Note: 
+##### Note:
 1. Refrence links are below.
 2. You can select Method 1 by uncommenting it.
 -------------------------------
@@ -198,7 +202,7 @@ To apply this script you have to follow below instructions:
 ```
 terraform destroy -var-file=terraform.tfvars -target=module.vpc
 ```
-## Reference Links: 
+## Reference Links:
 - [To Create S3 Bucket and DynamoDB Table ](https://www.golinuxcloud.com/configure-s3-bucket-as-terraform-backend/)
 - [To Configure AWS Profile ](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
 -------------------------------
