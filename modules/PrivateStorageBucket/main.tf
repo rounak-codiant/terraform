@@ -1,3 +1,9 @@
+provider "aws" {
+  alias   = "dest_region"
+  profile = var.private_aws_profile_name
+  region  = var.private_replication_destination_region
+}
+
 resource "aws_s3_bucket" "private_bucket" {
   bucket        = var.private_bucket_name
   force_destroy = true
@@ -39,7 +45,8 @@ resource "aws_s3_bucket_public_access_block" "public_access_block" {
 }
 
 data "aws_kms_key" "kms_key_arn" {
-  key_id = "alias/aws/s3"
+  provider = aws.dest_region
+  key_id   = "alias/aws/s3"
 }
 
 resource "aws_iam_role" "replication" {
@@ -109,19 +116,28 @@ resource "aws_iam_role_policy_attachment" "replication" {
 }
 
 resource "aws_s3_bucket" "destination" {
+  provider      = aws.dest_region
   bucket        = var.private_destination_bucket_name
   force_destroy = true
 }
 
+resource "aws_s3_bucket_acl" "destination_bucket_acl" {
+  provider = aws.dest_region
+  bucket   = aws_s3_bucket.destination.id
+  acl      = "private"
+}
+
 resource "aws_s3_bucket_versioning" "destination" {
-  bucket = aws_s3_bucket.destination.id
+  provider = aws.dest_region
+  bucket   = aws_s3_bucket.destination.id
   versioning_configuration {
     status = var.private_bucket_versioning
   }
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "destination_bucket_encryption" {
-  bucket = aws_s3_bucket.destination.bucket
+  provider = aws.dest_region
+  bucket   = aws_s3_bucket.destination.bucket
   rule {
     apply_server_side_encryption_by_default {
       sse_algorithm = "AES256"
@@ -130,6 +146,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "destination_bucke
 }
 
 resource "aws_s3_bucket_public_access_block" "destination_access_block" {
+  provider                = aws.dest_region
   bucket                  = aws_s3_bucket.destination.id
   block_public_acls       = true
   block_public_policy     = true
