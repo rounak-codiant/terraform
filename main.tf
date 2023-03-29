@@ -253,9 +253,6 @@ module "public_cloudfront" {
   objects_compress             = var.objects_compress
   ipv6_enabled                 = var.ipv6_enabled
   http_version                 = var.http_version
-  min_ttl                      = var.min_ttl
-  default_ttl                  = var.default_ttl
-  max_ttl                      = var.max_ttl
   cloudfront_description       = var.public_cloudfront_description
   access_control_max_age       = var.public_access_control_max_age
   content_security_policy      = var.public_content_security_policy
@@ -277,9 +274,6 @@ module "private_cloudfront" {
   objects_compress             = var.objects_compress
   ipv6_enabled                 = var.ipv6_enabled
   http_version                 = var.http_version
-  min_ttl                      = var.min_ttl
-  default_ttl                  = var.default_ttl
-  max_ttl                      = var.max_ttl
   cloudfront_description       = var.private_cloudfront_description
   access_control_max_age       = var.private_access_control_max_age
   content_security_policy      = var.private_content_security_policy
@@ -383,4 +377,28 @@ module "firewall_waf_cdn" {
   waf_acl_name        = var.cdn_waf_acl_name
   waf_acl_description = var.cdn_waf_acl_description
   waf_acl_scope       = "CLOUDFRONT"
+}
+
+
+########################################## Frontend Static Website Module #########################################
+
+module "static_website" {
+  source = "./modules/StaticWebsite"
+
+  project_name                 = local.local_naming
+  env_suffix                   = local.environment
+  static_bucket_name           = var.static_bucket_name
+  static_bucket_acceleration   = var.static_bucket_acceleration
+  static_bucket_versioning     = var.static_bucket_versioning
+  headers_policy_name          = var.static_headers_policy_name
+  default_root_object          = var.default_root_object
+  objects_compress             = var.objects_compress
+  ipv6_enabled                 = var.ipv6_enabled
+  http_version                 = var.http_version
+  cloudfront_description       = var.static_cloudfront_description
+  access_control_max_age       = var.static_access_control_max_age
+  content_security_policy      = var.static_content_security_policy
+  access_control_allow_origins = var.static_access_control_allow_origins
+  permissions_policy           = var.static_permissions_policy
+  waf_acl_id                   = "" //module.firewall_waf_cdn.waf_acl_arn
 }

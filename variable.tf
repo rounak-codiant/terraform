@@ -498,18 +498,6 @@ variable "http_version" {
   description = "We can use (http1.1, http2, http2and3, http3)"
 }
 
-variable "min_ttl" {
-  default = "0"
-}
-
-variable "default_ttl" {
-  default = "3600"
-}
-
-variable "max_ttl" {
-  default = "86400"
-}
-
 variable "public_cloudfront_description" {
   default = "Public CloudFront Distribution"
 }
@@ -650,3 +638,45 @@ variable "cdn_waf_acl_description" {
   default = "CloudFront Waf ACL"
 }
 
+
+## Staic Webside
+variable "static_bucket_name" {
+  default = "static-bucket-terraform-1"
+}
+
+variable "static_bucket_acceleration" {
+  default = "Suspended"
+}
+
+variable "static_bucket_versioning" {
+  default     = "Enabled"
+  description = "Options are Enabled/Disabled"
+}
+
+variable "static_headers_policy_name" {
+  default = "Static-CDN-HeadersPolicy"
+}
+
+variable "static_cloudfront_description" {
+  default = "Static CloudFront Distribution"
+}
+
+variable "static_permissions_policy" {
+  default = "accelerometer=(self), camera=(self), cross-origin-isolated=(self), encrypted-media=(self), geolocation=(self), microphone=(self), interest-cohort=()"
+}
+
+variable "static_access_control_allow_origins" {
+  default = "*.test.com"
+}
+
+variable "static_content_security_policy" {
+  default = "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'"
+}
+
+variable "static_access_control_max_age" {
+  default = "31536000"
+}
+
+variable "default_root_object" {
+  default = "index.html"
+}
