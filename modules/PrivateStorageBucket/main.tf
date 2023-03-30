@@ -45,11 +45,13 @@ resource "aws_s3_bucket_public_access_block" "public_access_block" {
 }
 
 data "aws_kms_key" "kms_key_arn" {
+  count    = var.private_bucket_replication_option == "Enabled" ? 1 : 0
   provider = aws.dest_region
   key_id   = "alias/aws/s3"
 }
 
 resource "aws_iam_role" "replication" {
+  count              = var.private_bucket_replication_option == "Enabled" ? 1 : 0
   name               = var.private_replication_role_name
   assume_role_policy = <<POLICY
 {
@@ -69,7 +71,8 @@ POLICY
 }
 
 resource "aws_iam_policy" "replication" {
-  name = var.private_replication_policy_name
+  count = var.private_bucket_replication_option == "Enabled" ? 1 : 0
+  name  = var.private_replication_policy_name
 
   policy = <<POLICY
 {
@@ -103,7 +106,7 @@ resource "aws_iam_policy" "replication" {
         "s3:ReplicateTags"
       ],
       "Effect": "Allow",
-      "Resource": "${aws_s3_bucket.destination.arn}/*"
+      "Resource": "${aws_s3_bucket.destination[count.index].arn}/*"
     }
   ]
 }
@@ -111,33 +114,38 @@ POLICY
 }
 
 resource "aws_iam_role_policy_attachment" "replication" {
-  role       = aws_iam_role.replication.name
-  policy_arn = aws_iam_policy.replication.arn
+  count      = var.private_bucket_replication_option == "Enabled" ? 1 : 0
+  role       = aws_iam_role.replication[count.index].name
+  policy_arn = aws_iam_policy.replication[count.index].arn
 }
 
 resource "aws_s3_bucket" "destination" {
+  count         = var.private_bucket_replication_option == "Enabled" ? 1 : 0
   provider      = aws.dest_region
   bucket        = var.private_destination_bucket_name
   force_destroy = true
 }
 
 resource "aws_s3_bucket_acl" "destination_bucket_acl" {
+  count    = var.private_bucket_replication_option == "Enabled" ? 1 : 0
   provider = aws.dest_region
-  bucket   = aws_s3_bucket.destination.id
+  bucket   = aws_s3_bucket.destination[count.index].id
   acl      = "private"
 }
 
 resource "aws_s3_bucket_versioning" "destination" {
+  count    = var.private_bucket_replication_option == "Enabled" ? 1 : 0
   provider = aws.dest_region
-  bucket   = aws_s3_bucket.destination.id
+  bucket   = aws_s3_bucket.destination[count.index].id
   versioning_configuration {
     status = var.private_bucket_versioning
   }
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "destination_bucket_encryption" {
+  count    = var.private_bucket_replication_option == "Enabled" ? 1 : 0
   provider = aws.dest_region
-  bucket   = aws_s3_bucket.destination.bucket
+  bucket   = aws_s3_bucket.destination[count.index].bucket
   rule {
     apply_server_side_encryption_by_default {
       sse_algorithm = "AES256"
@@ -146,8 +154,9 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "destination_bucke
 }
 
 resource "aws_s3_bucket_public_access_block" "destination_access_block" {
+  count                   = var.private_bucket_replication_option == "Enabled" ? 1 : 0
   provider                = aws.dest_region
-  bucket                  = aws_s3_bucket.destination.id
+  bucket                  = aws_s3_bucket.destination[count.index].id
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
@@ -155,9 +164,10 @@ resource "aws_s3_bucket_public_access_block" "destination_access_block" {
 }
 
 resource "aws_s3_bucket_replication_configuration" "replication" {
+  count = var.private_bucket_replication_option == "Enabled" ? 1 : 0
   # Must have bucket versioning enabled first
   depends_on = [aws_s3_bucket_versioning.private_bucket_versioning]
-  role       = aws_iam_role.replication.arn
+  role       = aws_iam_role.replication[count.index].arn
   bucket     = aws_s3_bucket.private_bucket.id
 
   rule {
@@ -176,9 +186,9 @@ resource "aws_s3_bucket_replication_configuration" "replication" {
     }
 
     destination {
-      bucket = aws_s3_bucket.destination.arn
+      bucket = aws_s3_bucket.destination[count.index].arn
       encryption_configuration {
-        replica_kms_key_id = data.aws_kms_key.kms_key_arn.arn
+        replica_kms_key_id = data.aws_kms_key.kms_key_arn[count.index].arn
       }
     }
   }
