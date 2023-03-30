@@ -8,9 +8,10 @@ sudo dpkg -i -E amazon-cloudwatch-agent.deb
 sudo mkdir -p /usr/share/collectd/
 sudo touch /usr/share/collectd/types.db
 sudo apt install python3-pip -y
-sudo pip3 install collectd -y
+sudo pip3 install collectd
 sudo systemctl enable amazon-cloudwatch-agent
 sudo systemctl start amazon-cloudwatch-agent
+sudo rm -rf amazon-cloudwatch*
 
 # Install Code Deploy Agent
 sudo apt-get install ruby-full ruby-webrick wget -y
@@ -30,3 +31,4 @@ sudo systemctl enable codedeploy-agent.service
 # Install Supervisor
 sudo apt-get install supervisor -y
 sudo systemctl enable supervisor
+sudo rm -rf *.sh

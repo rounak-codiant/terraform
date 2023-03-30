@@ -83,6 +83,7 @@ if [ $php_modules = "yes" ]; then
     echo "------------- PHP Modules Installing -------------"
     sudo apt-get install --ignore-missing php$varname-fpm php$varname-mysql php$varname-curl php$varname-bcmath php$varname-gd php$varname-intl php-pear php$varname-imap php$varname-mcrypt php$varname-memcache php$varname-ps php$varname-pspell php$varname-redis php$varname-snmp php$varname-sqlite php$varname-tidy php$varname-xmlrpc php$varname-xsl php$varname-intl php$varname-zip php$varname-imagick php$varname-mbstring unzip zip -y; printf "$(php -m)  %s\nPHP modules installation is completed. %s\n";
     sudo service php$varname-fpm restart
+    sudo systemctl enable php$varname-fpm.service
     echo "PHP$varname-FPM service started"
 else
     echo "PHP modules installation is skipped."
