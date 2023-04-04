@@ -149,18 +149,6 @@ variable "private_bucket_replication_option" {
   description = "Options are Enabled/Disabled"
 }
 
-variable "private_bucket_replica_rule_name" {
-  default = "Private-Bucket-Replica-Rule"
-}
-
-variable "private_replication_role_name" {
-  default = "Private-S3-Replica-Role"
-}
-
-variable "private_replication_policy_name" {
-  default = "Private-S3-Replica-Policy"
-}
-
 variable "private_replication_destination_region" {
   default = "us-east-2"
 }
@@ -186,18 +174,6 @@ variable "public_destination_bucket_name" {
 variable "public_bucket_replication_option" {
   default     = "Enabled"
   description = "Options are Enabled/Disabled"
-}
-
-variable "public_bucket_replica_rule_name" {
-  default = "Public-Bucket-Replica-Rule"
-}
-
-variable "public_replication_role_name" {
-  default = "Public-S3-Replica-Role"
-}
-
-variable "public_replication_policy_name" {
-  default = "Public-S3-Replica-Policy"
 }
 
 variable "public_replication_destination_region" {

@@ -46,9 +46,6 @@ private_bucket_versioning              = "Enabled"
 private_bucket_acceleration            = "Suspended"
 private_destination_bucket_name        = "private-bucket-replica-bucket"
 private_bucket_replication_option      = "Disabled"
-private_bucket_replica_rule_name       = "Private-Bucket-Replica-Rule"
-private_replication_role_name          = "Private-S3-Replica-Role"
-private_replication_policy_name        = "Private-S3-Replica-Policy"
 private_replication_destination_region = "us-east-2"
 
 
@@ -58,9 +55,6 @@ public_bucket_versioning              = "Enabled"
 public_bucket_acceleration            = "Suspended"
 public_destination_bucket_name        = "public-bucket-replica-bucket"
 public_bucket_replication_option      = "Disabled"
-public_bucket_replica_rule_name       = "Public-Bucket-Replica-Rule"
-public_replication_role_name          = "Public-S3-Replica-Role"
-public_replication_policy_name        = "Public-S3-Replica-Policy"
 public_replication_destination_region = "us-east-2"
 
 

@@ -52,7 +52,7 @@ data "aws_kms_key" "kms_key_arn" {
 
 resource "aws_iam_role" "replication" {
   count              = var.private_bucket_replication_option == "Enabled" ? 1 : 0
-  name               = var.private_replication_role_name
+  name               = "${var.private_destination_bucket_name}-role"
   assume_role_policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -72,7 +72,7 @@ POLICY
 
 resource "aws_iam_policy" "replication" {
   count = var.private_bucket_replication_option == "Enabled" ? 1 : 0
-  name  = var.private_replication_policy_name
+  name  = "${var.private_destination_bucket_name}-policy"
 
   policy = <<POLICY
 {
@@ -171,7 +171,7 @@ resource "aws_s3_bucket_replication_configuration" "replication" {
   bucket     = aws_s3_bucket.private_bucket.id
 
   rule {
-    id     = var.private_bucket_replica_rule_name
+    id     = "${var.private_bucket_name}-replica-rule"
     status = var.private_bucket_replication_option
     filter {
       prefix = ""

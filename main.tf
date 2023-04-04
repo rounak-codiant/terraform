@@ -68,9 +68,6 @@ module "private_bucket" {
   private_bucket_acceleration            = var.private_bucket_acceleration
   private_destination_bucket_name        = var.private_destination_bucket_name
   private_bucket_replication_option      = var.private_bucket_replication_option
-  private_bucket_replica_rule_name       = var.private_bucket_replica_rule_name
-  private_replication_role_name          = var.private_replication_role_name
-  private_replication_policy_name        = var.private_replication_policy_name
   private_replication_destination_region = var.private_replication_destination_region
 }
 
@@ -87,9 +84,6 @@ module "public_bucket" {
   public_bucket_acceleration            = var.public_bucket_acceleration
   public_destination_bucket_name        = var.public_destination_bucket_name
   public_bucket_replication_option      = var.public_bucket_replication_option
-  public_bucket_replica_rule_name       = var.public_bucket_replica_rule_name
-  public_replication_role_name          = var.public_replication_role_name
-  public_replication_policy_name        = var.public_replication_policy_name
   public_replication_destination_region = var.public_replication_destination_region
 }
 

@@ -14,10 +14,4 @@ variable "public_destination_bucket_name" {}
 
 variable "public_bucket_replication_option" {}
 
-variable "public_bucket_replica_rule_name" {}
-
-variable "public_replication_role_name" {}
-
-variable "public_replication_policy_name" {}
-
 variable "public_replication_destination_region" {}
