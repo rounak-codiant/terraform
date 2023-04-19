@@ -27,13 +27,20 @@ No providers.
 |------|--------|---------|
 | <a name="module_application_server"></a> [application\_server](#module\_application\_server) | ./modules/ApplicationWebserver | n/a |
 | <a name="module_cache_database"></a> [cache\_database](#module\_cache\_database) | ./modules/CacheCluster | n/a |
+| <a name="module_codebuild"></a> [codebuild](#module\_codebuild) | ./modules/CodeBuild | n/a |
+| <a name="module_codecommit"></a> [codecommit](#module\_codecommit) | ./modules/CodeCommit | n/a |
+| <a name="module_codedeploy"></a> [codedeploy](#module\_codedeploy) | ./modules/CodeDeploy | n/a |
+| <a name="module_codepipeline"></a> [codepipeline](#module\_codepipeline) | ./modules/CodePipeline | n/a |
 | <a name="module_database"></a> [database](#module\_database) | ./modules/Database | n/a |
+| <a name="module_firewall_waf_alb"></a> [firewall\_waf\_alb](#module\_firewall\_waf\_alb) | ./modules/FirewallWAF | n/a |
+| <a name="module_firewall_waf_cdn"></a> [firewall\_waf\_cdn](#module\_firewall\_waf\_cdn) | ./modules/FirewallWAF | n/a |
 | <a name="module_load_balancer"></a> [load\_balancer](#module\_load\_balancer) | ./modules/LoadBalancer | n/a |
 | <a name="module_private_bucket"></a> [private\_bucket](#module\_private\_bucket) | ./modules/PrivateStorageBucket | n/a |
 | <a name="module_private_cloudfront"></a> [private\_cloudfront](#module\_private\_cloudfront) | ./modules/CloudFront | n/a |
 | <a name="module_public_bucket"></a> [public\_bucket](#module\_public\_bucket) | ./modules/PublicStorageBucket | n/a |
 | <a name="module_public_cloudfront"></a> [public\_cloudfront](#module\_public\_cloudfront) | ./modules/CloudFront | n/a |
 | <a name="module_secret_manager"></a> [secret\_manager](#module\_secret\_manager) | ./modules/SecretManagement | n/a |
+| <a name="module_static_website"></a> [static\_website](#module\_static\_website) | ./modules/StaticWebsite | n/a |
 | <a name="module_terraform_backend"></a> [terraform\_backend](#module\_terraform\_backend) | ./modules/TF_Backend | n/a |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | ./modules/VPC | n/a |
 
@@ -51,21 +58,36 @@ No resources.
 | <a name="input_alb_log_prefix"></a> [alb\_log\_prefix](#input\_alb\_log\_prefix) | n/a | `string` | `"ALB"` | no |
 | <a name="input_alb_logs_bucket_name"></a> [alb\_logs\_bucket\_name](#input\_alb\_logs\_bucket\_name) | n/a | `string` | `"alb-logs-bucket"` | no |
 | <a name="input_alb_logs_enable"></a> [alb\_logs\_enable](#input\_alb\_logs\_enable) | n/a | `string` | `"true"` | no |
+| <a name="input_alb_waf_acl_description"></a> [alb\_waf\_acl\_description](#input\_alb\_waf\_acl\_description) | n/a | `string` | `"Application Load Balancer Waf ACL"` | no |
+| <a name="input_alb_waf_acl_name"></a> [alb\_waf\_acl\_name](#input\_alb\_waf\_acl\_name) | # AWS WAF | `string` | `"alb-waf-acl"` | no |
 | <a name="input_allow_major_version_upgrade"></a> [allow\_major\_version\_upgrade](#input\_allow\_major\_version\_upgrade) | n/a | `string` | `"false"` | no |
-| <a name="input_ami_name"></a> [ami\_name](#input\_ami\_name) | AMI name can be (jammy => ubuntu 22, focal => ubuntu 20, bionic => ubuntu 18) | `string` | `"jammy"` | no |
+| <a name="input_ami_name"></a> [ami\_name](#input\_ami\_name) | n/a | `string` | `"ubuntu/images/hvm-ssd/ubuntu-jammy-*arm64"` | no |
 | <a name="input_automatic_failover_enabled"></a> [automatic\_failover\_enabled](#input\_automatic\_failover\_enabled) | n/a | `string` | `"false"` | no |
 | <a name="input_aws_access_key"></a> [aws\_access\_key](#input\_aws\_access\_key) | AWS Provider Key | `string` | `""` | no |
 | <a name="input_aws_profile_name"></a> [aws\_profile\_name](#input\_aws\_profile\_name) | n/a | `string` | `""` | no |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | n/a | `string` | `"us-east-1"` | no |
 | <a name="input_aws_secret_key"></a> [aws\_secret\_key](#input\_aws\_secret\_key) | n/a | `string` | `""` | no |
+| <a name="input_build_timeout"></a> [build\_timeout](#input\_build\_timeout) | n/a | `string` | `"15"` | no |
 | <a name="input_cachedb_description"></a> [cachedb\_description](#input\_cachedb\_description) | n/a | `string` | `"Redis Database"` | no |
 | <a name="input_cachedb_engine"></a> [cachedb\_engine](#input\_cachedb\_engine) | n/a | `string` | `"redis"` | no |
 | <a name="input_cachedb_name"></a> [cachedb\_name](#input\_cachedb\_name) | n/a | `string` | `"redis-cache"` | no |
 | <a name="input_cachedb_node_type"></a> [cachedb\_node\_type](#input\_cachedb\_node\_type) | n/a | `string` | `"cache.t3.small"` | no |
 | <a name="input_cachedb_port"></a> [cachedb\_port](#input\_cachedb\_port) | n/a | `string` | `"6379"` | no |
 | <a name="input_cachedb_snapshot_retention_limit"></a> [cachedb\_snapshot\_retention\_limit](#input\_cachedb\_snapshot\_retention\_limit) | n/a | `string` | `"3"` | no |
+| <a name="input_cdn_waf_acl_description"></a> [cdn\_waf\_acl\_description](#input\_cdn\_waf\_acl\_description) | n/a | `string` | `"CloudFront Waf ACL"` | no |
+| <a name="input_cdn_waf_acl_name"></a> [cdn\_waf\_acl\_name](#input\_cdn\_waf\_acl\_name) | n/a | `string` | `"cdn-waf-acl"` | no |
 | <a name="input_cluster_parameter_group"></a> [cluster\_parameter\_group](#input\_cluster\_parameter\_group) | n/a | `string` | `"cluster-parameter-group"` | no |
 | <a name="input_cluster_parameter_group_family"></a> [cluster\_parameter\_group\_family](#input\_cluster\_parameter\_group\_family) | n/a | `string` | `"aurora-mysql5.7"` | no |
+| <a name="input_codebuild_bucket_name"></a> [codebuild\_bucket\_name](#input\_codebuild\_bucket\_name) | # CodeBuild | `string` | `"codebuild1243"` | no |
+| <a name="input_codebuild_bucket_versioning"></a> [codebuild\_bucket\_versioning](#input\_codebuild\_bucket\_versioning) | n/a | `string` | `"Enabled"` | no |
+| <a name="input_codebuild_compute_type"></a> [codebuild\_compute\_type](#input\_codebuild\_compute\_type) | You can select (BUILD\_GENERAL1\_SMALL, BUILD\_GENERAL1\_MEDIUM, BUILD\_GENERAL1\_LARGE, BUILD\_GENERAL1\_2XLARGE) | `string` | `"BUILD_GENERAL1_SMALL"` | no |
+| <a name="input_codebuild_image"></a> [codebuild\_image](#input\_codebuild\_image) | You can select (aws/codebuild/standard:6.0, aws/codebuild/standard:5.0, aws/codebuild/standard:4.0) | `string` | `"aws/codebuild/standard:6.0"` | no |
+| <a name="input_codebuild_project_description"></a> [codebuild\_project\_description](#input\_codebuild\_project\_description) | n/a | `string` | `"Code Build Project"` | no |
+| <a name="input_codebuild_project_name"></a> [codebuild\_project\_name](#input\_codebuild\_project\_name) | n/a | `string` | `"code-build-project"` | no |
+| <a name="input_codebuild_role_name"></a> [codebuild\_role\_name](#input\_codebuild\_role\_name) | n/a | `string` | `"codebuild-role"` | no |
+| <a name="input_codecommit_user_name"></a> [codecommit\_user\_name](#input\_codecommit\_user\_name) | n/a | `string` | `"codecommit"` | no |
+| <a name="input_codedeploy_app_name"></a> [codedeploy\_app\_name](#input\_codedeploy\_app\_name) | # Code Deploy | `string` | `"CodedDeploy-App"` | no |
+| <a name="input_codedeploy_service_role_name"></a> [codedeploy\_service\_role\_name](#input\_codedeploy\_service\_role\_name) | n/a | `string` | `"CodeDeploy-Serivce-Role"` | no |
 | <a name="input_composer-install"></a> [composer-install](#input\_composer-install) | n/a | `string` | `"yes"` | no |
 | <a name="input_copy_tags_to_snapshot"></a> [copy\_tags\_to\_snapshot](#input\_copy\_tags\_to\_snapshot) | n/a | `string` | `"true"` | no |
 | <a name="input_database_backup_retention_period"></a> [database\_backup\_retention\_period](#input\_database\_backup\_retention\_period) | n/a | `string` | `"7"` | no |
@@ -80,8 +102,9 @@ No resources.
 | <a name="input_database_name"></a> [database\_name](#input\_database\_name) | n/a | `string` | `"database_name"` | no |
 | <a name="input_db_instance_pg_name"></a> [db\_instance\_pg\_name](#input\_db\_instance\_pg\_name) | n/a | `string` | `"db-instance-parameter-group"` | no |
 | <a name="input_db_parameter_group_family"></a> [db\_parameter\_group\_family](#input\_db\_parameter\_group\_family) | n/a | `string` | `"aurora-mysql5.7"` | no |
-| <a name="input_default_ttl"></a> [default\_ttl](#input\_default\_ttl) | n/a | `string` | `"3600"` | no |
+| <a name="input_default_root_object"></a> [default\_root\_object](#input\_default\_root\_object) | n/a | `string` | `"index.html"` | no |
 | <a name="input_deletion_protection"></a> [deletion\_protection](#input\_deletion\_protection) | n/a | `string` | `"true"` | no |
+| <a name="input_deployment_group_name"></a> [deployment\_group\_name](#input\_deployment\_group\_name) | n/a | `string` | `"Deployment-Group"` | no |
 | <a name="input_ebs_volume_size"></a> [ebs\_volume\_size](#input\_ebs\_volume\_size) | Storage Capacity | `string` | `"30"` | no |
 | <a name="input_ebs_volume_type"></a> [ebs\_volume\_type](#input\_ebs\_volume\_type) | n/a | `string` | `"gp2"` | no |
 | <a name="input_ec2_monitoring"></a> [ec2\_monitoring](#input\_ec2\_monitoring) | n/a | `string` | `"true"` | no |
@@ -91,7 +114,9 @@ No resources.
 | <a name="input_env_suffix"></a> [env\_suffix](#input\_env\_suffix) | n/a | `string` | `"test"` | no |
 | <a name="input_general_log"></a> [general\_log](#input\_general\_log) | n/a | `string` | `"1"` | no |
 | <a name="input_http_version"></a> [http\_version](#input\_http\_version) | We can use (http1.1, http2, http2and3, http3) | `string` | `"http2and3"` | no |
+| <a name="input_iam_force_destroy"></a> [iam\_force\_destroy](#input\_iam\_force\_destroy) | n/a | `string` | `"true"` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | EC2 | `string` | `"t2.micro"` | no |
+| <a name="input_instances_terminate_time"></a> [instances\_terminate\_time](#input\_instances\_terminate\_time) | n/a | `string` | `"5"` | no |
 | <a name="input_ipv6_enabled"></a> [ipv6\_enabled](#input\_ipv6\_enabled) | n/a | `string` | `"true"` | no |
 | <a name="input_key_pair_name"></a> [key\_pair\_name](#input\_key\_pair\_name) | Name of EC2 Key Pair | `string` | `"pemkey"` | no |
 | <a name="input_lb_deletion_protection"></a> [lb\_deletion\_protection](#input\_lb\_deletion\_protection) | value for the load balancer deletion protection | `string` | `"true"` | no |
@@ -106,36 +131,61 @@ No resources.
 | <a name="input_lb_type"></a> [lb\_type](#input\_lb\_type) | valid values are 'application' or 'network' (default) | `string` | `"application"` | no |
 | <a name="input_long_query_time"></a> [long\_query\_time](#input\_long\_query\_time) | n/a | `string` | `"10"` | no |
 | <a name="input_max_allowed_packet"></a> [max\_allowed\_packet](#input\_max\_allowed\_packet) | n/a | `string` | `"64000000"` | no |
-| <a name="input_max_ttl"></a> [max\_ttl](#input\_max\_ttl) | n/a | `string` | `"86400"` | no |
-| <a name="input_min_ttl"></a> [min\_ttl](#input\_min\_ttl) | n/a | `string` | `"0"` | no |
-| <a name="input_nginx-nginx-config"></a> [nginx-nginx-config](#input\_nginx-nginx-config) | n/a | `string` | `"no"` | no |
+| <a name="input_node-nginx-config"></a> [node-nginx-config](#input\_node-nginx-config) | n/a | `string` | `"no"` | no |
 | <a name="input_node-version"></a> [node-version](#input\_node-version) | n/a | `string` | `"16"` | no |
 | <a name="input_num_cache_nodes"></a> [num\_cache\_nodes](#input\_num\_cache\_nodes) | n/a | `string` | `"1"` | no |
 | <a name="input_objects_compress"></a> [objects\_compress](#input\_objects\_compress) | n/a | `string` | `"true"` | no |
 | <a name="input_php-module"></a> [php-module](#input\_php-module) | n/a | `string` | `"yes"` | no |
 | <a name="input_php-nginx-config"></a> [php-nginx-config](#input\_php-nginx-config) | n/a | `string` | `"yes"` | no |
 | <a name="input_php-version"></a> [php-version](#input\_php-version) | PHP | `string` | `"8.1"` | no |
+| <a name="input_pipeline_name"></a> [pipeline\_name](#input\_pipeline\_name) | # Code Pipeline | `string` | `"CodePipeline"` | no |
+| <a name="input_private_access_control_allow_origins"></a> [private\_access\_control\_allow\_origins](#input\_private\_access\_control\_allow\_origins) | n/a | `string` | `"*.test.com"` | no |
+| <a name="input_private_access_control_max_age"></a> [private\_access\_control\_max\_age](#input\_private\_access\_control\_max\_age) | n/a | `string` | `"31536000"` | no |
 | <a name="input_private_bucket_acceleration"></a> [private\_bucket\_acceleration](#input\_private\_bucket\_acceleration) | n/a | `string` | `"Suspended"` | no |
-| <a name="input_private_bucket_name"></a> [private\_bucket\_name](#input\_private\_bucket\_name) | #S3 Private Bucket | `string` | `"codiant-private-bucket-terraform-1"` | no |
+| <a name="input_private_bucket_name"></a> [private\_bucket\_name](#input\_private\_bucket\_name) | #S3 Private Bucket | `string` | `"private-bucket-terraform-1"` | no |
+| <a name="input_private_bucket_replication_option"></a> [private\_bucket\_replication\_option](#input\_private\_bucket\_replication\_option) | Options are Enabled/Disabled | `string` | `"Enabled"` | no |
 | <a name="input_private_bucket_versioning"></a> [private\_bucket\_versioning](#input\_private\_bucket\_versioning) | Options are Enabled/Disabled | `string` | `"Enabled"` | no |
 | <a name="input_private_cidr_block"></a> [private\_cidr\_block](#input\_private\_cidr\_block) | Private subnet CIDR blocks | `list(string)` | <pre>[<br>  "20.0.48.0/20",<br>  "20.0.64.0/20",<br>  "20.0.80.0/20"<br>]</pre> | no |
 | <a name="input_private_cloudfront_description"></a> [private\_cloudfront\_description](#input\_private\_cloudfront\_description) | n/a | `string` | `"Private CloudFront Distribution"` | no |
+| <a name="input_private_content_security_policy"></a> [private\_content\_security\_policy](#input\_private\_content\_security\_policy) | n/a | `string` | `"default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'"` | no |
+| <a name="input_private_destination_bucket_name"></a> [private\_destination\_bucket\_name](#input\_private\_destination\_bucket\_name) | n/a | `string` | `"private-bucket-replica-bucket"` | no |
 | <a name="input_private_headers_policy_name"></a> [private\_headers\_policy\_name](#input\_private\_headers\_policy\_name) | n/a | `string` | `"CustomHeadersPolicy"` | no |
+| <a name="input_private_permissions_policy"></a> [private\_permissions\_policy](#input\_private\_permissions\_policy) | n/a | `string` | `"accelerometer=(self), camera=(self), cross-origin-isolated=(self), encrypted-media=(self), geolocation=(self), microphone=(self), interest-cohort=()"` | no |
+| <a name="input_private_replication_destination_region"></a> [private\_replication\_destination\_region](#input\_private\_replication\_destination\_region) | n/a | `string` | `"us-east-2"` | no |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project and variable | `string` | `"Terraform-Project"` | no |
+| <a name="input_public_access_control_allow_origins"></a> [public\_access\_control\_allow\_origins](#input\_public\_access\_control\_allow\_origins) | n/a | `string` | `"*.test.com"` | no |
+| <a name="input_public_access_control_max_age"></a> [public\_access\_control\_max\_age](#input\_public\_access\_control\_max\_age) | n/a | `string` | `"31536000"` | no |
 | <a name="input_public_bucket_acceleration"></a> [public\_bucket\_acceleration](#input\_public\_bucket\_acceleration) | n/a | `string` | `"Suspended"` | no |
-| <a name="input_public_bucket_name"></a> [public\_bucket\_name](#input\_public\_bucket\_name) | #S3 Public Bucket | `string` | `"codiant-public-bucket-terraform-1"` | no |
+| <a name="input_public_bucket_name"></a> [public\_bucket\_name](#input\_public\_bucket\_name) | #S3 Public Bucket | `string` | `"public-bucket-terraform-1"` | no |
+| <a name="input_public_bucket_replication_option"></a> [public\_bucket\_replication\_option](#input\_public\_bucket\_replication\_option) | Options are Enabled/Disabled | `string` | `"Enabled"` | no |
 | <a name="input_public_bucket_versioning"></a> [public\_bucket\_versioning](#input\_public\_bucket\_versioning) | Options are Enabled/Disabled | `string` | `"Enabled"` | no |
 | <a name="input_public_cidr_block"></a> [public\_cidr\_block](#input\_public\_cidr\_block) | Public subnet CIDR blocks | `list(string)` | <pre>[<br>  "20.0.0.0/20",<br>  "20.0.16.0/20",<br>  "20.0.32.0/20"<br>]</pre> | no |
 | <a name="input_public_cloudfront_description"></a> [public\_cloudfront\_description](#input\_public\_cloudfront\_description) | n/a | `string` | `"Public CloudFront Distribution"` | no |
+| <a name="input_public_content_security_policy"></a> [public\_content\_security\_policy](#input\_public\_content\_security\_policy) | n/a | `string` | `"default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'"` | no |
+| <a name="input_public_destination_bucket_name"></a> [public\_destination\_bucket\_name](#input\_public\_destination\_bucket\_name) | n/a | `string` | `"public-bucket-replica-bucket"` | no |
 | <a name="input_public_headers_policy_name"></a> [public\_headers\_policy\_name](#input\_public\_headers\_policy\_name) | CDN | `string` | `"CustomHeadersPolicy"` | no |
+| <a name="input_public_permissions_policy"></a> [public\_permissions\_policy](#input\_public\_permissions\_policy) | n/a | `string` | `"accelerometer=(self), camera=(self), cross-origin-isolated=(self), encrypted-media=(self), geolocation=(self), microphone=(self), interest-cohort=()"` | no |
+| <a name="input_public_replication_destination_region"></a> [public\_replication\_destination\_region](#input\_public\_replication\_destination\_region) | n/a | `string` | `"us-east-2"` | no |
 | <a name="input_publicly_accessible"></a> [publicly\_accessible](#input\_publicly\_accessible) | n/a | `string` | `"false"` | no |
 | <a name="input_redis_user_name"></a> [redis\_user\_name](#input\_redis\_user\_name) | # Elastic Cache (Redis) | `string` | `"redis"` | no |
 | <a name="input_redis_user_pwd"></a> [redis\_user\_pwd](#input\_redis\_user\_pwd) | n/a | `string` | `"dm3YbhsFqa1P121KEC"` | no |
+| <a name="input_repo_default_branch"></a> [repo\_default\_branch](#input\_repo\_default\_branch) | n/a | `string` | `"main"` | no |
+| <a name="input_repository_description"></a> [repository\_description](#input\_repository\_description) | n/a | `string` | `"Code Commit Git Repo"` | no |
+| <a name="input_repository_name"></a> [repository\_name](#input\_repository\_name) | n/a | `string` | `"codecommit-repo"` | no |
 | <a name="input_rest_encryption_enabled"></a> [rest\_encryption\_enabled](#input\_rest\_encryption\_enabled) | n/a | `string` | `"true"` | no |
 | <a name="input_secretmanager_name"></a> [secretmanager\_name](#input\_secretmanager\_name) | # Secret Manager | `string` | `"secretmanager"` | no |
 | <a name="input_slow_query_log"></a> [slow\_query\_log](#input\_slow\_query\_log) | n/a | `string` | `"1"` | no |
 | <a name="input_snapshot_identifier_name"></a> [snapshot\_identifier\_name](#input\_snapshot\_identifier\_name) | n/a | `string` | `"db-snap"` | no |
 | <a name="input_snapshot_retention_limit"></a> [snapshot\_retention\_limit](#input\_snapshot\_retention\_limit) | n/a | `string` | `"7"` | no |
+| <a name="input_static_access_control_allow_origins"></a> [static\_access\_control\_allow\_origins](#input\_static\_access\_control\_allow\_origins) | n/a | `string` | `"*.test.com"` | no |
+| <a name="input_static_access_control_max_age"></a> [static\_access\_control\_max\_age](#input\_static\_access\_control\_max\_age) | n/a | `string` | `"31536000"` | no |
+| <a name="input_static_bucket_acceleration"></a> [static\_bucket\_acceleration](#input\_static\_bucket\_acceleration) | n/a | `string` | `"Suspended"` | no |
+| <a name="input_static_bucket_name"></a> [static\_bucket\_name](#input\_static\_bucket\_name) | # Staic Webside | `string` | `"static-bucket-terraform-1"` | no |
+| <a name="input_static_bucket_versioning"></a> [static\_bucket\_versioning](#input\_static\_bucket\_versioning) | Options are Enabled/Disabled | `string` | `"Enabled"` | no |
+| <a name="input_static_cloudfront_description"></a> [static\_cloudfront\_description](#input\_static\_cloudfront\_description) | n/a | `string` | `"Static CloudFront Distribution"` | no |
+| <a name="input_static_content_security_policy"></a> [static\_content\_security\_policy](#input\_static\_content\_security\_policy) | n/a | `string` | `"default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'"` | no |
+| <a name="input_static_headers_policy_name"></a> [static\_headers\_policy\_name](#input\_static\_headers\_policy\_name) | n/a | `string` | `"Static-CDN-HeadersPolicy"` | no |
+| <a name="input_static_permissions_policy"></a> [static\_permissions\_policy](#input\_static\_permissions\_policy) | n/a | `string` | `"accelerometer=(self), camera=(self), cross-origin-isolated=(self), encrypted-media=(self), geolocation=(self), microphone=(self), interest-cohort=()"` | no |
 | <a name="input_storage_encrypted"></a> [storage\_encrypted](#input\_storage\_encrypted) | n/a | `string` | `"true"` | no |
 | <a name="input_table_name"></a> [table\_name](#input\_table\_name) | Terrafrom backend dynamoDB table name | `string` | `"terraform-backend-sample-tablename"` | no |
 | <a name="input_terraform_bucket_name"></a> [terraform\_bucket\_name](#input\_terraform\_bucket\_name) | Terrafrom backend bucket name | `string` | `"terraform-sample-backend-bucket"` | no |
@@ -150,7 +200,12 @@ No resources.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_repo_https_url"></a> [repo\_https\_url](#output\_repo\_https\_url) | n/a |
+| <a name="output_repo_name"></a> [repo\_name](#output\_repo\_name) | n/a |
+| <a name="output_repo_password"></a> [repo\_password](#output\_repo\_password) | n/a |
+| <a name="output_repo_user_name"></a> [repo\_user\_name](#output\_repo\_user\_name) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 -------------------------------

@@ -30,6 +30,8 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_env_suffix"></a> [env\_suffix](#input\_env\_suffix) | n/a | `any` | n/a | yes |
+| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | n/a | `any` | n/a | yes |
 | <a name="input_table_name"></a> [table\_name](#input\_table\_name) | n/a | `any` | n/a | yes |
 | <a name="input_terraform_bucket_name"></a> [terraform\_bucket\_name](#input\_terraform\_bucket\_name) | n/a | `any` | n/a | yes |
 | <a name="input_terraform_bucket_versioning"></a> [terraform\_bucket\_versioning](#input\_terraform\_bucket\_versioning) | n/a | `any` | n/a | yes |
