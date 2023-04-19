@@ -36,4 +36,3 @@ output "cache_cluster_host" {
 output "cache_cluster_port" {
   value = aws_elasticache_replication_group.redis.port
 }
-

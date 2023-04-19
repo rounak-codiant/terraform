@@ -146,7 +146,7 @@ EOF
 }
 
 
-# Create IAM Role For EC2 
+# Create IAM Role For EC2
 resource "aws_iam_role" "ec2_s3_sm_access_role" {
   name = var.ec2_role_name
 
@@ -169,14 +169,14 @@ resource "aws_iam_role" "ec2_s3_sm_access_role" {
   }
 }
 
-# Attached IAM Policy to IAM Role 
+# Attached IAM Policy to IAM Role
 resource "aws_iam_policy_attachment" "ec2_policy_attached" {
   name       = "ec2_policy_attachment"
   roles      = ["${aws_iam_role.ec2_s3_sm_access_role.name}"]
   policy_arn = aws_iam_policy.ec2_policy.arn
 }
 
-# Create IAM instance profile 
+# Create IAM instance profile
 resource "aws_iam_instance_profile" "ec2_profile" {
   name = "EC2_Profile"
   role = aws_iam_role.ec2_s3_sm_access_role.name

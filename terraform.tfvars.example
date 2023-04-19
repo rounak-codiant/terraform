@@ -179,7 +179,7 @@ deployment_group_name        = "Deployment-Group"
 codedeploy_service_role_name = "CodeDeploy-Serivce-Role"
 instances_terminate_time     = "5"
 
-## Code Pipeline 
+## Code Pipeline
 pipeline_name = "CodePipeline"
 
 

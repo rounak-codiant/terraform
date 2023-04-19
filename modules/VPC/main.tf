@@ -17,7 +17,7 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
-# Create Public Subnet 
+# Create Public Subnet
 resource "aws_subnet" "public_subnet" {
   count             = length(var.public_cidr_block)
   vpc_id            = aws_vpc.vpc.id
@@ -29,7 +29,7 @@ resource "aws_subnet" "public_subnet" {
   }
 }
 
-# Create Private Subnet 
+# Create Private Subnet
 resource "aws_subnet" "private_subnet" {
   count             = length(var.private_cidr_block)
   vpc_id            = aws_vpc.vpc.id
@@ -41,7 +41,7 @@ resource "aws_subnet" "private_subnet" {
   }
 }
 
-# Create Public Route Table 
+# Create Public Route Table
 resource "aws_route_table" "public_route_table" {
   vpc_id = aws_vpc.vpc.id
   route {
@@ -61,7 +61,7 @@ resource "aws_route_table_association" "public_rt_association" {
   route_table_id = aws_route_table.public_route_table.id
 }
 
-# Create Private Route Table 
+# Create Private Route Table
 resource "aws_route_table" "private_route_table" {
   vpc_id = aws_vpc.vpc.id
   route  = []

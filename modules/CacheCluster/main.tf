@@ -95,7 +95,7 @@ resource "aws_elasticache_replication_group" "redis" {
 #   num_cache_nodes          = var.num_cache_nodes
 #   port                     = var.cachedb_port
 #   snapshot_retention_limit = var.cachedb_snapshot_retention_limit
-#   # az_mode              = var.cachedb_az_mode 
+#   # az_mode              = var.cachedb_az_mode
 # }
 ##############################################################################
 # resource "aws_elasticache_replication_group" "redis_cache" {
@@ -110,4 +110,3 @@ resource "aws_elasticache_replication_group" "redis" {
 #     Environment = "${var.env_suffix}"
 #   }
 # }
-
