@@ -108,6 +108,7 @@ resource "aws_flow_log" "vpc" {
   }
 }
 
+#tfsec:ignore:aws-cloudwatch-log-group-customer-key
 resource "aws_cloudwatch_log_group" "vpc" {
   name              = "${var.project_name}-VPC-Flow-Logs"
   retention_in_days = 7

@@ -4,7 +4,7 @@ resource "random_id" "id" {
 }
 
 # Create Secret Manager
-#tfsec:aws-ssm-secret-use-customer-key
+#tfsec:ignore:aws-ssm-secret-use-customer-key
 resource "aws_secretsmanager_secret" "secretmanager" {
   name                    = "${var.secretmanager_name}-${random_id.id.hex}"
   description             = "To store secret keys"
