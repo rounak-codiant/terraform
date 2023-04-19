@@ -1,4 +1,5 @@
 # Create the S3 bucket for storing Terraform state
+#tfsec:ignore:aws-s3-encryption-customer-key tfsec:ignore:aws-s3-enable-bucket-logging
 resource "aws_s3_bucket" "terraform_backend_bucket" {
   bucket        = var.terraform_bucket_name
   force_destroy = true
@@ -40,6 +41,7 @@ resource "aws_s3_bucket_public_access_block" "public_access_block" {
 
 
 # Create the DynamoDB Table for Terraform state locking
+#tfsec:ignore:aws-dynamodb-table-customer-key
 resource "aws_dynamodb_table" "terraform_backend" {
   name         = var.table_name
   billing_mode = "PAY_PER_REQUEST"

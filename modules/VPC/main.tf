@@ -92,6 +92,65 @@ resource "aws_vpc" "vpc" {
   }
 }
 
+# VPC Flow Logs is a feature that enables you to capture information about the IP traffic 
+# going to and from network interfaces in your VPC.
+
+# Flow logs can help you with a number of tasks, such as:
+# Monitoring the traffic that is reaching your instance
+resource "aws_flow_log" "vpc" {
+  iam_role_arn    = aws_iam_role.vpc.arn
+  log_destination = aws_cloudwatch_log_group.vpc.arn
+  traffic_type    = "ALL"
+  vpc_id          = aws_vpc.vpc.id
+
+  tags = {
+    Name = "${var.project_name}-VPC-Flow-Log"
+  }
+}
+
+resource "aws_cloudwatch_log_group" "vpc" {
+  name              = "${var.project_name}-VPC-Flow-Logs"
+  retention_in_days = 7
+}
+
+data "aws_iam_policy_document" "assume_role" {
+  statement {
+    effect = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["vpc-flow-logs.amazonaws.com"]
+    }
+
+    actions = ["sts:AssumeRole"]
+  }
+}
+
+resource "aws_iam_role" "vpc" {
+  name               = "${var.project_name}-VPC-Flow-Log-Role"
+  assume_role_policy = data.aws_iam_policy_document.assume_role.json
+}
+
+data "aws_iam_policy_document" "vpc" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "logs:CreateLogGroup",
+      "logs:CreateLogStream",
+      "logs:PutLogEvents",
+      "logs:DescribeLogGroups",
+      "logs:DescribeLogStreams",
+    ]
+    resources = ["${aws_cloudwatch_log_group.vpc.arn}:*"]
+  }
+}
+
+resource "aws_iam_role_policy" "vpc" {
+  name   = "${var.project_name}-VPC-Flow-Log-Policy"
+  role   = aws_iam_role.vpc.id
+  policy = data.aws_iam_policy_document.vpc.json
+}
 
 
 # Enable when you want create NAT Gataways

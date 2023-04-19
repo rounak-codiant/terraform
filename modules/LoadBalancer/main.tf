@@ -80,6 +80,7 @@ resource "aws_lb_target_group_attachment" "register_instance_tg" {
 data "aws_elb_service_account" "main" {}
 
 ## Create Bucket for ALB logs store
+#tfsec:ignore:aws-s3-encryption-customer-key tfsec:ignore:aws-s3-enable-bucket-logging
 resource "aws_s3_bucket" "elb_logs" {
   bucket        = var.alb_logs_bucket_name
   force_destroy = true

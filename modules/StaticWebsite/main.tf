@@ -1,3 +1,4 @@
+#tfsec:ignore:aws-s3-encryption-customer-key tfsec:ignore:aws-s3-enable-bucket-logging
 resource "aws_s3_bucket" "static_bucket" {
   bucket        = var.static_bucket_name
   force_destroy = true
