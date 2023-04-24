@@ -92,7 +92,7 @@ resource "aws_vpc" "vpc" {
   }
 }
 
-# VPC Flow Logs is a feature that enables you to capture information about the IP traffic 
+# VPC Flow Logs is a feature that enables you to capture information about the IP traffic
 # going to and from network interfaces in your VPC.
 
 # Flow logs can help you with a number of tasks, such as:
@@ -143,7 +143,7 @@ data "aws_iam_policy_document" "vpc" {
       "logs:DescribeLogGroups",
       "logs:DescribeLogStreams",
     ]
-    resources = ["${aws_cloudwatch_log_group.vpc.arn}:*"]
+    resources = ["${aws_cloudwatch_log_group.vpc.arn}"]
   }
 }
 

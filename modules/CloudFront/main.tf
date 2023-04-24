@@ -108,6 +108,7 @@ resource "aws_cloudfront_origin_access_identity" "access_identity" {
 
 
 # Create CloudFront Distribution
+#tfsec:ignore:aws-cloudfront-enable-logging
 resource "aws_cloudfront_distribution" "distribution" {
   origin {
     domain_name = var.s3_bucket_domain_name

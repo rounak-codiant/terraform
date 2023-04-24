@@ -46,6 +46,10 @@ resource "aws_dynamodb_table" "terraform_backend" {
   name         = var.table_name
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
+  point_in_time_recovery {
+    enabled = true
+  }
+
   attribute {
     name = "LockID" #To create a lock on the resource being modified.
     type = "S"
