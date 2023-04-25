@@ -10,7 +10,6 @@ module "terraform_backend" {
   terraform_bucket_name       = var.terraform_bucket_name
   terraform_bucket_versioning = var.terraform_bucket_versioning
   table_name                  = var.table_name
-  project_name                = local.local_naming
   env_suffix                  = local.environment
 }
 
@@ -379,10 +378,8 @@ module "firewall_waf_cdn" {
 module "static_website" {
   source = "./modules/StaticWebsite"
 
-  project_name                 = local.local_naming
   env_suffix                   = local.environment
   static_bucket_name           = var.static_bucket_name
-  static_bucket_acceleration   = var.static_bucket_acceleration
   static_bucket_versioning     = var.static_bucket_versioning
   headers_policy_name          = var.static_headers_policy_name
   default_root_object          = var.default_root_object

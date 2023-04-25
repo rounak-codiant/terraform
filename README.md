@@ -179,7 +179,6 @@ No resources.
 | <a name="input_snapshot_retention_limit"></a> [snapshot\_retention\_limit](#input\_snapshot\_retention\_limit) | n/a | `string` | `"7"` | no |
 | <a name="input_static_access_control_allow_origins"></a> [static\_access\_control\_allow\_origins](#input\_static\_access\_control\_allow\_origins) | n/a | `string` | `"*.test.com"` | no |
 | <a name="input_static_access_control_max_age"></a> [static\_access\_control\_max\_age](#input\_static\_access\_control\_max\_age) | n/a | `string` | `"31536000"` | no |
-| <a name="input_static_bucket_acceleration"></a> [static\_bucket\_acceleration](#input\_static\_bucket\_acceleration) | n/a | `string` | `"Suspended"` | no |
 | <a name="input_static_bucket_name"></a> [static\_bucket\_name](#input\_static\_bucket\_name) | # Staic Webside | `string` | `"static-bucket-terraform-1"` | no |
 | <a name="input_static_bucket_versioning"></a> [static\_bucket\_versioning](#input\_static\_bucket\_versioning) | Options are Enabled/Disabled | `string` | `"Enabled"` | no |
 | <a name="input_static_cloudfront_description"></a> [static\_cloudfront\_description](#input\_static\_cloudfront\_description) | n/a | `string` | `"Static CloudFront Distribution"` | no |

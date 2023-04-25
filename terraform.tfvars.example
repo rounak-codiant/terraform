@@ -192,7 +192,6 @@ cdn_waf_acl_description = "CloudFront Waf ACL"
 
 ## Static Webside
 static_bucket_name                  = "static-bucket-terraform-1"
-static_bucket_acceleration          = "Suspended"
 static_bucket_versioning            = "Enabled"
 static_headers_policy_name          = "Static-CDN-HeadersPolicy"
 static_cloudfront_description       = "Static CloudFront Distribution"

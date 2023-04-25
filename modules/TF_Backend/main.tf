@@ -50,9 +50,8 @@ resource "aws_dynamodb_table" "terraform_backend" {
   point_in_time_recovery {
     enabled = true
   }
-
   server_side_encryption {
-    enabled = true // enabled server side encryption
+    enabled = true
   }
   attribute {
     name = "LockID" #To create a lock on the resource being modified.

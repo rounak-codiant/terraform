@@ -1,12 +1,4 @@
 # AWS Provider Key
-variable "aws_access_key" {
-  default = ""
-}
-
-variable "aws_secret_key" {
-  default = ""
-}
-
 variable "aws_profile_name" {
   default = ""
 }
@@ -618,10 +610,6 @@ variable "cdn_waf_acl_description" {
 ## Staic Webside
 variable "static_bucket_name" {
   default = "static-bucket-terraform-1"
-}
-
-variable "static_bucket_acceleration" {
-  default = "Suspended"
 }
 
 variable "static_bucket_versioning" {

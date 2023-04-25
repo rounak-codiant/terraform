@@ -2,7 +2,6 @@
 resource "aws_s3_bucket" "static_bucket" {
   bucket        = var.static_bucket_name
   force_destroy = true
-  # acceleration_status = var.static_bucket_acceleration
 
   tags = {
     Name        = "${var.static_bucket_name}"
