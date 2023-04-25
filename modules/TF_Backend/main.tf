@@ -1,5 +1,5 @@
 # Create the S3 bucket for storing Terraform state
-#tfsec:ignore:aws-s3-encryption-customer-key tfsec:ignore:aws-s3-enable-bucket-logging
+#tfsec:ignore:aws-s3-enable-bucket-logging
 resource "aws_s3_bucket" "terraform_backend_bucket" {
   bucket        = var.terraform_bucket_name
   force_destroy = true
@@ -22,6 +22,7 @@ resource "aws_s3_bucket_versioning" "private_bucket_versioning" {
   }
 }
 
+#tfsec:ignore:aws-s3-encryption-customer-key
 resource "aws_s3_bucket_server_side_encryption_configuration" "private_bucket_encryption" {
   bucket = aws_s3_bucket.terraform_backend_bucket.bucket
   rule {
@@ -50,12 +51,11 @@ resource "aws_dynamodb_table" "terraform_backend" {
     enabled = true
   }
 
+  server_side_encryption {
+    enabled = true // enabled server side encryption
+  }
   attribute {
     name = "LockID" #To create a lock on the resource being modified.
     type = "S"
   }
-  # attribute {
-  #   name = "Digest" #To detect whether the state has been modified by another user or process since the lock was acquired
-  #   type = "S"
-  # }
 }

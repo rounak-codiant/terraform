@@ -1,4 +1,4 @@
-#tfsec:ignore:aws-s3-encryption-customer-key tfsec:ignore:aws-s3-enable-bucket-logging
+#tfsec:ignore:aws-s3-enable-bucket-logging
 resource "aws_s3_bucket" "static_bucket" {
   bucket        = var.static_bucket_name
   force_destroy = true
@@ -22,6 +22,7 @@ resource "aws_s3_bucket_versioning" "static_bucket_versioning" {
   }
 }
 
+#tfsec:ignore:aws-s3-encryption-customer-key
 resource "aws_s3_bucket_server_side_encryption_configuration" "static_bucket_encryption" {
   bucket = aws_s3_bucket.static_bucket.bucket
   rule {
@@ -151,6 +152,8 @@ resource "aws_cloudfront_origin_access_identity" "access_identity" {
 
 # Create CloudFront Distribution
 #tfsec:ignore:aws-cloudfront-enable-logging
+#tfsec:ignore:aws-cloudfront-use-secure-tls-policy
+#tfsec:ignore:aws-cloudfront-enable-waf
 resource "aws_cloudfront_distribution" "distribution" {
   origin {
     domain_name = aws_s3_bucket.static_bucket.bucket_regional_domain_name

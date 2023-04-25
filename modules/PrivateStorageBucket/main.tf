@@ -4,7 +4,7 @@ provider "aws" {
   region  = var.private_replication_destination_region
 }
 
-#tfsec:ignore:aws-s3-encryption-customer-key tfsec:ignore:aws-s3-enable-bucket-logging
+#tfsec:ignore:aws-s3-enable-bucket-logging
 resource "aws_s3_bucket" "private_bucket" {
   bucket        = var.private_bucket_name
   force_destroy = true
@@ -28,6 +28,7 @@ resource "aws_s3_bucket_versioning" "private_bucket_versioning" {
   }
 }
 
+#tfsec:ignore:aws-s3-encryption-customer-key
 resource "aws_s3_bucket_server_side_encryption_configuration" "private_bucket_encryption" {
   bucket = aws_s3_bucket.private_bucket.bucket
   rule {
@@ -120,7 +121,7 @@ resource "aws_iam_role_policy_attachment" "replication" {
   policy_arn = aws_iam_policy.replication[count.index].arn
 }
 
-#tfsec:ignore:aws-s3-encryption-customer-key tfsec:ignore:aws-s3-enable-bucket-logging
+#tfsec:ignore:aws-s3-enable-bucket-logging
 resource "aws_s3_bucket" "destination" {
   count         = var.private_bucket_replication_option == "Enabled" ? 1 : 0
   provider      = aws.dest_region
@@ -144,6 +145,7 @@ resource "aws_s3_bucket_versioning" "destination" {
   }
 }
 
+#tfsec:ignore:aws-s3-encryption-customer-key
 resource "aws_s3_bucket_server_side_encryption_configuration" "destination_bucket_encryption" {
   count    = var.private_bucket_replication_option == "Enabled" ? 1 : 0
   provider = aws.dest_region

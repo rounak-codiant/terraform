@@ -1,4 +1,4 @@
-#tfsec:ignore:aws-s3-encryption-customer-key tfsec:ignore:aws-s3-enable-bucket-logging
+#tfsec:ignore:aws-s3-enable-bucket-logging
 resource "aws_s3_bucket" "codebuild_bucket" {
   bucket        = var.codebuild_bucket_name
   force_destroy = true
@@ -16,6 +16,7 @@ resource "aws_s3_bucket_versioning" "codebuild_bucket_versioning" {
   }
 }
 
+#tfsec:ignore:aws-s3-encryption-customer-key
 resource "aws_s3_bucket_server_side_encryption_configuration" "bucket_encryption" {
   bucket = aws_s3_bucket.codebuild_bucket.bucket
   rule {
