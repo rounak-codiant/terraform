@@ -59,7 +59,6 @@ module "application_server" {
 module "private_bucket" {
   source = "./modules/PrivateStorageBucket"
 
-  project_name                           = local.local_naming
   env_suffix                             = local.environment
   private_aws_profile_name               = var.aws_profile_name
   private_bucket_name                    = var.private_bucket_name
@@ -75,7 +74,6 @@ module "private_bucket" {
 module "public_bucket" {
   source = "./modules/PublicStorageBucket"
 
-  project_name                          = local.local_naming
   env_suffix                            = local.environment
   public_aws_profile_name               = var.aws_profile_name
   public_bucket_name                    = var.public_bucket_name
@@ -174,7 +172,6 @@ module "load_balancer" {
   lb_tg_health_check_matcher  = var.lb_tg_health_check_matcher
   lb_target_id                = module.application_server.web_instance_id
   lb_deletion_protection      = var.lb_deletion_protection
-  alb_bucket_name             = var.alb_bucket_name
   lb_listener_protocol        = var.lb_listener_protocol
   lb_listener_port            = var.lb_listener_port
   lb_name                     = var.lb_name

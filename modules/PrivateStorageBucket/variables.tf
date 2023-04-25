@@ -1,17 +1,31 @@
-variable "project_name" {}
+variable "env_suffix" {
+  description = "Define project environment"
+}
 
-variable "env_suffix" {}
+variable "private_aws_profile_name" {
+  description = "Name of the AWS profile"
+}
 
-variable "private_aws_profile_name" {}
+variable "private_bucket_name" {
+  description = "Name of the private bucket"
+}
 
-variable "private_bucket_name" {}
+variable "private_bucket_versioning" {
+  description = "Private bucket versioning option"
+}
 
-variable "private_bucket_versioning" {}
+variable "private_bucket_acceleration" {
+  description = "Private bucket acceleration option"
+}
 
-variable "private_bucket_acceleration" {}
+variable "private_destination_bucket_name" {
+  description = "Private bucket replica bucket name"
+}
 
-variable "private_destination_bucket_name" {}
+variable "private_bucket_replication_option" {
+  description = "Private bucket replica option"
+}
 
-variable "private_bucket_replication_option" {}
-
-variable "private_replication_destination_region" {}
+variable "private_replication_destination_region" {
+  description = "Private bucket replica bucket region"
+}

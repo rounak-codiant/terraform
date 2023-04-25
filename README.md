@@ -52,7 +52,6 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_alb_bucket_name"></a> [alb\_bucket\_name](#input\_alb\_bucket\_name) | S3 bucket name to store alb access logs | `string` | `"alb-bucket"` | no |
 | <a name="input_alb_bucket_versioning"></a> [alb\_bucket\_versioning](#input\_alb\_bucket\_versioning) | n/a | `string` | `"Enabled"` | no |
 | <a name="input_alb_idle_timeout"></a> [alb\_idle\_timeout](#input\_alb\_idle\_timeout) | n/a | `string` | `"120"` | no |
 | <a name="input_alb_log_prefix"></a> [alb\_log\_prefix](#input\_alb\_log\_prefix) | n/a | `string` | `"ALB"` | no |
@@ -63,10 +62,8 @@ No resources.
 | <a name="input_allow_major_version_upgrade"></a> [allow\_major\_version\_upgrade](#input\_allow\_major\_version\_upgrade) | n/a | `string` | `"false"` | no |
 | <a name="input_ami_name"></a> [ami\_name](#input\_ami\_name) | n/a | `string` | `"ubuntu/images/hvm-ssd/ubuntu-jammy-*arm64"` | no |
 | <a name="input_automatic_failover_enabled"></a> [automatic\_failover\_enabled](#input\_automatic\_failover\_enabled) | n/a | `string` | `"false"` | no |
-| <a name="input_aws_access_key"></a> [aws\_access\_key](#input\_aws\_access\_key) | AWS Provider Key | `string` | `""` | no |
-| <a name="input_aws_profile_name"></a> [aws\_profile\_name](#input\_aws\_profile\_name) | n/a | `string` | `""` | no |
+| <a name="input_aws_profile_name"></a> [aws\_profile\_name](#input\_aws\_profile\_name) | AWS Provider Key | `string` | `""` | no |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | n/a | `string` | `"us-east-1"` | no |
-| <a name="input_aws_secret_key"></a> [aws\_secret\_key](#input\_aws\_secret\_key) | n/a | `string` | `""` | no |
 | <a name="input_build_timeout"></a> [build\_timeout](#input\_build\_timeout) | n/a | `string` | `"15"` | no |
 | <a name="input_cachedb_description"></a> [cachedb\_description](#input\_cachedb\_description) | n/a | `string` | `"Redis Database"` | no |
 | <a name="input_cachedb_engine"></a> [cachedb\_engine](#input\_cachedb\_engine) | n/a | `string` | `"redis"` | no |

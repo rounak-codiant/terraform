@@ -40,22 +40,21 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_env_suffix"></a> [env\_suffix](#input\_env\_suffix) | n/a | `any` | n/a | yes |
-| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | n/a | `any` | n/a | yes |
-| <a name="input_public_aws_profile_name"></a> [public\_aws\_profile\_name](#input\_public\_aws\_profile\_name) | n/a | `any` | n/a | yes |
-| <a name="input_public_bucket_acceleration"></a> [public\_bucket\_acceleration](#input\_public\_bucket\_acceleration) | n/a | `any` | n/a | yes |
-| <a name="input_public_bucket_name"></a> [public\_bucket\_name](#input\_public\_bucket\_name) | n/a | `any` | n/a | yes |
-| <a name="input_public_bucket_replication_option"></a> [public\_bucket\_replication\_option](#input\_public\_bucket\_replication\_option) | n/a | `any` | n/a | yes |
-| <a name="input_public_bucket_versioning"></a> [public\_bucket\_versioning](#input\_public\_bucket\_versioning) | n/a | `any` | n/a | yes |
-| <a name="input_public_destination_bucket_name"></a> [public\_destination\_bucket\_name](#input\_public\_destination\_bucket\_name) | n/a | `any` | n/a | yes |
-| <a name="input_public_replication_destination_region"></a> [public\_replication\_destination\_region](#input\_public\_replication\_destination\_region) | n/a | `any` | n/a | yes |
+| <a name="input_env_suffix"></a> [env\_suffix](#input\_env\_suffix) | Define project environment | `any` | n/a | yes |
+| <a name="input_public_aws_profile_name"></a> [public\_aws\_profile\_name](#input\_public\_aws\_profile\_name) | Name of the AWS profile | `any` | n/a | yes |
+| <a name="input_public_bucket_acceleration"></a> [public\_bucket\_acceleration](#input\_public\_bucket\_acceleration) | Public bucket acceleration option | `any` | n/a | yes |
+| <a name="input_public_bucket_name"></a> [public\_bucket\_name](#input\_public\_bucket\_name) | Name of the public bucket | `any` | n/a | yes |
+| <a name="input_public_bucket_replication_option"></a> [public\_bucket\_replication\_option](#input\_public\_bucket\_replication\_option) | Public bucket replica option | `any` | n/a | yes |
+| <a name="input_public_bucket_versioning"></a> [public\_bucket\_versioning](#input\_public\_bucket\_versioning) | Public bucket versioning option | `any` | n/a | yes |
+| <a name="input_public_destination_bucket_name"></a> [public\_destination\_bucket\_name](#input\_public\_destination\_bucket\_name) | Public bucket replica bucket name | `any` | n/a | yes |
+| <a name="input_public_replication_destination_region"></a> [public\_replication\_destination\_region](#input\_public\_replication\_destination\_region) | Public bucket replica bucket region | `any` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_public_bucket_arn"></a> [public\_bucket\_arn](#output\_public\_bucket\_arn) | n/a |
-| <a name="output_public_bucket_domain_name"></a> [public\_bucket\_domain\_name](#output\_public\_bucket\_domain\_name) | n/a |
+| <a name="output_public_bucket_arn"></a> [public\_bucket\_arn](#output\_public\_bucket\_arn) | Public Bucket ARN |
+| <a name="output_public_bucket_domain_name"></a> [public\_bucket\_domain\_name](#output\_public\_bucket\_domain\_name) | Public Bucket endpoint url |
 | <a name="output_public_bucket_name"></a> [public\_bucket\_name](#output\_public\_bucket\_name) | Public Bucket Name |
 | <a name="output_public_bucket_region"></a> [public\_bucket\_region](#output\_public\_bucket\_region) | Public Bucket Region |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

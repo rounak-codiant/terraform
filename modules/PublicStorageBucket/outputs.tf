@@ -9,9 +9,11 @@ output "public_bucket_region" {
 }
 
 output "public_bucket_arn" {
-  value = aws_s3_bucket.public_bucket.arn
+  description = "Public Bucket ARN"
+  value       = aws_s3_bucket.public_bucket.arn
 }
 
 output "public_bucket_domain_name" {
-  value = aws_s3_bucket.public_bucket.bucket_regional_domain_name
+  description = "Public Bucket endpoint url"
+  value       = aws_s3_bucket.public_bucket.bucket_regional_domain_name
 }

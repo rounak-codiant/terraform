@@ -9,9 +9,11 @@ output "private_bucket_region" {
 }
 
 output "private_bucket_arn" {
-  value = aws_s3_bucket.private_bucket.arn
+  description = "Private Bucket ARN"
+  value       = aws_s3_bucket.private_bucket.arn
 }
 
 output "private_bucket_domain_name" {
-  value = aws_s3_bucket.private_bucket.bucket_regional_domain_name
+  description = "Private Bucket endpoint url"
+  value       = aws_s3_bucket.private_bucket.bucket_regional_domain_name
 }

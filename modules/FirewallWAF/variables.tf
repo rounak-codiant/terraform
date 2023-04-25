@@ -1,7 +1,17 @@
-variable "env_suffix" {}
+variable "env_suffix" {
+  description = "Define project environment"
+}
 
-variable "waf_acl_name" {}
+variable "waf_acl_name" {
+  description = "Name of the waf acl"
+}
 
-variable "waf_acl_description" {}
+variable "waf_acl_description" {
+  description = "wad acl description"
+}
 
-variable "waf_acl_scope" {}
+variable "waf_acl_scope" {
+  description = "waf acl scope (REGIONAL/CLOUDFRONT)"
+  # REGIONAL: For ALB
+  # CLOUDFRONT: For ClodFront distribution
+}

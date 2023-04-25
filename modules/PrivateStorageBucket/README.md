@@ -40,22 +40,21 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_env_suffix"></a> [env\_suffix](#input\_env\_suffix) | n/a | `any` | n/a | yes |
-| <a name="input_private_aws_profile_name"></a> [private\_aws\_profile\_name](#input\_private\_aws\_profile\_name) | n/a | `any` | n/a | yes |
-| <a name="input_private_bucket_acceleration"></a> [private\_bucket\_acceleration](#input\_private\_bucket\_acceleration) | n/a | `any` | n/a | yes |
-| <a name="input_private_bucket_name"></a> [private\_bucket\_name](#input\_private\_bucket\_name) | n/a | `any` | n/a | yes |
-| <a name="input_private_bucket_replication_option"></a> [private\_bucket\_replication\_option](#input\_private\_bucket\_replication\_option) | n/a | `any` | n/a | yes |
-| <a name="input_private_bucket_versioning"></a> [private\_bucket\_versioning](#input\_private\_bucket\_versioning) | n/a | `any` | n/a | yes |
-| <a name="input_private_destination_bucket_name"></a> [private\_destination\_bucket\_name](#input\_private\_destination\_bucket\_name) | n/a | `any` | n/a | yes |
-| <a name="input_private_replication_destination_region"></a> [private\_replication\_destination\_region](#input\_private\_replication\_destination\_region) | n/a | `any` | n/a | yes |
-| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | n/a | `any` | n/a | yes |
+| <a name="input_env_suffix"></a> [env\_suffix](#input\_env\_suffix) | Define project environment | `any` | n/a | yes |
+| <a name="input_private_aws_profile_name"></a> [private\_aws\_profile\_name](#input\_private\_aws\_profile\_name) | Name of the AWS profile | `any` | n/a | yes |
+| <a name="input_private_bucket_acceleration"></a> [private\_bucket\_acceleration](#input\_private\_bucket\_acceleration) | Private bucket acceleration option | `any` | n/a | yes |
+| <a name="input_private_bucket_name"></a> [private\_bucket\_name](#input\_private\_bucket\_name) | Name of the private bucket | `any` | n/a | yes |
+| <a name="input_private_bucket_replication_option"></a> [private\_bucket\_replication\_option](#input\_private\_bucket\_replication\_option) | Private bucket replica option | `any` | n/a | yes |
+| <a name="input_private_bucket_versioning"></a> [private\_bucket\_versioning](#input\_private\_bucket\_versioning) | Private bucket versioning option | `any` | n/a | yes |
+| <a name="input_private_destination_bucket_name"></a> [private\_destination\_bucket\_name](#input\_private\_destination\_bucket\_name) | Private bucket replica bucket name | `any` | n/a | yes |
+| <a name="input_private_replication_destination_region"></a> [private\_replication\_destination\_region](#input\_private\_replication\_destination\_region) | Private bucket replica bucket region | `any` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_private_bucket_arn"></a> [private\_bucket\_arn](#output\_private\_bucket\_arn) | n/a |
-| <a name="output_private_bucket_domain_name"></a> [private\_bucket\_domain\_name](#output\_private\_bucket\_domain\_name) | n/a |
+| <a name="output_private_bucket_arn"></a> [private\_bucket\_arn](#output\_private\_bucket\_arn) | Private Bucket ARN |
+| <a name="output_private_bucket_domain_name"></a> [private\_bucket\_domain\_name](#output\_private\_bucket\_domain\_name) | Private Bucket endpoint url |
 | <a name="output_private_bucket_name"></a> [private\_bucket\_name](#output\_private\_bucket\_name) | private Bucket Name |
 | <a name="output_private_bucket_region"></a> [private\_bucket\_region](#output\_private\_bucket\_region) | private Bucket Region |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

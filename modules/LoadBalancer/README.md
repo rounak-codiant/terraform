@@ -38,36 +38,35 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_alb_bucket_name"></a> [alb\_bucket\_name](#input\_alb\_bucket\_name) | n/a | `any` | n/a | yes |
-| <a name="input_alb_bucket_versioning"></a> [alb\_bucket\_versioning](#input\_alb\_bucket\_versioning) | n/a | `any` | n/a | yes |
-| <a name="input_alb_idle_timeout"></a> [alb\_idle\_timeout](#input\_alb\_idle\_timeout) | n/a | `any` | n/a | yes |
-| <a name="input_alb_log_prefix"></a> [alb\_log\_prefix](#input\_alb\_log\_prefix) | n/a | `any` | n/a | yes |
-| <a name="input_alb_logs_bucket_name"></a> [alb\_logs\_bucket\_name](#input\_alb\_logs\_bucket\_name) | n/a | `any` | n/a | yes |
-| <a name="input_alb_logs_enable"></a> [alb\_logs\_enable](#input\_alb\_logs\_enable) | n/a | `any` | n/a | yes |
-| <a name="input_alb_vpc_id"></a> [alb\_vpc\_id](#input\_alb\_vpc\_id) | n/a | `any` | n/a | yes |
-| <a name="input_env_suffix"></a> [env\_suffix](#input\_env\_suffix) | n/a | `string` | `"dev"` | no |
-| <a name="input_lb_deletion_protection"></a> [lb\_deletion\_protection](#input\_lb\_deletion\_protection) | n/a | `any` | n/a | yes |
-| <a name="input_lb_internal"></a> [lb\_internal](#input\_lb\_internal) | n/a | `any` | n/a | yes |
-| <a name="input_lb_listener_port"></a> [lb\_listener\_port](#input\_lb\_listener\_port) | n/a | `any` | n/a | yes |
-| <a name="input_lb_listener_protocol"></a> [lb\_listener\_protocol](#input\_lb\_listener\_protocol) | Load Balancer Listener | `any` | n/a | yes |
-| <a name="input_lb_name"></a> [lb\_name](#input\_lb\_name) | Load Balancer | `any` | n/a | yes |
-| <a name="input_lb_subnets"></a> [lb\_subnets](#input\_lb\_subnets) | n/a | `any` | n/a | yes |
-| <a name="input_lb_target_id"></a> [lb\_target\_id](#input\_lb\_target\_id) | Register Instance to Target Group | `any` | n/a | yes |
-| <a name="input_lb_tg_health_check_matcher"></a> [lb\_tg\_health\_check\_matcher](#input\_lb\_tg\_health\_check\_matcher) | n/a | `any` | n/a | yes |
-| <a name="input_lb_tg_health_check_path"></a> [lb\_tg\_health\_check\_path](#input\_lb\_tg\_health\_check\_path) | Health Check | `any` | n/a | yes |
-| <a name="input_lb_tg_health_check_port"></a> [lb\_tg\_health\_check\_port](#input\_lb\_tg\_health\_check\_port) | n/a | `any` | n/a | yes |
-| <a name="input_lb_tg_health_check_protocol"></a> [lb\_tg\_health\_check\_protocol](#input\_lb\_tg\_health\_check\_protocol) | n/a | `any` | n/a | yes |
-| <a name="input_lb_type"></a> [lb\_type](#input\_lb\_type) | n/a | `any` | n/a | yes |
-| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | n/a | `string` | `"TerraformProject"` | no |
-| <a name="input_tg_name"></a> [tg\_name](#input\_tg\_name) | Target Group | `any` | n/a | yes |
-| <a name="input_tg_port"></a> [tg\_port](#input\_tg\_port) | n/a | `any` | n/a | yes |
-| <a name="input_tg_protocol"></a> [tg\_protocol](#input\_tg\_protocol) | n/a | `any` | n/a | yes |
-| <a name="input_tg_target_type"></a> [tg\_target\_type](#input\_tg\_target\_type) | n/a | `any` | n/a | yes |
+| <a name="input_alb_bucket_versioning"></a> [alb\_bucket\_versioning](#input\_alb\_bucket\_versioning) | Load lalancer bucket versioning option | `any` | n/a | yes |
+| <a name="input_alb_idle_timeout"></a> [alb\_idle\_timeout](#input\_alb\_idle\_timeout) | Load balancer default idle timeout | `any` | n/a | yes |
+| <a name="input_alb_log_prefix"></a> [alb\_log\_prefix](#input\_alb\_log\_prefix) | Load balancer logs prefix | `any` | n/a | yes |
+| <a name="input_alb_logs_bucket_name"></a> [alb\_logs\_bucket\_name](#input\_alb\_logs\_bucket\_name) | S3 bucket name for log store | `any` | n/a | yes |
+| <a name="input_alb_logs_enable"></a> [alb\_logs\_enable](#input\_alb\_logs\_enable) | Load balancer access logs option | `any` | n/a | yes |
+| <a name="input_alb_vpc_id"></a> [alb\_vpc\_id](#input\_alb\_vpc\_id) | VPC id for load balancer | `any` | n/a | yes |
+| <a name="input_env_suffix"></a> [env\_suffix](#input\_env\_suffix) | Define project environment | `any` | n/a | yes |
+| <a name="input_lb_deletion_protection"></a> [lb\_deletion\_protection](#input\_lb\_deletion\_protection) | Load balancer delete protection option | `any` | n/a | yes |
+| <a name="input_lb_internal"></a> [lb\_internal](#input\_lb\_internal) | Load balancer internal option | `any` | n/a | yes |
+| <a name="input_lb_listener_port"></a> [lb\_listener\_port](#input\_lb\_listener\_port) | Load balancer listener default port | `any` | n/a | yes |
+| <a name="input_lb_listener_protocol"></a> [lb\_listener\_protocol](#input\_lb\_listener\_protocol) | Load balancer listener default protocol | `any` | n/a | yes |
+| <a name="input_lb_name"></a> [lb\_name](#input\_lb\_name) | Name of the load balancer | `any` | n/a | yes |
+| <a name="input_lb_subnets"></a> [lb\_subnets](#input\_lb\_subnets) | Public subets id for load balancer | `any` | n/a | yes |
+| <a name="input_lb_target_id"></a> [lb\_target\_id](#input\_lb\_target\_id) | EC2 instance id to attach it with targer group | `any` | n/a | yes |
+| <a name="input_lb_tg_health_check_matcher"></a> [lb\_tg\_health\_check\_matcher](#input\_lb\_tg\_health\_check\_matcher) | HTTP codes to use when checking for a successful response from a target | `any` | n/a | yes |
+| <a name="input_lb_tg_health_check_path"></a> [lb\_tg\_health\_check\_path](#input\_lb\_tg\_health\_check\_path) | Default health check path | `any` | n/a | yes |
+| <a name="input_lb_tg_health_check_port"></a> [lb\_tg\_health\_check\_port](#input\_lb\_tg\_health\_check\_port) | Default health check port | `any` | n/a | yes |
+| <a name="input_lb_tg_health_check_protocol"></a> [lb\_tg\_health\_check\_protocol](#input\_lb\_tg\_health\_check\_protocol) | Load balancer health check protocol | `any` | n/a | yes |
+| <a name="input_lb_type"></a> [lb\_type](#input\_lb\_type) | Load balancer type | `any` | n/a | yes |
+| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Define project name | `any` | n/a | yes |
+| <a name="input_tg_name"></a> [tg\_name](#input\_tg\_name) | Name of the target group | `any` | n/a | yes |
+| <a name="input_tg_port"></a> [tg\_port](#input\_tg\_port) | Target group port | `any` | n/a | yes |
+| <a name="input_tg_protocol"></a> [tg\_protocol](#input\_tg\_protocol) | Target group protocol (HTTP/HTTPS) | `any` | n/a | yes |
+| <a name="input_tg_target_type"></a> [tg\_target\_type](#input\_tg\_target\_type) | Target group target type | `any` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_alb_id"></a> [alb\_id](#output\_alb\_id) | n/a |
-| <a name="output_target_group_arn"></a> [target\_group\_arn](#output\_target\_group\_arn) | n/a |
+| <a name="output_alb_id"></a> [alb\_id](#output\_alb\_id) | Load balancer ID |
+| <a name="output_target_group_arn"></a> [target\_group\_arn](#output\_target\_group\_arn) | Load balancer ARN |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
