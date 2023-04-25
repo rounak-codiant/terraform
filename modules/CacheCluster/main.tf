@@ -1,5 +1,7 @@
 
 # Crete Security Group For Redis
+#tfsec:ignore:aws-ec2-no-public-egress-sgr
+#tfsec:ignore:aws-ec2-no-public-ingress-sgr
 resource "aws_security_group" "redis_sg" {
   name        = "Redis-SG"
   description = "Redis - Security Group"

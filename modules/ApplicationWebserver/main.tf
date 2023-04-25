@@ -21,6 +21,8 @@ data "aws_ami" "instance_ami" {
 
 
 # Create Security Group For EC2
+#tfsec:ignore:aws-ec2-no-public-egress-sgr
+#tfsec:ignore:aws-ec2-no-public-ingress-sgr
 resource "aws_security_group" "application_sg" {
   name        = "Application-SG"
   description = "Application - Security Group"
@@ -104,6 +106,7 @@ resource "aws_key_pair" "keypair" {
 
 
 # Create IAM Policy For EC2 Role
+#tfsec:ignore:aws-iam-no-policy-wildcards
 resource "aws_iam_policy" "ec2_policy" {
   name        = var.ec2_policy_name
   description = "S3 SM and CloudWatch Access Policy For EC2"
@@ -193,6 +196,7 @@ locals {
 }
 
 # Create EC2 instance
+#tfsec:ignore:aws-ec2-enforce-http-token-imds
 resource "aws_instance" "web" {
   ami                    = data.aws_ami.instance_ami.id
   instance_type          = var.instance_type

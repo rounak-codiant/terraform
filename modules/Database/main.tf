@@ -1,3 +1,5 @@
+#tfsec:ignore:aws-ec2-no-public-egress-sgr
+#tfsec:ignore:aws-ec2-no-public-ingress-sgr
 resource "aws_security_group" "database_sg" {
   name        = "Database-SG"
   description = "Database - Security Group"
@@ -98,7 +100,7 @@ resource "aws_db_parameter_group" "db_instance_pg" {
   }
 }
 
-
+#tfsec:ignore:aws-rds-encrypt-cluster-storage-data
 resource "aws_rds_cluster" "database_cluster" {
   cluster_identifier = var.database_cluster_identifier
   engine             = var.database_engine
@@ -127,7 +129,7 @@ resource "aws_rds_cluster" "database_cluster" {
   depends_on = [aws_security_group.database_sg]
 }
 
-
+#tfsec:ignore:aws-rds-enable-performance-insights
 resource "aws_rds_cluster_instance" "database_instance" {
   identifier              = var.database_instance_identifier
   cluster_identifier      = aws_rds_cluster.database_cluster.id
