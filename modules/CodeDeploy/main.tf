@@ -3,7 +3,7 @@ resource "aws_codedeploy_app" "main" {
   name = var.codedeploy_app_name
   tags = {
     Name        = "${var.project_name}-CodeDeploy-App"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -78,6 +78,6 @@ resource "aws_codedeploy_deployment_group" "main" {
   }
   tags = {
     Name        = "${var.project_name}-Deployment-Group"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }

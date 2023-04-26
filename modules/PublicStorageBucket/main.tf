@@ -11,8 +11,8 @@ resource "aws_s3_bucket" "public_bucket" {
   # acceleration_status = var.public_bucket_acceleration
 
   tags = {
-    Name        = "${var.public_bucket_name}"
-    Environment = "${var.env_suffix}"
+    Name        = var.public_bucket_name
+    Environment = var.env_suffix
   }
 }
 

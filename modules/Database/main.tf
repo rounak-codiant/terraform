@@ -24,7 +24,7 @@ resource "aws_security_group" "database_sg" {
 
   tags_all = {
     Name        = "${var.project_name}-Database-SG"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -35,7 +35,7 @@ resource "aws_db_subnet_group" "subnet_group" {
 
   tags_all = {
     Name        = "${var.project_name}-Database-Subnet-Group"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -66,7 +66,7 @@ resource "aws_rds_cluster_parameter_group" "cluster_pg" {
 
   tags_all = {
     Name        = "${var.project_name}-Cluster-Parameter-Group"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -96,7 +96,7 @@ resource "aws_db_parameter_group" "db_instance_pg" {
   }
   tags_all = {
     Name        = "${var.project_name}-Instance-Parameter-Group"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -124,7 +124,7 @@ resource "aws_rds_cluster" "database_cluster" {
 
   tags = {
     Name        = "${var.project_name}-db-cluster"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
   depends_on = [aws_security_group.database_sg]
 }
@@ -145,7 +145,7 @@ resource "aws_rds_cluster_instance" "database_instance" {
 
   tags = {
     Name        = "${var.project_name}-db-instance"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
   depends_on = [aws_rds_cluster.database_cluster]
 }

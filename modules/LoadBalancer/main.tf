@@ -64,7 +64,7 @@ resource "aws_alb_target_group" "application_tg" {
   }
   tags_all = {
     Name        = "${var.project_name}-TG"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -89,8 +89,8 @@ resource "aws_s3_bucket" "elb_logs" {
   force_destroy = true
 
   tags = {
-    Name        = "${var.alb_logs_bucket_name}"
-    Environment = "${var.env_suffix}"
+    Name        = var.alb_logs_bucket_name
+    Environment = var.env_suffix
   }
 }
 
@@ -162,8 +162,8 @@ resource "aws_lb" "application_lb" {
   }
 
   tags_all = {
-    Name        = "${var.project_name}"
-    Environment = "${var.env_suffix}"
+    Name        = var.project_name
+    Environment = var.env_suffix
   }
 }
 

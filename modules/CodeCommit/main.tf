@@ -5,7 +5,7 @@ resource "aws_codecommit_repository" "repo" {
   default_branch  = var.repo_default_branch
   tags = {
     Name        = "${var.project_name}-repo"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 

@@ -80,7 +80,7 @@ resource "aws_security_group" "application_sg" {
 resource "aws_eip" "application_eip" {
   tags = {
     Name        = "${var.project_name}-EIP"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -100,7 +100,7 @@ resource "aws_key_pair" "keypair" {
   }
   tags = {
     Name        = "${var.project_name}-Key"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -145,7 +145,7 @@ resource "aws_iam_policy" "ec2_policy" {
 EOF
   tags = {
     Name        = "${var.project_name}-EC2-Policy"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -169,7 +169,7 @@ resource "aws_iam_role" "ec2_s3_sm_access_role" {
   })
   tags = {
     Name        = "${var.project_name}-EC2-Role"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -238,7 +238,7 @@ resource "aws_instance" "web" {
   }
   tags = {
     Name        = "${var.project_name}-${var.env_suffix}"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 
   depends_on = [

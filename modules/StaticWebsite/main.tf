@@ -4,8 +4,8 @@ resource "aws_s3_bucket" "static_bucket" {
   force_destroy = true
 
   tags = {
-    Name        = "${var.static_bucket_name}"
-    Environment = "${var.env_suffix}"
+    Name        = var.static_bucket_name
+    Environment = var.env_suffix
   }
 }
 

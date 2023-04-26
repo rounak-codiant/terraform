@@ -26,7 +26,7 @@ resource "aws_security_group" "redis_sg" {
 
   tags_all = {
     Name        = "${var.project_name}-Redis-SG"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -38,7 +38,7 @@ resource "aws_elasticache_subnet_group" "subnet_group" {
 
   tags = {
     Name        = "${var.project_name}-Redis"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -77,7 +77,7 @@ resource "aws_elasticache_replication_group" "redis" {
 
   tags = {
     Name        = "${var.project_name}-Redis"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
   depends_on = [
     aws_elasticache_user_group.redis_user_group,
