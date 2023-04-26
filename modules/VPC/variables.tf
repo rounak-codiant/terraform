@@ -13,13 +13,13 @@ variable "enable_dns_hostnames" {
 }
 
 variable "vpc_cidr_block" {
-  description = "Main VPC CIDR Block"
+  description = "To define vpc CIDR block"
 }
 
 variable "project_name" {
-  default = "TerraformProject"
+  description = "To define project name"
 }
 
 variable "env_suffix" {
-  default = "test"
+  description = "To define project environment"
 }

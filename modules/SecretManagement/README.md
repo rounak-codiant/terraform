@@ -28,36 +28,36 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_env_suffix"></a> [env\_suffix](#input\_env\_suffix) | n/a | `any` | n/a | yes |
-| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | n/a | `any` | n/a | yes |
-| <a name="input_secretmanager_name"></a> [secretmanager\_name](#input\_secretmanager\_name) | n/a | `any` | n/a | yes |
-| <a name="input_sm_aws_region"></a> [sm\_aws\_region](#input\_sm\_aws\_region) | n/a | `any` | n/a | yes |
-| <a name="input_sm_bucket_name"></a> [sm\_bucket\_name](#input\_sm\_bucket\_name) | n/a | `any` | n/a | yes |
-| <a name="input_sm_db_connection"></a> [sm\_db\_connection](#input\_sm\_db\_connection) | Database Keys | `any` | n/a | yes |
-| <a name="input_sm_db_host"></a> [sm\_db\_host](#input\_sm\_db\_host) | n/a | `any` | n/a | yes |
-| <a name="input_sm_db_name"></a> [sm\_db\_name](#input\_sm\_db\_name) | n/a | `any` | n/a | yes |
-| <a name="input_sm_db_password"></a> [sm\_db\_password](#input\_sm\_db\_password) | n/a | `any` | n/a | yes |
-| <a name="input_sm_db_port"></a> [sm\_db\_port](#input\_sm\_db\_port) | n/a | `any` | n/a | yes |
-| <a name="input_sm_db_read_host"></a> [sm\_db\_read\_host](#input\_sm\_db\_read\_host) | n/a | `any` | n/a | yes |
-| <a name="input_sm_db_user"></a> [sm\_db\_user](#input\_sm\_db\_user) | n/a | `any` | n/a | yes |
-| <a name="input_sm_mail_driver"></a> [sm\_mail\_driver](#input\_sm\_mail\_driver) | SMTP Keys | `any` | n/a | yes |
-| <a name="input_sm_mail_encryption"></a> [sm\_mail\_encryption](#input\_sm\_mail\_encryption) | n/a | `any` | n/a | yes |
-| <a name="input_sm_mail_from_address"></a> [sm\_mail\_from\_address](#input\_sm\_mail\_from\_address) | n/a | `any` | n/a | yes |
-| <a name="input_sm_mail_from_name"></a> [sm\_mail\_from\_name](#input\_sm\_mail\_from\_name) | n/a | `any` | n/a | yes |
-| <a name="input_sm_mail_host"></a> [sm\_mail\_host](#input\_sm\_mail\_host) | n/a | `any` | n/a | yes |
-| <a name="input_sm_mail_password"></a> [sm\_mail\_password](#input\_sm\_mail\_password) | n/a | `any` | n/a | yes |
-| <a name="input_sm_mail_port"></a> [sm\_mail\_port](#input\_sm\_mail\_port) | n/a | `any` | n/a | yes |
-| <a name="input_sm_mail_user"></a> [sm\_mail\_user](#input\_sm\_mail\_user) | n/a | `any` | n/a | yes |
-| <a name="input_sm_private_bucket"></a> [sm\_private\_bucket](#input\_sm\_private\_bucket) | n/a | `any` | n/a | yes |
-| <a name="input_sm_public_bucket"></a> [sm\_public\_bucket](#input\_sm\_public\_bucket) | AWS Keys | `any` | n/a | yes |
-| <a name="input_sm_redis_host"></a> [sm\_redis\_host](#input\_sm\_redis\_host) | Redis DB Keys | `any` | n/a | yes |
-| <a name="input_sm_redis_password"></a> [sm\_redis\_password](#input\_sm\_redis\_password) | n/a | `any` | n/a | yes |
-| <a name="input_sm_redis_port"></a> [sm\_redis\_port](#input\_sm\_redis\_port) | n/a | `any` | n/a | yes |
-| <a name="input_sm_redis_user"></a> [sm\_redis\_user](#input\_sm\_redis\_user) | n/a | `any` | n/a | yes |
+| <a name="input_env_suffix"></a> [env\_suffix](#input\_env\_suffix) | Define project environment | `any` | n/a | yes |
+| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Define project name | `any` | n/a | yes |
+| <a name="input_secretmanager_name"></a> [secretmanager\_name](#input\_secretmanager\_name) | Define secret manager name | `any` | n/a | yes |
+| <a name="input_sm_aws_region"></a> [sm\_aws\_region](#input\_sm\_aws\_region) | Name of the aws region | `any` | n/a | yes |
+| <a name="input_sm_bucket_name"></a> [sm\_bucket\_name](#input\_sm\_bucket\_name) | Name of the public/primary bucket | `any` | n/a | yes |
+| <a name="input_sm_db_connection"></a> [sm\_db\_connection](#input\_sm\_db\_connection) | Database connection name | `any` | n/a | yes |
+| <a name="input_sm_db_host"></a> [sm\_db\_host](#input\_sm\_db\_host) | Database writer endpoint | `any` | n/a | yes |
+| <a name="input_sm_db_name"></a> [sm\_db\_name](#input\_sm\_db\_name) | Database name | `any` | n/a | yes |
+| <a name="input_sm_db_password"></a> [sm\_db\_password](#input\_sm\_db\_password) | Database password | `any` | n/a | yes |
+| <a name="input_sm_db_port"></a> [sm\_db\_port](#input\_sm\_db\_port) | Database port | `any` | n/a | yes |
+| <a name="input_sm_db_read_host"></a> [sm\_db\_read\_host](#input\_sm\_db\_read\_host) | Database reader endpoint | `any` | n/a | yes |
+| <a name="input_sm_db_user"></a> [sm\_db\_user](#input\_sm\_db\_user) | Database user name | `any` | n/a | yes |
+| <a name="input_sm_mail_driver"></a> [sm\_mail\_driver](#input\_sm\_mail\_driver) | Mail driver | `any` | n/a | yes |
+| <a name="input_sm_mail_encryption"></a> [sm\_mail\_encryption](#input\_sm\_mail\_encryption) | Mail server encryption option | `any` | n/a | yes |
+| <a name="input_sm_mail_from_address"></a> [sm\_mail\_from\_address](#input\_sm\_mail\_from\_address) | Mail address to send mail from | `any` | n/a | yes |
+| <a name="input_sm_mail_from_name"></a> [sm\_mail\_from\_name](#input\_sm\_mail\_from\_name) | Mail name to send mail from | `any` | n/a | yes |
+| <a name="input_sm_mail_host"></a> [sm\_mail\_host](#input\_sm\_mail\_host) | Mail server host | `any` | n/a | yes |
+| <a name="input_sm_mail_password"></a> [sm\_mail\_password](#input\_sm\_mail\_password) | Mail server password | `any` | n/a | yes |
+| <a name="input_sm_mail_port"></a> [sm\_mail\_port](#input\_sm\_mail\_port) | Mail server port | `any` | n/a | yes |
+| <a name="input_sm_mail_user"></a> [sm\_mail\_user](#input\_sm\_mail\_user) | Mail server user name | `any` | n/a | yes |
+| <a name="input_sm_private_bucket"></a> [sm\_private\_bucket](#input\_sm\_private\_bucket) | Name of the private bucket | `any` | n/a | yes |
+| <a name="input_sm_public_bucket"></a> [sm\_public\_bucket](#input\_sm\_public\_bucket) | Name of the public bucket | `any` | n/a | yes |
+| <a name="input_sm_redis_host"></a> [sm\_redis\_host](#input\_sm\_redis\_host) | Redis server host | `any` | n/a | yes |
+| <a name="input_sm_redis_password"></a> [sm\_redis\_password](#input\_sm\_redis\_password) | Redis server password | `any` | n/a | yes |
+| <a name="input_sm_redis_port"></a> [sm\_redis\_port](#input\_sm\_redis\_port) | Redis server port | `any` | n/a | yes |
+| <a name="input_sm_redis_user"></a> [sm\_redis\_user](#input\_sm\_redis\_user) | Redis server user name | `any` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_secret_manager_arn"></a> [secret\_manager\_arn](#output\_secret\_manager\_arn) | n/a |
+| <a name="output_secret_manager_arn"></a> [secret\_manager\_arn](#output\_secret\_manager\_arn) | Get the ARN of the secret manager |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

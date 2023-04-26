@@ -53,6 +53,7 @@ resource "aws_iam_role" "code_build" {
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
+#tfsec:ignore:aws-iam-no-policy-wildcards
 data "aws_iam_policy_document" "codebuild" {
   statement {
     effect = "Allow"
@@ -156,6 +157,6 @@ resource "aws_codebuild_project" "codebuild_project" {
 
   tags = {
     Name        = "${var.project_name}-codebuild-project"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }

@@ -31,4 +31,3 @@ sudo systemctl enable codedeploy-agent.service
 # Install Supervisor
 sudo apt-get install supervisor -y
 sudo systemctl enable supervisor
-sudo rm -rf *.sh

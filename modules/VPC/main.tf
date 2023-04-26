@@ -13,7 +13,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
   tags = {
     Name        = "${var.project_name}-IG"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -25,7 +25,7 @@ resource "aws_subnet" "public_subnet" {
   availability_zone = data.aws_availability_zones.available.names[count.index % length(var.public_cidr_block)]
   tags = {
     Name        = "${var.project_name}-Public-Subnet-${count.index}"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -37,7 +37,7 @@ resource "aws_subnet" "private_subnet" {
   availability_zone = data.aws_availability_zones.available.names[count.index % length(var.private_cidr_block)]
   tags = {
     Name        = "${var.project_name}-Private-Subnet-${count.index}"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -50,7 +50,7 @@ resource "aws_route_table" "public_route_table" {
   }
   tags = {
     Name        = "${var.project_name}-Public-RT"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -71,7 +71,7 @@ resource "aws_route_table" "private_route_table" {
   #   }
   tags = {
     Name        = "${var.project_name}-Private-RT"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -88,7 +88,7 @@ resource "aws_vpc" "vpc" {
   enable_dns_hostnames = var.enable_dns_hostnames
   tags = {
     Name        = "${var.project_name}-VPC"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -162,7 +162,7 @@ resource "aws_iam_role_policy" "vpc" {
 #   vpc = true
 #   tags = {
 #     Name        = "${var.project_name}-nat-eip"
-#     Environment = "${var.env_suffix}"
+#     Environment = var.env_suffix
 #   }
 # }
 
@@ -176,6 +176,6 @@ resource "aws_iam_role_policy" "vpc" {
 #   depends_on = [aws_internet_gateway.igw]
 #   tags = {
 #     Name        = "${var.project_name}-NAT"
-#     Environment = "${var.env_suffix}"
+#     Environment = var.env_suffix
 #   }
 # }

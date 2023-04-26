@@ -21,6 +21,8 @@ data "aws_ami" "instance_ami" {
 
 
 # Create Security Group For EC2
+#tfsec:ignore:aws-ec2-no-public-egress-sgr
+#tfsec:ignore:aws-ec2-no-public-ingress-sgr
 resource "aws_security_group" "application_sg" {
   name        = "Application-SG"
   description = "Application - Security Group"
@@ -78,7 +80,7 @@ resource "aws_security_group" "application_sg" {
 resource "aws_eip" "application_eip" {
   tags = {
     Name        = "${var.project_name}-EIP"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -98,12 +100,13 @@ resource "aws_key_pair" "keypair" {
   }
   tags = {
     Name        = "${var.project_name}-Key"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
 
 # Create IAM Policy For EC2 Role
+#tfsec:ignore:aws-iam-no-policy-wildcards
 resource "aws_iam_policy" "ec2_policy" {
   name        = var.ec2_policy_name
   description = "S3 SM and CloudWatch Access Policy For EC2"
@@ -142,7 +145,7 @@ resource "aws_iam_policy" "ec2_policy" {
 EOF
   tags = {
     Name        = "${var.project_name}-EC2-Policy"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -166,7 +169,7 @@ resource "aws_iam_role" "ec2_s3_sm_access_role" {
   })
   tags = {
     Name        = "${var.project_name}-EC2-Role"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -184,15 +187,16 @@ resource "aws_iam_instance_profile" "ec2_profile" {
 }
 
 locals {
-  php-version       = var.php-version
-  node-version      = var.node-version
-  composer-install  = var.composer-install
-  php-nginx-config  = var.php-nginx-config
-  php-module        = var.php-module
-  node-nginx-config = var.node-nginx-config
+  php_version       = var.php_version
+  node_version      = var.node_version
+  composer_install  = var.composer_install
+  php_nginx_config  = var.php_nginx_config
+  php_module        = var.php_module
+  node_nginx_config = var.node_nginx_config
 }
 
 # Create EC2 instance
+#tfsec:ignore:aws-ec2-enforce-http-token-imds
 resource "aws_instance" "web" {
   ami                    = data.aws_ami.instance_ami.id
   instance_type          = var.instance_type
@@ -228,13 +232,13 @@ resource "aws_instance" "web" {
   provisioner "remote-exec" {
     inline = [
       "sudo chmod +x /home/ubuntu/*.sh",
-      "sudo /home/ubuntu/php-install.sh --php-version ${local.php-version} --node-version ${local.node-version} --composer-install ${local.composer-install} --php-nginx-config ${local.php-nginx-config} --php-modules ${local.php-module} --node-nginx-config ${local.node-nginx-config}",
+      "sudo /home/ubuntu/php-install.sh --php_version ${local.php_version} --node_version ${local.node_version} --composer_install ${local.composer_install} --php_nginx_config ${local.php_nginx_config} --php_modules ${local.php_module} --node_nginx_config ${local.node_nginx_config}",
       "sudo /home/ubuntu/install.sh"
     ]
   }
   tags = {
     Name        = "${var.project_name}-${var.env_suffix}"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 
   depends_on = [

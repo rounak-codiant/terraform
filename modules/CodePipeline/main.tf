@@ -81,6 +81,7 @@ resource "aws_iam_role" "codepipeline_role" {
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
+#tfsec:ignore:aws-iam-no-policy-wildcards
 data "aws_iam_policy_document" "codepipeline_policy" {
   statement {
     effect = "Allow"

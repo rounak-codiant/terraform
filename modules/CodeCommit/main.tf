@@ -5,7 +5,7 @@ resource "aws_codecommit_repository" "repo" {
   default_branch  = var.repo_default_branch
   tags = {
     Name        = "${var.project_name}-repo"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -16,7 +16,7 @@ resource "aws_iam_user" "codecommit" {
 }
 
 ## Attach policy to user
-resource "aws_iam_user_policy_attachment" "policy-attach" {
+resource "aws_iam_user_policy_attachment" "policy_attach" {
   user       = aws_iam_user.codecommit.name
   policy_arn = "arn:aws:iam::aws:policy/AWSCodeCommitPowerUser"
 }

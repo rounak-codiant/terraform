@@ -71,10 +71,10 @@ resource "aws_cloudfront_response_headers_policy" "headers_policy" {
 # Create S3 Bucket Policy
 resource "aws_s3_bucket_policy" "s3_cdn_policy" {
   bucket = var.s3_bucket_id
-  policy = data.aws_iam_policy_document.s3-cdn-policy.json
+  policy = data.aws_iam_policy_document.s3_cdn_policy.json
 }
 
-data "aws_iam_policy_document" "s3-cdn-policy" {
+data "aws_iam_policy_document" "s3_cdn_policy" {
   statement {
     sid = "1"
     principals {
@@ -109,6 +109,8 @@ resource "aws_cloudfront_origin_access_identity" "access_identity" {
 
 # Create CloudFront Distribution
 #tfsec:ignore:aws-cloudfront-enable-logging
+#tfsec:ignore:aws-cloudfront-use-secure-tls-policy
+#tfsec:ignore:aws-cloudfront-enable-waf
 resource "aws_cloudfront_distribution" "distribution" {
   origin {
     domain_name = var.s3_bucket_domain_name

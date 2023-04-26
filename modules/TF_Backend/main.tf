@@ -5,8 +5,8 @@ resource "aws_s3_bucket" "terraform_backend_bucket" {
   force_destroy = true
 
   tags = {
-    Name        = "${var.terraform_bucket_name}"
-    Environment = "${var.env_suffix}"
+    Name        = var.terraform_bucket_name
+    Environment = var.env_suffix
   }
 }
 
@@ -50,9 +50,8 @@ resource "aws_dynamodb_table" "terraform_backend" {
   point_in_time_recovery {
     enabled = true
   }
-
   server_side_encryption {
-    enabled = true // enabled server side encryption
+    enabled = true
   }
   attribute {
     name = "LockID" #To create a lock on the resource being modified.

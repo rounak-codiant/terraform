@@ -8,8 +8,8 @@ resource "aws_wafv2_web_acl" "web_acl" {
   }
 
   tags = {
-    Name        = "${var.waf_acl_name}"
-    Environment = "${var.env_suffix}"
+    Name        = var.waf_acl_name
+    Environment = var.env_suffix
   }
 
   visibility_config {

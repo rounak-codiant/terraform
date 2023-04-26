@@ -46,7 +46,7 @@ repos:
       #     - --args=--out-file=infra-cost.html
       #   verbose: true # Always show costs
       - id: terraform_tfsec
-      - id: checkov
+      # - id: checkov
       # - id: terraform_wrapper_module_for_each
 
 

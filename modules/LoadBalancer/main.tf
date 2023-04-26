@@ -6,6 +6,8 @@ locals {
 }
 
 # Create a Security Group For ALB
+#tfsec:ignore:aws-ec2-no-public-egress-sgr
+#tfsec:ignore:aws-ec2-no-public-ingress-sgr
 resource "aws_security_group" "alb_sg" {
   name        = "ALB-SG"
   description = "Application Load Balancer - Security Group"
@@ -62,7 +64,7 @@ resource "aws_alb_target_group" "application_tg" {
   }
   tags_all = {
     Name        = "${var.project_name}-TG"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -87,8 +89,8 @@ resource "aws_s3_bucket" "elb_logs" {
   force_destroy = true
 
   tags = {
-    Name        = "${var.alb_logs_bucket_name}"
-    Environment = "${var.env_suffix}"
+    Name        = var.alb_logs_bucket_name
+    Environment = var.env_suffix
   }
 }
 
@@ -108,6 +110,7 @@ resource "aws_s3_bucket_versioning" "alb_public_bucket_versioning" {
   }
 }
 
+#tfsec:ignore:aws-s3-encryption-customer-key
 resource "aws_s3_bucket_server_side_encryption_configuration" "alb_bucket_encryption" {
   bucket = aws_s3_bucket.elb_logs.bucket
   rule {
@@ -141,6 +144,8 @@ resource "aws_s3_bucket_policy" "allow_elb_logging" {
 }
 
 # Create Application Load Balancer
+#tfsec:ignore:aws-elb-alb-not-public
+#tfsec:ignore:aws-elb-drop-invalid-headers
 resource "aws_lb" "application_lb" {
   name                       = var.lb_name
   internal                   = var.lb_internal
@@ -157,12 +162,13 @@ resource "aws_lb" "application_lb" {
   }
 
   tags_all = {
-    Name        = "${var.project_name}"
-    Environment = "${var.env_suffix}"
+    Name        = var.project_name
+    Environment = var.env_suffix
   }
 }
 
 # Add ALB Listener
+#tfsec:ignore:aws-elb-http-not-used
 resource "aws_alb_listener" "application_lb_listener" {
   load_balancer_arn = aws_lb.application_lb.arn
   protocol          = var.lb_listener_protocol

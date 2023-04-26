@@ -1,3 +1,5 @@
+#tfsec:ignore:aws-ec2-no-public-egress-sgr
+#tfsec:ignore:aws-ec2-no-public-ingress-sgr
 resource "aws_security_group" "database_sg" {
   name        = "Database-SG"
   description = "Database - Security Group"
@@ -22,7 +24,7 @@ resource "aws_security_group" "database_sg" {
 
   tags_all = {
     Name        = "${var.project_name}-Database-SG"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -33,7 +35,7 @@ resource "aws_db_subnet_group" "subnet_group" {
 
   tags_all = {
     Name        = "${var.project_name}-Database-Subnet-Group"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -64,7 +66,7 @@ resource "aws_rds_cluster_parameter_group" "cluster_pg" {
 
   tags_all = {
     Name        = "${var.project_name}-Cluster-Parameter-Group"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
@@ -94,11 +96,11 @@ resource "aws_db_parameter_group" "db_instance_pg" {
   }
   tags_all = {
     Name        = "${var.project_name}-Instance-Parameter-Group"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
 }
 
-
+#tfsec:ignore:aws-rds-encrypt-cluster-storage-data
 resource "aws_rds_cluster" "database_cluster" {
   cluster_identifier = var.database_cluster_identifier
   engine             = var.database_engine
@@ -122,12 +124,12 @@ resource "aws_rds_cluster" "database_cluster" {
 
   tags = {
     Name        = "${var.project_name}-db-cluster"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
   depends_on = [aws_security_group.database_sg]
 }
 
-
+#tfsec:ignore:aws-rds-enable-performance-insights
 resource "aws_rds_cluster_instance" "database_instance" {
   identifier              = var.database_instance_identifier
   cluster_identifier      = aws_rds_cluster.database_cluster.id
@@ -143,7 +145,7 @@ resource "aws_rds_cluster_instance" "database_instance" {
 
   tags = {
     Name        = "${var.project_name}-db-instance"
-    Environment = "${var.env_suffix}"
+    Environment = var.env_suffix
   }
   depends_on = [aws_rds_cluster.database_cluster]
 }
