@@ -27,7 +27,7 @@ variable "ipv6_enabled" {
 }
 
 variable "http_version" {
-  description = "Maximum HTTP version to support on the distribution"
+  description = "HTTP version to support the distribution"
 }
 
 variable "cloudfront_description" {
@@ -43,7 +43,7 @@ variable "access_control_allow_origins" {
 }
 
 variable "content_security_policy" {
-  description = "Define access content security policies for security headers policy"
+  description = "Define content security policies for security headers policy"
 }
 
 variable "access_control_max_age" {

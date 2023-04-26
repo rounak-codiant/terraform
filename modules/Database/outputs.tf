@@ -1,27 +1,34 @@
 output "database_cluster_engine" {
-  value = aws_rds_cluster.database_cluster.engine
+  description = "Database engine"
+  value       = aws_rds_cluster.database_cluster.engine
 }
 
 output "database_cluster_host" {
-  value = aws_rds_cluster.database_cluster.endpoint
+  description = "The DNS address of the RDS instance"
+  value       = aws_rds_cluster.database_cluster.endpoint
 }
 
 output "database_cluster_port" {
-  value = aws_rds_cluster.database_cluster.port
+  description = "The database port"
+  value       = aws_rds_cluster.database_cluster.port
 }
 
 output "database_cluster_user" {
-  value = aws_rds_cluster.database_cluster.master_username
+  description = "The master username for the database"
+  value       = aws_rds_cluster.database_cluster.master_username
 }
 
 output "database_cluster_password" {
-  value = aws_rds_cluster.database_cluster.master_password
+  description = "The master password for the database"
+  value       = aws_rds_cluster.database_cluster.master_password
 }
 
 output "database_cluster_database_name" {
-  value = aws_rds_cluster.database_cluster.database_name
+  description = "Database name"
+  value       = aws_rds_cluster.database_cluster.database_name
 }
 
 output "database_security_group" {
-  value = aws_security_group.database_sg.id
+  description = "Database security group id"
+  value       = aws_security_group.database_sg.id
 }

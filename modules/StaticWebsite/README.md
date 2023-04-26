@@ -39,11 +39,11 @@ No modules.
 | <a name="input_access_control_allow_origins"></a> [access\_control\_allow\_origins](#input\_access\_control\_allow\_origins) | Define access control origins | `any` | n/a | yes |
 | <a name="input_access_control_max_age"></a> [access\_control\_max\_age](#input\_access\_control\_max\_age) | Define access control max age for security headers policy | `any` | n/a | yes |
 | <a name="input_cloudfront_description"></a> [cloudfront\_description](#input\_cloudfront\_description) | Define description CloudFront distribution | `any` | n/a | yes |
-| <a name="input_content_security_policy"></a> [content\_security\_policy](#input\_content\_security\_policy) | Define access content security policies for security headers policy | `any` | n/a | yes |
+| <a name="input_content_security_policy"></a> [content\_security\_policy](#input\_content\_security\_policy) | Define content security policies for security headers policy | `any` | n/a | yes |
 | <a name="input_default_root_object"></a> [default\_root\_object](#input\_default\_root\_object) | Object that you want CloudFront to return (for example, index.html) when an end user requests the root URL | `any` | n/a | yes |
 | <a name="input_env_suffix"></a> [env\_suffix](#input\_env\_suffix) | Define project environment | `any` | n/a | yes |
 | <a name="input_headers_policy_name"></a> [headers\_policy\_name](#input\_headers\_policy\_name) | Define cloudfront security headers policy name | `any` | n/a | yes |
-| <a name="input_http_version"></a> [http\_version](#input\_http\_version) | Maximum HTTP version to support on the distribution | `any` | n/a | yes |
+| <a name="input_http_version"></a> [http\_version](#input\_http\_version) | HTTP version to support the distribution | `any` | n/a | yes |
 | <a name="input_ipv6_enabled"></a> [ipv6\_enabled](#input\_ipv6\_enabled) | Whether the IPv6 is enabled for the distribution | `any` | n/a | yes |
 | <a name="input_objects_compress"></a> [objects\_compress](#input\_objects\_compress) | CloudFront automatically compress objects option | `any` | n/a | yes |
 | <a name="input_permissions_policy"></a> [permissions\_policy](#input\_permissions\_policy) | Cloudfront permissions policies | `any` | n/a | yes |

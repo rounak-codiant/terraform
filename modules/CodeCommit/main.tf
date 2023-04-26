@@ -16,7 +16,7 @@ resource "aws_iam_user" "codecommit" {
 }
 
 ## Attach policy to user
-resource "aws_iam_user_policy_attachment" "policy-attach" {
+resource "aws_iam_user_policy_attachment" "policy_attach" {
   user       = aws_iam_user.codecommit.name
   policy_arn = "arn:aws:iam::aws:policy/AWSCodeCommitPowerUser"
 }
