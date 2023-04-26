@@ -16,11 +16,6 @@ resource "aws_s3_bucket" "public_bucket" {
   }
 }
 
-resource "aws_s3_bucket_acl" "public_bucket_acl" {
-  bucket = aws_s3_bucket.public_bucket.id
-  acl    = "private"
-}
-
 resource "aws_s3_bucket_versioning" "public_bucket_versioning" {
   bucket = aws_s3_bucket.public_bucket.id
   versioning_configuration {
@@ -128,13 +123,6 @@ resource "aws_s3_bucket" "public_destination" {
   provider      = aws.dest_region
   bucket        = var.public_destination_bucket_name
   force_destroy = true
-}
-
-resource "aws_s3_bucket_acl" "destination_bucket_acl" {
-  count    = var.public_bucket_replication_option == "Enabled" ? 1 : 0
-  provider = aws.dest_region
-  bucket   = aws_s3_bucket.public_destination[count.index].id
-  acl      = "private"
 }
 
 resource "aws_s3_bucket_versioning" "public_destination" {

@@ -10,11 +10,6 @@ resource "aws_s3_bucket" "terraform_backend_bucket" {
   }
 }
 
-resource "aws_s3_bucket_acl" "private_bucket_acl" {
-  bucket = aws_s3_bucket.terraform_backend_bucket.id
-  acl    = "private"
-}
-
 resource "aws_s3_bucket_versioning" "private_bucket_versioning" {
   bucket = aws_s3_bucket.terraform_backend_bucket.id
   versioning_configuration {

@@ -4,11 +4,6 @@ resource "aws_s3_bucket" "codebuild_bucket" {
   force_destroy = true
 }
 
-resource "aws_s3_bucket_acl" "codebuild_bucket_acl" {
-  bucket = aws_s3_bucket.codebuild_bucket.id
-  acl    = "private"
-}
-
 resource "aws_s3_bucket_versioning" "codebuild_bucket_versioning" {
   bucket = aws_s3_bucket.codebuild_bucket.id
   versioning_configuration {

@@ -119,10 +119,6 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "alb_bucket_encryp
     }
   }
 }
-resource "aws_s3_bucket_acl" "elb_logs_acl" {
-  bucket = aws_s3_bucket.elb_logs.id
-  acl    = "private"
-}
 
 data "aws_iam_policy_document" "allow_elb_logging" {
   statement {

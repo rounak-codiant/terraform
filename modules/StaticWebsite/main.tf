@@ -9,11 +9,6 @@ resource "aws_s3_bucket" "static_bucket" {
   }
 }
 
-resource "aws_s3_bucket_acl" "static_bucket_acl" {
-  bucket = aws_s3_bucket.static_bucket.id
-  acl    = "private"
-}
-
 resource "aws_s3_bucket_versioning" "static_bucket_versioning" {
   bucket = aws_s3_bucket.static_bucket.id
   versioning_configuration {
