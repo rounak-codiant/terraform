@@ -32,7 +32,7 @@ variable "cloudfront_description" {
 }
 
 variable "permissions_policy" {
-  description = "Cloudfront permissions policies"
+  description = "Security headers permissions policies"
 }
 
 variable "access_control_allow_origins" {
@@ -40,7 +40,7 @@ variable "access_control_allow_origins" {
 }
 
 variable "content_security_policy" {
-  description = "Define content security policies for security headers policy"
+  description = "Security headers content security policies"
 }
 
 variable "access_control_max_age" {

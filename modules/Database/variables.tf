@@ -77,7 +77,7 @@ variable "database_instance_class" {
 }
 
 variable "publicly_accessible" {
-  description = "Databse pulic access option"
+  description = "Database public access option"
 }
 
 variable "database_instance_identifier" {

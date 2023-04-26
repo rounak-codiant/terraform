@@ -7,7 +7,7 @@ variable "waf_acl_name" {
 }
 
 variable "waf_acl_description" {
-  description = "wad acl description"
+  description = "WAF acl description"
 }
 
 variable "waf_acl_scope" {

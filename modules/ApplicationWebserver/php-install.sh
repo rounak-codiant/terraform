@@ -9,8 +9,8 @@ php_modules=no
 php_nginx_config=no
 
 usage(){
-    echo "Usage: $0 --php-version <value> --node-version <value> --composer-install <yes/no> \
---php-nginx-config <yes/no> --php-modules <yes/no> --node-nginx-config <yes/no>"
+    echo "Usage: $0 --php_version <value> --node_version <value> --composer_install <yes/no> \
+--php_nginx_config <yes/no> --php_modules <yes/no> --node_nginx_config <yes/no>"
     echo "OR"
     echo "Usage: $0 -p <value> -n <value> -c <yes/no> -pngx <yes/no> -pmodule <yes/no> -nngx <yes/no>"
 }
@@ -18,12 +18,12 @@ usage(){
 help(){
     echo "---------------------------------------------------------------------------------------------------"
     echo "       Options                        Usage"
-    echo "  [-p|--php-version]             Set PHP Version (ex:7.4)"
-    echo "  [-n|--node-version]            Set Nodejs Version (ex:16)"
-    echo "  [-c|--composer-install]        Set Composer Installation (yes/no)"
-    echo "  [-pngx|--php-nginx-config]     Set PHP Nginx Configuration File (yes/no)"
-    echo "  [-pmodule|--php-modules]       Set PHP Modules Installation (yes/no)"
-    echo "  [-nngx|--node-nginx-config]    Set Node Nginx Configuration File (yes/no)"
+    echo "  [-p|--php_version]             Set PHP Version (ex:7.4)"
+    echo "  [-n|--node_version]            Set Nodejs Version (ex:16)"
+    echo "  [-c|--composer_install]        Set Composer Installation (yes/no)"
+    echo "  [-pngx|--php_nginx_config]     Set PHP Nginx Configuration File (yes/no)"
+    echo "  [-pmodule|--php_modules]       Set PHP Modules Installation (yes/no)"
+    echo "  [-nngx|--node_nginx_config]    Set Node Nginx Configuration File (yes/no)"
     echo "  [-h|--help]                    Print this help message and exit"
     echo "---------------------------------------------------------------------------------------------------"
     usage
@@ -34,12 +34,12 @@ if [ "$#" -gt 0 ]
 then
 while [ "$#" -gt 0 ]; do
     case $1 in
-        -p|--php-version) varname="$2"; shift ;;
-        -n|--node-version) node_version="$2"; shift ;;
-        -c|--composer-install) composer_install="$2"; shift ;;
-        -pngx|--php-nginx-config) php_nginx_config="$2"; shift ;;
-        -pmodule|--php-modules) php_modules="$2"; shift ;;
-        -nngx|--node-nginx-config) node_nginx_config="$2"; shift ;;
+        -p|--php_version) varname="$2"; shift ;;
+        -n|--node_version) node_version="$2"; shift ;;
+        -c|--composer_install) composer_install="$2"; shift ;;
+        -pngx|--php_nginx_config) php_nginx_config="$2"; shift ;;
+        -pmodule|--php_modules) php_modules="$2"; shift ;;
+        -nngx|--node_nginx_config) node_nginx_config="$2"; shift ;;
         -h|--help) help
             exit 1;;
         *) usage

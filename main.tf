@@ -44,12 +44,12 @@ module "application_server" {
   ec2_policy_name   = var.ec2_policy_name
   ec2_role_name     = var.ec2_role_name
   ec2_subnet_id     = module.vpc.ec2_public_subnet
-  php-version       = var.php-version
-  node-version      = var.node-version
-  composer-install  = var.composer-install
-  php-nginx-config  = var.php-nginx-config
-  php-module        = var.php-module
-  node-nginx-config = var.node-nginx-config
+  php_version       = var.php_version
+  node_version      = var.node_version
+  composer_install  = var.composer_install
+  php_nginx_config  = var.php_nginx_config
+  php_module        = var.php_module
+  node_nginx_config = var.node_nginx_config
   ami_name          = var.ami_name
 }
 
@@ -130,23 +130,22 @@ module "cache_database" {
   depends_on = [
     module.vpc
   ]
-  project_name                     = local.local_naming
-  env_suffix                       = local.environment
-  redis_vpc_id                     = module.vpc.vpc_id
-  redis_subnets                    = module.vpc.public_subnet
-  redis_user_name                  = var.redis_user_name
-  redis_user_pwd                   = var.redis_user_pwd
-  cachedb_name                     = var.cachedb_name
-  cachedb_description              = var.cachedb_description
-  version_upgrade                  = var.version_upgrade
-  cachedb_engine                   = var.cachedb_engine
-  cachedb_node_type                = var.cachedb_node_type
-  cachedb_port                     = var.cachedb_port
-  cachedb_snapshot_retention_limit = var.cachedb_snapshot_retention_limit
-  snapshot_retention_limit         = var.snapshot_retention_limit
-  rest_encryption_enabled          = var.rest_encryption_enabled
-  transit_encryption_enabled       = var.transit_encryption_enabled
-  automatic_failover_enabled       = var.automatic_failover_enabled
+  project_name               = local.local_naming
+  env_suffix                 = local.environment
+  redis_vpc_id               = module.vpc.vpc_id
+  redis_subnets              = module.vpc.public_subnet
+  redis_user_name            = var.redis_user_name
+  redis_user_pwd             = var.redis_user_pwd
+  cachedb_name               = var.cachedb_name
+  cachedb_description        = var.cachedb_description
+  version_upgrade            = var.version_upgrade
+  cachedb_engine             = var.cachedb_engine
+  cachedb_node_type          = var.cachedb_node_type
+  cachedb_port               = var.cachedb_port
+  snapshot_retention_limit   = var.snapshot_retention_limit
+  rest_encryption_enabled    = var.rest_encryption_enabled
+  transit_encryption_enabled = var.transit_encryption_enabled
+  automatic_failover_enabled = var.automatic_failover_enabled
 }
 
 ######################################### Load Balancer Module #########################################
@@ -388,5 +387,5 @@ module "static_website" {
   content_security_policy      = var.static_content_security_policy
   access_control_allow_origins = var.static_access_control_allow_origins
   permissions_policy           = var.static_permissions_policy
-  waf_acl_id                   = "" //module.firewall_waf_cdn.waf_acl_arn
+  waf_acl_id                   = "" #module.firewall_waf_cdn.waf_acl_arn
 }

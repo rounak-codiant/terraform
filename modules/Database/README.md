@@ -54,7 +54,7 @@ No modules.
 | <a name="input_long_query_time"></a> [long\_query\_time](#input\_long\_query\_time) | Database long query maximum run time | `any` | n/a | yes |
 | <a name="input_max_allowed_packet"></a> [max\_allowed\_packet](#input\_max\_allowed\_packet) | Maximum allowed packet | `any` | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Define project name | `any` | n/a | yes |
-| <a name="input_publicly_accessible"></a> [publicly\_accessible](#input\_publicly\_accessible) | Databse pulic access option | `any` | n/a | yes |
+| <a name="input_publicly_accessible"></a> [publicly\_accessible](#input\_publicly\_accessible) | Database public access option | `any` | n/a | yes |
 | <a name="input_slow_query_log"></a> [slow\_query\_log](#input\_slow\_query\_log) | Database slow log option | `any` | n/a | yes |
 | <a name="input_snapshot_identifier_name"></a> [snapshot\_identifier\_name](#input\_snapshot\_identifier\_name) | Database snapshot name | `any` | n/a | yes |
 | <a name="input_storage_encrypted"></a> [storage\_encrypted](#input\_storage\_encrypted) | Database stotage encryption option | `any` | n/a | yes |

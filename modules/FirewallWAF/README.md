@@ -26,7 +26,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_env_suffix"></a> [env\_suffix](#input\_env\_suffix) | Define project environment | `any` | n/a | yes |
-| <a name="input_waf_acl_description"></a> [waf\_acl\_description](#input\_waf\_acl\_description) | wad acl description | `any` | n/a | yes |
+| <a name="input_waf_acl_description"></a> [waf\_acl\_description](#input\_waf\_acl\_description) | WAF acl description | `any` | n/a | yes |
 | <a name="input_waf_acl_name"></a> [waf\_acl\_name](#input\_waf\_acl\_name) | Name of the waf acl | `any` | n/a | yes |
 | <a name="input_waf_acl_scope"></a> [waf\_acl\_scope](#input\_waf\_acl\_scope) | waf acl scope (REGIONAL/CLOUDFRONT) | `any` | n/a | yes |
 

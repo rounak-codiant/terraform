@@ -1,23 +1,26 @@
 # AWS Provider Key
 variable "aws_profile_name" {
-  default = ""
+  description = "Name of the AWS profile"
+  default     = ""
 }
 
 variable "aws_region" {
-  default = "us-east-1"
+  description = "AWS region"
+  default     = "us-east-1"
 }
 
 #Project and variable
 variable "project_name" {
-  default = "Terraform-Project"
+  description = "Name of your project"
+  default     = "Terraform-Project"
 }
 
 variable "env_suffix" {
-  default = "test"
+  description = "Project environment"
+  default     = "test"
 }
 
 #Terraform Backend Module
-
 variable "terraform_bucket_name" {
   type        = string
   default     = "terraform-sample-backend-bucket"
@@ -61,136 +64,160 @@ variable "enable_dns_hostnames" {
 
 #EC2
 variable "instance_type" {
-  default = "t2.micro"
+  description = "Application server instance type"
+  default     = "t2.micro"
 }
 
 variable "ebs_volume_type" {
-  default = "gp2"
+  description = "EC2 EBS type"
+  default     = "gp2"
 }
 variable "ebs_volume_size" {
   default     = "30"
-  description = "Storage Capacity"
+  description = "EBS Storage Capacity/Size"
 }
 
 variable "key_pair_name" {
   default     = "pemkey"
-  description = "Name of EC2 Key Pair"
+  description = "Name of EC2 SSh Key Pair"
 }
 
 variable "ec2_role_name" {
-  default = "ec2-role"
+  description = "Instance IAM role name"
+  default     = "ec2-role"
 }
 
 variable "ec2_policy_name" {
-  default = "ec2-role-policy"
+  description = "Instance IAM policy name"
+  default     = "ec2-role-policy"
 }
 
 variable "ec2_monitoring" {
-  default = "true"
+  description = "Instance monitoring option"
+  default     = "true"
 }
 
-variable "php-version" {
+variable "php_version" {
   default     = "8.1"
-  description = "PHP "
+  description = "PHP version to install on server"
 }
 
-variable "node-version" {
-  default = "16"
+variable "node_version" {
+  description = "Node version to install on server"
+  default     = "16"
 }
 
-variable "composer-install" {
-  default = "yes"
+variable "composer_install" {
+  description = "Composer install on server or not"
+  default     = "yes"
 }
 
-variable "php-nginx-config" {
-  default = "yes"
+variable "php_nginx_config" {
+  description = "Nginx configuration for PHP"
+  default     = "yes"
 }
 
-variable "php-module" {
-  default = "yes"
+variable "php_module" {
+  description = "PHP module install or not"
+  default     = "yes"
 }
 
-variable "node-nginx-config" {
-  default = "no"
+variable "node_nginx_config" {
+  description = "Nginx configuration for Node"
+  default     = "no"
 }
 
 variable "ami_name" {
-  default = "ubuntu/images/hvm-ssd/ubuntu-jammy-*arm64"
+  description = "Instance AMI"
+  default     = "ubuntu/images/hvm-ssd/ubuntu-jammy-*arm64"
 }
 
 # #S3 Private Bucket
 variable "private_bucket_name" {
-  default = "private-bucket-terraform-1"
+  description = "Name of the private bucket"
+  default     = "private-bucket-terraform-1"
 }
 
 variable "private_bucket_acceleration" {
-  default = "Suspended"
+  description = "Private bucket acceleration option"
+  default     = "Suspended"
 }
 
 variable "private_bucket_versioning" {
   default     = "Enabled"
-  description = "Options are Enabled/Disabled"
+  description = "Private bucket versioning Enabled/Disabled"
 }
 
 variable "private_destination_bucket_name" {
-  default = "private-bucket-replica-bucket"
+  description = "Private bucket replica bucket name"
+  default     = "private-bucket-replica-bucket"
 }
 
 variable "private_bucket_replication_option" {
   default     = "Enabled"
-  description = "Options are Enabled/Disabled"
+  description = "Private bucket replica Enabled/Disabled"
 }
 
 variable "private_replication_destination_region" {
-  default = "us-east-2"
+  description = "Private bucket replica region"
+  default     = "us-east-2"
 }
 
 # #S3 Public Bucket
 variable "public_bucket_name" {
-  default = "public-bucket-terraform-1"
+  description = "Name of the public bucket"
+  default     = "public-bucket-terraform-1"
 }
 
 variable "public_bucket_acceleration" {
-  default = "Suspended"
+  description = "Public bucket acceleration option"
+  default     = "Suspended"
 }
 
 variable "public_bucket_versioning" {
   default     = "Enabled"
-  description = "Options are Enabled/Disabled"
+  description = "Public bucket versioning Enabled/Disabled"
 }
 
 variable "public_destination_bucket_name" {
-  default = "public-bucket-replica-bucket"
+  description = "Public bucket replica bucket name"
+  default     = "public-bucket-replica-bucket"
 }
 
 variable "public_bucket_replication_option" {
   default     = "Enabled"
-  description = "Options are Enabled/Disabled"
+  description = "Public bucket replica Enabled/Disabled"
 }
 
 variable "public_replication_destination_region" {
-  default = "us-east-2"
+  description = "Public bucket replica region"
+  default     = "us-east-2"
 }
 
 # #Database (RDS)
 variable "database_cluster_identifier" {
-  default = "database-cluster"
+  description = "Database cluster name"
+  default     = "database-cluster"
 }
 
 variable "database_cluster_engine_version" {
-  default = "5.7.mysql_aurora.2.07.2"
+  description = "Database cluster engine"
+  default     = "5.7.mysql_aurora.2.07.2"
 }
 
 variable "database_instance_identifier" {
-  default = "database-instance"
+  description = "Database instance name"
+  default     = "database-instance"
 }
 
 variable "database_cluster_skip_final_snapshot" {
-  default = "true"
+  description = "Databse cluster final snapshot true/false"
+  default     = "true"
 }
 
 variable "database_engine" {
-  default = "aurora-mysql"
+  description = "Database engine"
+  default     = "aurora-mysql"
   # allowed_values = ["aurora", "aurora-mysql", "aurora-postgresql", "mysql"]
 }
 
@@ -199,38 +226,47 @@ variable "database_engine" {
 # }
 
 variable "database_name" {
-  default = "database_name"
+  description = "Database name"
+  default     = "database_name"
 }
 variable "database_master_username" {
-  default = "admin"
+  description = "Database master username"
+  default     = "admin"
 }
 
 variable "database_master_password" {
-  default = "admin@password"
+  description = "Database master password"
+  default     = "admin@password"
 }
 
 variable "database_backup_retention_period" {
-  default = "7"
+  description = "Database backup retention time"
+  default     = "7"
 }
 
 variable "deletion_protection" {
-  default = "true"
+  description = "Database cluster delete protection"
+  default     = "true"
 }
 
 variable "storage_encrypted" {
-  default = "true"
+  description = "Database stotage encryption"
+  default     = "true"
 }
 
 variable "allow_major_version_upgrade" {
-  default = "false"
+  description = "Database version upgrade"
+  default     = "false"
 }
 
 variable "copy_tags_to_snapshot" {
-  default = "true"
+  description = "Databse snapshot tag as cluster"
+  default     = "true"
 }
 
 variable "snapshot_identifier_name" {
-  default = "db-snap"
+  description = "Database snapshot name"
+  default     = "db-snap"
 }
 
 # variable "allocated_storage" {
@@ -238,221 +274,243 @@ variable "snapshot_identifier_name" {
 # }
 
 variable "database_instance_class" {
-  default = "db.t3.medium"
+  description = "Database instance type"
+  default     = "db.t3.medium"
 }
 
 variable "publicly_accessible" {
-  default = "false"
+  description = "Database can be access publicly"
+  default     = "false"
 }
 
-
 variable "cluster_parameter_group" {
-  default = "cluster-parameter-group"
+  description = "Database cluster parameter group name"
+  default     = "cluster-parameter-group"
 }
 
 variable "db_instance_pg_name" {
-  default = "db-instance-parameter-group"
+  description = "Database instance parameter group name"
+  default     = "db-instance-parameter-group"
 }
 
-
 variable "long_query_time" {
-  default = "10" //10 second
+  description = "Maximum time to run long query"
+  default     = "10" #10 second
 }
 
 variable "max_allowed_packet" {
-  default = "64000000" //64MB
+  description = "Maximum allowed packet"
+  default     = "64000000" #64MB
 }
 
-
 variable "general_log" {
-  default = "1"
+  description = "Database general log monitoring"
+  default     = "1"
 }
 
 variable "slow_query_log" {
-  default = "1"
+  description = "Database slow log monitoring"
+  default     = "1"
 }
 
 variable "db_parameter_group_family" {
-  default = "aurora-mysql5.7"
+  description = "Database instance parameter group family"
+  default     = "aurora-mysql5.7"
 }
 
 variable "cluster_parameter_group_family" {
-  default = "aurora-mysql5.7"
+  description = "Database cluster parameter group family"
+  default     = "aurora-mysql5.7"
 }
 
 
 # # Elastic Cache (Redis)
 variable "redis_user_name" {
-  default = "redis"
+  description = "Redis database username"
+  default     = "redis"
 
 }
 variable "redis_user_pwd" {
-  type    = string
-  default = "dm3YbhsFqa1P121KEC"
+  description = "Redis database password"
+  type        = string
+  default     = "dm3YbhsFqa1P121KEC"
 }
 
 variable "cachedb_engine" {
-  default = "redis"
+  description = "Cache database engine"
+  default     = "redis"
 }
 variable "cachedb_name" {
-  default = "redis-cache"
+  description = "Cache database cluster name"
+  default     = "redis-cache"
 }
+
 variable "cachedb_description" {
-  default = "Redis Database"
+  description = "Cache database cluster description"
+  default     = "Redis Database"
 }
 
 variable "cachedb_port" {
-  default = "6379"
+  description = "Port number for cache database server"
+  default     = "6379"
 }
 
 variable "cachedb_node_type" {
-  default = "cache.t3.small"
-}
-
-variable "num_cache_nodes" {
-  default = "1"
-}
-
-variable "cachedb_snapshot_retention_limit" {
-  default = "3"
+  description = "Cache database cluster node type"
+  default     = "cache.t3.small"
 }
 
 variable "version_upgrade" {
-  default = "false"
+  description = "Cache database version upgrade"
+  default     = "false"
 }
 
 variable "snapshot_retention_limit" {
-  default = "7"
+  description = "Number of days for cache cluster snapshots"
+  default     = "7"
 }
 
 variable "rest_encryption_enabled" {
-  default = "true"
+  description = "Enable rest encryption for cluster"
+  default     = "true"
 }
 
 variable "transit_encryption_enabled" {
-  default = "true"
+  description = "Enable transit encryption for cluster"
+  default     = "true"
 }
 
 variable "automatic_failover_enabled" {
-  default = "false"
+  description = "Read-only replica promoted to read/write primary if the existing primary fails"
+  default     = "false"
 }
 
 # # Secret Manager
 variable "secretmanager_name" {
-  default = "secretmanager"
+  description = "Name of the secret manager"
+  default     = "secretmanager"
 }
 
 #ALB (Application Load Balancer)
 #Target Group
 variable "tg_name" {
-  description = "value for the target group name"
+  description = "Name of the target group"
   default     = "default-tg"
 }
 
 variable "tg_port" {
-  description = "value for the target group port"
+  description = "Target group port"
   default     = "80"
 }
 
 variable "tg_protocol" {
-  description = "value for the target group protocol"
+  description = "Target group protocol"
   default     = "HTTP"
 }
 
 variable "tg_target_type" {
-  description = "value for the target group target type"
+  description = "Target group target type"
   default     = "instance"
 }
 
 # Health Check
 variable "lb_tg_health_check_path" {
-  description = "value for the target group health check path"
+  description = "Target group health check path"
   default     = "/"
 }
 
 variable "lb_tg_health_check_port" {
-  description = "value for the target group health check port"
+  description = "Target group health check port"
   default     = "80"
 }
 
 variable "lb_tg_health_check_protocol" {
-  description = "value for the target group health check protocol"
+  description = "Target group health check protocol"
   default     = "HTTP"
 }
 
 variable "lb_tg_health_check_matcher" {
-  description = "value for the target group health check matcher"
+  description = "Target group health check status code"
   default     = "200"
 }
 
 
 # Load Balancer
 variable "lb_name" {
-  description = "value for the load balancer name"
+  description = "Name of the load balancer"
   default     = "alb-terraform-1"
 }
 
 variable "lb_internal" {
-  description = "false value will create public load balancer (default) and true value will create internal load balancer"
+  description = "false value will create public load balancer and true value will create internal load balancer"
   default     = "false"
 }
 
 variable "lb_type" {
-  description = "valid values are 'application' or 'network' (default)"
+  description = "Load balancer type. Valid values are 'application' or 'network'"
   default     = "application"
 }
 
 variable "lb_deletion_protection" {
-  description = "value for the load balancer deletion protection"
+  description = "Enable load balancer delete protection"
   default     = "true"
 }
 
 # Load Balancer Listener
 variable "lb_listener_protocol" {
-  description = "value for the load balancer listener protocol"
+  description = "Load balancer listener protocol"
   default     = "HTTP"
 }
 
 variable "lb_listener_port" {
-  description = "value for the load balancer listener port"
+  description = "Load balancer listener port"
   default     = "80"
 }
 
-
 variable "alb_log_prefix" {
-  default = "ALB"
+  description = "Load balancer logs prefix"
+  default     = "ALB"
 }
 
 variable "alb_bucket_versioning" {
-  default = "Enabled"
+  description = "Load lalancer logs s3 bucket versioning"
+  default     = "Enabled"
 }
 
 variable "alb_logs_bucket_name" {
-  default = "alb-logs-bucket"
+  description = "Load balancer logs s3 bucket name"
+  default     = "alb-logs-bucket"
 }
 
 variable "alb_logs_enable" {
-  default = "true"
+  description = "Enable load balancer access logs"
+  default     = "true"
 }
 
 variable "alb_idle_timeout" {
-  default = "120"
+  description = "Load balancer maximum idle timeout"
+  default     = "120"
 }
+
 #CDN
 variable "public_headers_policy_name" {
-  default = "CustomHeadersPolicy"
+  description = "Public cloudfront security headers policy name"
+  default     = "CustomHeadersPolicy"
 }
 
 variable "private_headers_policy_name" {
-  default = "CustomHeadersPolicy"
+  description = "Private cloudfront security headers policy name"
+  default     = "CustomHeadersPolicy"
 }
 
 variable "objects_compress" {
-  default = "true"
+  description = "Enable objects compress"
+  default     = "true"
 }
 
 variable "ipv6_enabled" {
-  default = "true"
+  description = "Whether the IPv6 is enabled for the distribution"
+  default     = "true"
 }
 
 variable "http_version" {
@@ -461,89 +519,111 @@ variable "http_version" {
 }
 
 variable "public_cloudfront_description" {
-  default = "Public CloudFront Distribution"
+  description = "Public CloudFront distribution description"
+  default     = "Public CloudFront Distribution"
 }
 
 variable "private_cloudfront_description" {
-  default = "Private CloudFront Distribution"
+  description = "Private CloudFront distribution description"
+  default     = "Private CloudFront Distribution"
 }
 
 variable "public_permissions_policy" {
-  default = "accelerometer=(self), camera=(self), cross-origin-isolated=(self), encrypted-media=(self), geolocation=(self), microphone=(self), interest-cohort=()"
+  description = "Security headers permissions policies"
+  default     = "accelerometer=(self), camera=(self), cross-origin-isolated=(self), encrypted-media=(self), geolocation=(self), microphone=(self), interest-cohort=()"
 }
 
 variable "public_access_control_allow_origins" {
-  default = "*.test.com"
+  description = "Define access control origins"
+  default     = "*.test.com"
 }
 
 variable "public_content_security_policy" {
-  default = "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'"
+  description = "Security headers content security policies"
+  default     = "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'"
 }
 
 variable "public_access_control_max_age" {
-  default = "31536000"
+  description = "Define access control max age for security headers policy"
+  default     = "31536000"
 }
 
 variable "private_permissions_policy" {
-  default = "accelerometer=(self), camera=(self), cross-origin-isolated=(self), encrypted-media=(self), geolocation=(self), microphone=(self), interest-cohort=()"
+  description = "Security headers permissions policies"
+  default     = "accelerometer=(self), camera=(self), cross-origin-isolated=(self), encrypted-media=(self), geolocation=(self), microphone=(self), interest-cohort=()"
 }
 
 variable "private_access_control_allow_origins" {
-  default = "*.test.com"
+  description = "Define access control origins"
+  default     = "*.test.com"
 }
 
 variable "private_content_security_policy" {
-  default = "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'"
+  description = "Security headers content security policies"
+  default     = "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'"
 }
 
 variable "private_access_control_max_age" {
-  default = "31536000"
+  description = "Define access control max age for security headers policy"
+  default     = "31536000"
 }
 
 ## AWS CodeCommit
 
 variable "repository_name" {
-  default = "codecommit-repo"
+  description = "Code commit repo name"
+  default     = "codecommit-repo"
 }
 
 variable "repository_description" {
-  default = "Code Commit Git Repo"
+  description = "D escription code commit repo"
+  default     = "Code Commit Git Repo"
 }
 
 variable "codecommit_user_name" {
-  default = "codecommit"
+  description = "Code commit user name"
+  default     = "codecommit"
 }
 
 variable "iam_force_destroy" {
-  default = "true"
+  description = "Enable code commit IAM user destroy"
+  default     = "true"
 }
+
 variable "repo_default_branch" {
-  default = "main"
+  description = "Code commit branch name"
+  default     = "main"
 }
 
 ## CodeBuild
 variable "codebuild_bucket_name" {
-  default = "codebuild1243"
+  description = "Code build  artifact store s3 bucket name"
+  default     = "codebuild1243"
 }
 
 variable "codebuild_bucket_versioning" {
-  default = "Enabled"
+  description = "Enable code build s3 bucket versioning"
+  default     = "Enabled"
 }
 
 variable "codebuild_role_name" {
-  default = "codebuild-role"
+  description = "Code build IAM role name"
+  default     = "codebuild-role"
 }
 
 variable "codebuild_project_name" {
-  default = "code-build-project"
+  description = "Code build project name"
+  default     = "code-build-project"
 }
 
 variable "codebuild_project_description" {
-  default = "Code Build Project"
+  description = "Code build project description"
+  default     = "Code Build Project"
 }
 
 variable "build_timeout" {
-  default = "15" //min
+  description = "Build time out"
+  default     = "15" #min
 }
 
 variable "codebuild_image" {
@@ -557,84 +637,99 @@ variable "codebuild_compute_type" {
 }
 
 
-
 ## Code Deploy
 variable "codedeploy_app_name" {
-  default = "CodedDeploy-App"
+  description = "Code deploy application name"
+  default     = "CodedDeploy-App"
 }
 
 variable "deployment_group_name" {
-  default = "Deployment-Group"
+  description = "Code deploy deployment group name"
+  default     = "Deployment-Group"
 }
 
 variable "codedeploy_service_role_name" {
-  default = "CodeDeploy-Serivce-Role"
+  description = "Code deploy service role name"
+  default     = "CodeDeploy-Serivce-Role"
 }
 
-
 variable "instances_terminate_time" {
-  default = "5"
+  description = "EC2 instance terminate time after the deployment success"
+  default     = "5"
 }
 
 
 ## Code Pipeline
 variable "pipeline_name" {
-  default = "CodePipeline"
+  description = "Pipeline name"
+  default     = "CodePipeline"
 }
 
 
 ## AWS WAF
 variable "alb_waf_acl_name" {
-  default = "alb-waf-acl"
+  description = "Name of the Application load balancer waf acl"
+  default     = "alb-waf-acl"
 }
 
 variable "cdn_waf_acl_name" {
-  default = "cdn-waf-acl"
+  description = "Name of the ClodFront waf acl"
+  default     = "cdn-waf-acl"
 }
 
 variable "alb_waf_acl_description" {
-  default = "Application Load Balancer Waf ACL"
+  description = "ALB WAF acl description"
+  default     = "Application Load Balancer Waf ACL"
 }
 
 variable "cdn_waf_acl_description" {
-  default = "CloudFront Waf ACL"
+  description = "CDN WAF acl description"
+  default     = "CloudFront Waf ACL"
 }
 
 
 ## Staic Webside
 variable "static_bucket_name" {
-  default = "static-bucket-terraform-1"
+  description = "S3 bucket name for static webside deployment"
+  default     = "static-bucket-terraform-1"
 }
 
 variable "static_bucket_versioning" {
   default     = "Enabled"
-  description = "Options are Enabled/Disabled"
+  description = "Bucket versioning Enabled/Disabled"
 }
 
 variable "static_headers_policy_name" {
-  default = "Static-CDN-HeadersPolicy"
+  description = "Cloudfront security headers policy name"
+  default     = "Static-CDN-HeadersPolicy"
 }
 
 variable "static_cloudfront_description" {
-  default = "Static CloudFront Distribution"
+  description = "Description for CloudFront distribution"
+  default     = "Static CloudFront Distribution"
 }
 
 variable "static_permissions_policy" {
-  default = "accelerometer=(self), camera=(self), cross-origin-isolated=(self), encrypted-media=(self), geolocation=(self), microphone=(self), interest-cohort=()"
+  description = "Security headers permissions policies"
+  default     = "accelerometer=(self), camera=(self), cross-origin-isolated=(self), encrypted-media=(self), geolocation=(self), microphone=(self), interest-cohort=()"
 }
 
 variable "static_access_control_allow_origins" {
-  default = "*.test.com"
+  description = "Define access control origins"
+  default     = "*.test.com"
 }
 
 variable "static_content_security_policy" {
-  default = "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'"
+  description = "Security headers content security policies"
+  default     = "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'"
 }
 
 variable "static_access_control_max_age" {
-  default = "31536000"
+  description = "Define access control max age for security headers policy"
+  default     = "31536000"
 }
 
 variable "default_root_object" {
-  default = "index.html"
+  description = "Object that you want CloudFront to return when an end user requests the root URL"
+  default     = "index.html"
 }

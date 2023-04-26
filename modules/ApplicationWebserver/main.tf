@@ -187,12 +187,12 @@ resource "aws_iam_instance_profile" "ec2_profile" {
 }
 
 locals {
-  php-version       = var.php-version
-  node-version      = var.node-version
-  composer-install  = var.composer-install
-  php-nginx-config  = var.php-nginx-config
-  php-module        = var.php-module
-  node-nginx-config = var.node-nginx-config
+  php_version       = var.php_version
+  node_version      = var.node_version
+  composer_install  = var.composer_install
+  php_nginx_config  = var.php_nginx_config
+  php_module        = var.php_module
+  node_nginx_config = var.node_nginx_config
 }
 
 # Create EC2 instance
@@ -232,7 +232,7 @@ resource "aws_instance" "web" {
   provisioner "remote-exec" {
     inline = [
       "sudo chmod +x /home/ubuntu/*.sh",
-      "sudo /home/ubuntu/php-install.sh --php-version ${local.php-version} --node-version ${local.node-version} --composer-install ${local.composer-install} --php-nginx-config ${local.php-nginx-config} --php-modules ${local.php-module} --node-nginx-config ${local.node-nginx-config}",
+      "sudo /home/ubuntu/php-install.sh --php_version ${local.php_version} --node_version ${local.node_version} --composer_install ${local.composer_install} --php_nginx_config ${local.php_nginx_config} --php_modules ${local.php_module} --node_nginx_config ${local.node_nginx_config}",
       "sudo /home/ubuntu/install.sh"
     ]
   }

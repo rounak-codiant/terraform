@@ -32,7 +32,7 @@ No modules.
 | <a name="input_env_suffix"></a> [env\_suffix](#input\_env\_suffix) | Define project environment | `any` | n/a | yes |
 | <a name="input_iam_force_destroy"></a> [iam\_force\_destroy](#input\_iam\_force\_destroy) | Code commit IAM user destroy option | `any` | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Define project name | `any` | n/a | yes |
-| <a name="input_repo_default_branch"></a> [repo\_default\_branch](#input\_repo\_default\_branch) | Code commit branc name | `any` | n/a | yes |
+| <a name="input_repo_default_branch"></a> [repo\_default\_branch](#input\_repo\_default\_branch) | Code commit branch name | `any` | n/a | yes |
 | <a name="input_repository_description"></a> [repository\_description](#input\_repository\_description) | Code commit repo description | `any` | n/a | yes |
 | <a name="input_repository_name"></a> [repository\_name](#input\_repository\_name) | Code commit repo name | `any` | n/a | yes |
 

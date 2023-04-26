@@ -23,5 +23,5 @@ variable "iam_force_destroy" {
 }
 
 variable "repo_default_branch" {
-  description = "Code commit branc name"
+  description = "Code commit branch name"
 }

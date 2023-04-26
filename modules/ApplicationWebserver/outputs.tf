@@ -9,15 +9,17 @@ output "application_sg_id" {
 }
 
 output "web_instance_id" {
-  value = aws_instance.web.id
+  description = "Application server id"
+  value       = aws_instance.web.id
 }
 
 output "ec2_private_key" {
-  value     = tls_private_key.key.private_key_pem
-  sensitive = true
+  description = "SSH key"
+  value       = tls_private_key.key.private_key_pem
+  sensitive   = true
 }
 
-
 output "ec2_role_arn" {
-  value = aws_iam_role.ec2_s3_sm_access_role.arn
+  description = "EC2 role ARN"
+  value       = aws_iam_role.ec2_s3_sm_access_role.arn
 }
