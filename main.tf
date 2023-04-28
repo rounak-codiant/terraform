@@ -67,6 +67,7 @@ module "private_bucket" {
   private_destination_bucket_name        = var.private_destination_bucket_name
   private_bucket_replication_option      = var.private_bucket_replication_option
   private_replication_destination_region = var.private_replication_destination_region
+  private_bucket_lifecycle_rule          = var.private_bucket_lifecycle_rule
 }
 
 # ######################################### S3 Public Bucket Module #########################################
@@ -82,6 +83,7 @@ module "public_bucket" {
   public_destination_bucket_name        = var.public_destination_bucket_name
   public_bucket_replication_option      = var.public_bucket_replication_option
   public_replication_destination_region = var.public_replication_destination_region
+  public_bucket_lifecycle_rule          = var.public_bucket_lifecycle_rule
 }
 
 # # ######################################### Database Module #########################################

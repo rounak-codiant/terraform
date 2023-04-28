@@ -23,6 +23,21 @@ resource "aws_s3_bucket_versioning" "public_bucket_versioning" {
   }
 }
 
+resource "aws_s3_bucket_lifecycle_configuration" "lifecycle_configuration" {
+
+  bucket = aws_s3_bucket.public_bucket.id
+
+  rule {
+    id = var.public_bucket_name
+
+    noncurrent_version_expiration {
+      noncurrent_days = 90
+    }
+
+    status = var.public_bucket_lifecycle_rule
+  }
+}
+
 #tfsec:ignore:aws-s3-encryption-customer-key
 resource "aws_s3_bucket_server_side_encryption_configuration" "public_bucket_encryption" {
   bucket = aws_s3_bucket.public_bucket.bucket

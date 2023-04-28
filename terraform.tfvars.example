@@ -47,6 +47,7 @@ private_bucket_acceleration            = "Suspended"
 private_destination_bucket_name        = "private-bucket-replica-bucket"
 private_bucket_replication_option      = "Disabled"
 private_replication_destination_region = "us-east-2"
+private_bucket_lifecycle_rule          = "Disabled"
 
 
 #S3 Public Bucket
@@ -56,6 +57,7 @@ public_bucket_acceleration            = "Suspended"
 public_destination_bucket_name        = "public-bucket-replica-bucket"
 public_bucket_replication_option      = "Disabled"
 public_replication_destination_region = "us-east-2"
+public_bucket_lifecycle_rule          = "Disabled"
 
 
 #Database (RDS)

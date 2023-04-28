@@ -25,6 +25,7 @@ No modules.
 | [aws_iam_role_policy_attachment.replication](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_s3_bucket.destination](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
 | [aws_s3_bucket.private_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
+| [aws_s3_bucket_lifecycle_configuration.lifecycle_configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_lifecycle_configuration) | resource |
 | [aws_s3_bucket_public_access_block.destination_access_block](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block) | resource |
 | [aws_s3_bucket_public_access_block.public_access_block](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block) | resource |
 | [aws_s3_bucket_replication_configuration.replication](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_replication_configuration) | resource |
@@ -41,6 +42,7 @@ No modules.
 | <a name="input_env_suffix"></a> [env\_suffix](#input\_env\_suffix) | Define project environment | `any` | n/a | yes |
 | <a name="input_private_aws_profile_name"></a> [private\_aws\_profile\_name](#input\_private\_aws\_profile\_name) | Name of the AWS profile | `any` | n/a | yes |
 | <a name="input_private_bucket_acceleration"></a> [private\_bucket\_acceleration](#input\_private\_bucket\_acceleration) | Private bucket acceleration option | `any` | n/a | yes |
+| <a name="input_private_bucket_lifecycle_rule"></a> [private\_bucket\_lifecycle\_rule](#input\_private\_bucket\_lifecycle\_rule) | Private bucket bucket lifecycle rule option | `string` | `"Disabled"` | no |
 | <a name="input_private_bucket_name"></a> [private\_bucket\_name](#input\_private\_bucket\_name) | Name of the private bucket | `any` | n/a | yes |
 | <a name="input_private_bucket_replication_option"></a> [private\_bucket\_replication\_option](#input\_private\_bucket\_replication\_option) | Private bucket replica option | `any` | n/a | yes |
 | <a name="input_private_bucket_versioning"></a> [private\_bucket\_versioning](#input\_private\_bucket\_versioning) | Private bucket versioning option | `any` | n/a | yes |

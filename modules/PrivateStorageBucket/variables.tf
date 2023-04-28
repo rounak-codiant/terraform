@@ -29,3 +29,8 @@ variable "private_bucket_replication_option" {
 variable "private_replication_destination_region" {
   description = "Private bucket replica bucket region"
 }
+
+variable "private_bucket_lifecycle_rule" {
+  default     = "Disabled"
+  description = "Private bucket bucket lifecycle rule option"
+}

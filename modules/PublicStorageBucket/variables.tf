@@ -29,3 +29,8 @@ variable "public_bucket_replication_option" {
 variable "public_replication_destination_region" {
   description = "Public bucket replica bucket region"
 }
+
+variable "public_bucket_lifecycle_rule" {
+  default     = "Disabled"
+  description = "Public bucket bucket lifecycle rule option"
+}

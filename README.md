@@ -137,6 +137,7 @@ No resources.
 | <a name="input_private_access_control_allow_origins"></a> [private\_access\_control\_allow\_origins](#input\_private\_access\_control\_allow\_origins) | Define access control origins | `string` | `"*.test.com"` | no |
 | <a name="input_private_access_control_max_age"></a> [private\_access\_control\_max\_age](#input\_private\_access\_control\_max\_age) | Define access control max age for security headers policy | `string` | `"31536000"` | no |
 | <a name="input_private_bucket_acceleration"></a> [private\_bucket\_acceleration](#input\_private\_bucket\_acceleration) | Private bucket acceleration option | `string` | `"Suspended"` | no |
+| <a name="input_private_bucket_lifecycle_rule"></a> [private\_bucket\_lifecycle\_rule](#input\_private\_bucket\_lifecycle\_rule) | Private bucket bucket lifecycle rule option | `string` | `"Disabled"` | no |
 | <a name="input_private_bucket_name"></a> [private\_bucket\_name](#input\_private\_bucket\_name) | Name of the private bucket | `string` | `"private-bucket-terraform-1"` | no |
 | <a name="input_private_bucket_replication_option"></a> [private\_bucket\_replication\_option](#input\_private\_bucket\_replication\_option) | Private bucket replica Enabled/Disabled | `string` | `"Enabled"` | no |
 | <a name="input_private_bucket_versioning"></a> [private\_bucket\_versioning](#input\_private\_bucket\_versioning) | Private bucket versioning Enabled/Disabled | `string` | `"Enabled"` | no |
@@ -151,6 +152,7 @@ No resources.
 | <a name="input_public_access_control_allow_origins"></a> [public\_access\_control\_allow\_origins](#input\_public\_access\_control\_allow\_origins) | Define access control origins | `string` | `"*.test.com"` | no |
 | <a name="input_public_access_control_max_age"></a> [public\_access\_control\_max\_age](#input\_public\_access\_control\_max\_age) | Define access control max age for security headers policy | `string` | `"31536000"` | no |
 | <a name="input_public_bucket_acceleration"></a> [public\_bucket\_acceleration](#input\_public\_bucket\_acceleration) | Public bucket acceleration option | `string` | `"Suspended"` | no |
+| <a name="input_public_bucket_lifecycle_rule"></a> [public\_bucket\_lifecycle\_rule](#input\_public\_bucket\_lifecycle\_rule) | Public bucket bucket lifecycle rule option | `string` | `"Disabled"` | no |
 | <a name="input_public_bucket_name"></a> [public\_bucket\_name](#input\_public\_bucket\_name) | Name of the public bucket | `string` | `"public-bucket-terraform-1"` | no |
 | <a name="input_public_bucket_replication_option"></a> [public\_bucket\_replication\_option](#input\_public\_bucket\_replication\_option) | Public bucket replica Enabled/Disabled | `string` | `"Enabled"` | no |
 | <a name="input_public_bucket_versioning"></a> [public\_bucket\_versioning](#input\_public\_bucket\_versioning) | Public bucket versioning Enabled/Disabled | `string` | `"Enabled"` | no |

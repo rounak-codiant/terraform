@@ -163,6 +163,11 @@ variable "private_replication_destination_region" {
   default     = "us-east-2"
 }
 
+variable "private_bucket_lifecycle_rule" {
+  default     = "Disabled"
+  description = "Private bucket bucket lifecycle rule option"
+}
+
 # #S3 Public Bucket
 variable "public_bucket_name" {
   description = "Name of the public bucket"
@@ -192,6 +197,11 @@ variable "public_bucket_replication_option" {
 variable "public_replication_destination_region" {
   description = "Public bucket replica region"
   default     = "us-east-2"
+}
+
+variable "public_bucket_lifecycle_rule" {
+  default     = "Disabled"
+  description = "Public bucket bucket lifecycle rule option"
 }
 
 # #Database (RDS)
